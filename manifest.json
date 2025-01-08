@@ -1,0 +1,34 @@
+{
+  "manifest_version": 3,
+  "name": "Tournament to Google Calendar",
+  "version": "1.0",
+  "permissions": [
+    "identity",
+    "activeTab",
+    "scripting"
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "background": {
+    "service_worker": "src/background/background.ts"
+  },
+  "action": {
+    "default_icon": "icons/icon48.png",
+    "default_popup": "src/popup/Popup.tsx"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://lobby.clubwpt.com/*"],
+      "js": ["src/content/content.ts"]
+    }
+  ],
+  "oauth2": {
+    "client_id": "YOUR_CLIENT_ID.apps.googleusercontent.com",
+    "scopes": [
+      "https://www.googleapis.com/auth/calendar"
+    ]
+  }
+}

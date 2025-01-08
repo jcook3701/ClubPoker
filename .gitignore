@@ -1,0 +1,6 @@
+
+*.bak
+*.old
+*.save
+*.tmp
+*.tmp.*
