@@ -1,9 +1,9 @@
-import React from 'react';
-import { Meta, Story } from '@storybook/react/types-6-0';
-import Popup from '../popup/Popup';
+import React from "react";
+import { Meta, Story } from "@storybook/react/types-6-0";
+import Popup from "../popup/Popup";
 
 export default {
-  title: 'Popup',
+  title: "Popup",
   component: Popup,
 } as Meta;
 

@@ -1,12 +1,9 @@
 {
   "manifest_version": 3,
   "name": "Tournament to Google Calendar",
+  "description": "This is a Chrome extension intended to interface with clubwpt.com",
   "version": "1.0",
-  "permissions": [
-    "identity",
-    "activeTab",
-    "scripting"
-  ],
+  "permissions": ["identity", "activeTab", "scripting"],
   "icons": {
     "16": "icons/icon16.png",
     "48": "icons/icon48.png",
@@ -27,8 +24,6 @@
   ],
   "oauth2": {
     "client_id": "YOUR_CLIENT_ID.apps.googleusercontent.com",
-    "scopes": [
-      "https://www.googleapis.com/auth/calendar"
-    ]
+    "scopes": ["https://www.googleapis.com/auth/calendar"]
   }
 }

@@ -4,3 +4,6 @@
 *.save
 *.tmp
 *.tmp.*
+
+dist/
+node_modules/
