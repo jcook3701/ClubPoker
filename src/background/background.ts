@@ -1,5 +1,3 @@
-import { chrome } from "chrome";
-
 const handleScrapedTournaments = (
   message: any,
   sender: any,

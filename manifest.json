@@ -10,16 +10,16 @@
     "128": "icons/icon128.png"
   },
   "background": {
-    "service_worker": "src/background/background.ts"
+    "service_worker": "js/background.js"
   },
   "action": {
     "default_icon": "icons/icon48.png",
-    "default_popup": "src/popup/Popup.tsx"
+    "default_popup": "js/popup.html"
   },
   "content_scripts": [
     {
       "matches": ["https://lobby.clubwpt.com/*"],
-      "js": ["src/content/content.ts"]
+      "js": ["js/content.js"]
     }
   ],
   "oauth2": {

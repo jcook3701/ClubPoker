@@ -4,7 +4,9 @@ const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
   entry: {
-    index: "./src/index.tsx",
+    popup: "./src/components/popup/index.tsx",
+    background: "./src/background/background.ts",
+    content: "./src/content/content.ts",
   },
   mode: "production",
   module: {
@@ -26,13 +28,25 @@ module.exports = {
         test: /\.css$/i,
         use: ["style-loader", "css-loader"],
       },
+      {
+        exclude: /node_modules/,
+        test: /\.scss$/i, // Match SCSS files
+        use: [
+          "style-loader", // Inject CSS into the DOM
+          "css-loader", // Resolve CSS imports
+          "sass-loader", // Compile SCSS into CSS
+        ],
+      },
     ],
   },
   plugins: [
     new CopyPlugin({
-      patterns: [{ from: "manifest.json", to: "../manifest.json" }],
+      patterns: [
+        { from: "manifest.json", to: "../manifest.json" },
+        { from: "src/icons", to: "../icons" },
+      ],
     }),
-    ...getHtmlPlugins(["index"]),
+    ...getHtmlPlugins(["popup"]),
   ],
   resolve: {
     extensions: [".tsx", ".ts", ".js"],

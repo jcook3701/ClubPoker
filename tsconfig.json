@@ -1,9 +1,10 @@
 {
   "compilerOptions": {
     "target": "ES6",
+    "types": ["chrome", "node"],
     "lib": ["dom", "es6"],
     "allowJs": true,
-    "jsx": "react",
+    "jsx": "react-jsx",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "noImplicitAny": false,

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import ReactDOM from "react-dom";
-import { extractTournamentData } from "../utils/tournamentUtils";
-import "./popup.scss";
+import { extractTournamentData } from "../../utils/tournamentUtils";
+import "./Popup.scss";
 
 const timezones = [
   "America/Los_Angeles",
@@ -62,4 +61,4 @@ const Popup: React.FC = () => {
   );
 };
 
-ReactDOM.render(<Popup />, document.getElementById("root"));
+export default Popup;
