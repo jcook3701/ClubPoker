@@ -3,6 +3,9 @@ interface TournamentData {
   game: string;
   buyin: string;
   name: string;
+  id: string;
+  status: string;
+  enrolled: string;
 }
 
 export default TournamentData;

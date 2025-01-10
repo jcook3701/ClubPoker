@@ -1,25 +1,38 @@
+import TournamentData from "../types/TournamentData";
+
+interface Message {
+  action: string;
+  data: TournamentData[];
+}
+
+// Handle incoming messages for tournament data
 const handleScrapedTournaments = (
-  message: any,
-  sender: any,
-  sendResponse: any
+  message: Message,
+  sender: chrome.runtime.MessageSender,
+  sendResponse: (response?: any) => void
 ): void => {
   if (message.action === "scrapedTournaments") {
     saveTournamentsToGoogleCalendar(message.data);
   }
 };
 
+// Get OAuth token for Google API
 const getToken = (): Promise<string> =>
   new Promise((resolve, reject) => {
     chrome.identity.getAuthToken({ interactive: true }, (token) => {
-      if (chrome.runtime.lastError) {
-        reject(chrome.runtime.lastError.message);
+      if (chrome.runtime.lastError || !token) {
+        reject(chrome.runtime.lastError?.message || "No token available");
       } else {
         resolve(token);
       }
     });
   });
 
-const createEvent = (tournament: any, token: string): Promise<any> => {
+// Create a Google Calendar event from tournament data
+const createEvent = (
+  tournament: TournamentData,
+  token: string
+): Promise<void> => {
   const startDateTime = new Date(tournament.start).toISOString();
   const endDateTime = new Date(
     new Date(tournament.start).getTime() + 60 * 60 * 1000
@@ -51,8 +64,9 @@ const createEvent = (tournament: any, token: string): Promise<any> => {
   ).then((response) => response.json());
 };
 
+// Save all tournaments to Google Calendar
 const saveTournamentsToGoogleCalendar = async (
-  tournaments: any[]
+  tournaments: TournamentData[]
 ): Promise<void> => {
   try {
     const token = await getToken();

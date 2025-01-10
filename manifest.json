@@ -9,9 +9,6 @@
     "48": "icons/icon48.png",
     "128": "icons/icon128.png"
   },
-  "background": {
-    "service_worker": "js/background.js"
-  },
   "action": {
     "default_icon": "icons/icon48.png",
     "default_popup": "js/popup.html"
@@ -21,9 +18,5 @@
       "matches": ["https://lobby.clubwpt.com/*"],
       "js": ["js/content.js"]
     }
-  ],
-  "oauth2": {
-    "client_id": "YOUR_CLIENT_ID.apps.googleusercontent.com",
-    "scopes": ["https://www.googleapis.com/auth/calendar"]
-  }
+  ]
 }

@@ -1,4 +1,4 @@
-import TournamentData from "../types/tournament";
+import TournamentData from "../types/TournamentData";
 
 export const convertToTimezone = (
   dateTime: string,
@@ -25,7 +25,25 @@ export const extractTournamentData = (
   const game = columns[2]?.textContent?.trim() || "";
   const buyin = columns[3]?.textContent?.trim() || "";
   const name = columns[4]?.textContent?.trim() || "";
+  const id = columns[5]?.textContent?.trim() || "";
+  const status = columns[6]?.textContent?.trim() || "";
+  const enrolled = columns[7]?.textContent?.trim() || "";
   const startTime = convertToTimezone(start, timeZone);
 
-  return { start: startTime, game, buyin, name };
+  return { start: startTime, game, buyin, name, id, status, enrolled };
+};
+
+export const scrapeTournaments = (timeZone: string): TournamentData[] => {
+  return Array.from(document.querySelectorAll(".grid-rows.row"))
+    .map((row) => extractTournamentData(row, timeZone))
+    .filter(
+      (tournament) =>
+        tournament.start &&
+        tournament.game &&
+        tournament.buyin &&
+        tournament.name &&
+        tournament.id &&
+        tournament.status &&
+        tournament.buyin
+    );
 };

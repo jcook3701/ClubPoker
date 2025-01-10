@@ -1,15 +1,24 @@
 {
   "compilerOptions": {
     "target": "ES6",
-    "types": ["chrome", "node"],
-    "lib": ["dom", "es6"],
+    "module": "esnext",
+    "lib": ["dom", "es6", "es2022"],
+    "moduleResolution": "node",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
     "allowJs": true,
     "jsx": "react-jsx",
-    "moduleResolution": "node",
     "resolveJsonModule": true,
+    "forceConsistentCasingInFileNames": true,
     "noImplicitAny": false,
-    "esModuleInterop": true,
     "outDir": "./dist"
   },
-  "include": ["src"]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
