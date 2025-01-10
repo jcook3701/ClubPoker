@@ -2,11 +2,15 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import Popup from "./Popup";
 
-const root = ReactDOM.createRoot(
-  document.getElementById("root") as HTMLElement
-);
+// Create a new div for mounting React
+const rootElement = document.createElement("div");
+rootElement.className = "container";
+document.body.appendChild(rootElement);
+
+const root = ReactDOM.createRoot(rootElement);
+
 root.render(
   <React.StrictMode>
-    <Popup />
+    <Popup></Popup>
   </React.StrictMode>
 );

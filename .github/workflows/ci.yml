@@ -28,10 +28,10 @@ jobs:
         run: |
           npm install
 
-      - name: Run ESLint Fix
+      - name: Run ESLint Check
         run: |
-          npm run lint-fix  # This will run ESLint with the --fix flag
+          npm run lint-check  # This will run ESLint with the --fix flag
 
-      - name: Run Prettier Fix
+      - name: Run Prettier Check
         run: |
-          npm run pretty  # Fix formatting
+          npm run pretty-check  # Fix formatting
