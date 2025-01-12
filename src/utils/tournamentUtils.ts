@@ -20,7 +20,9 @@ export const extractTournamentData = (
   row: Element,
   timeZone: string
 ): TournamentData => {
+  console.log("ExtractTournamentData");
   const columns = row.querySelectorAll("ion-col");
+  console.log("ion-col: ", columns);
   const start = columns[1]?.textContent?.trim() || "";
   const game = columns[2]?.textContent?.trim() || "";
   const buyin = columns[3]?.textContent?.trim() || "";
@@ -34,7 +36,13 @@ export const extractTournamentData = (
 };
 
 export const scrapeTournaments = (timeZone: string): TournamentData[] => {
-  return Array.from(document.querySelectorAll(".grid-rows.row"))
+  const rows = document.querySelectorAll(".grid-rows.row");
+  const ionrows = document.getElementsByTagName("grid-poker");
+  console.log("document: ", document);
+
+  console.log("scrapeTournaments rows:", rows);
+  console.log("scrapeTournaments ionrows:", ionrows);
+  return Array.from(rows)
     .map((row) => extractTournamentData(row, timeZone))
     .filter(
       (tournament) =>
@@ -44,6 +52,6 @@ export const scrapeTournaments = (timeZone: string): TournamentData[] => {
         tournament.name &&
         tournament.id &&
         tournament.status &&
-        tournament.buyin
+        tournament.enrolled
     );
 };
