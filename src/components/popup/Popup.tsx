@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import { ThemeProvider, createTheme, Button } from "@mui/material";
 import SaveIcon from "@mui/icons-material/Save";
 import TimezoneSelect from "../timezone-select/TimezoneSelect";
+import Header from "../header/Header";
 
-import "./Popup.scss";
+import styles from "./Popup.module.scss";
 
 const Popup: React.FC = () => {
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
@@ -14,6 +15,7 @@ const Popup: React.FC = () => {
   useEffect(() => {
     // This code will run after the component renders
     console.log("Component mounted");
+    console.log("styles: ", styles);
 
     // Cleanup function (optional)
     return () => {
@@ -29,12 +31,15 @@ const Popup: React.FC = () => {
 
   const handleClick = (): void => {
     // const extraction = extractTournamentData;
+    console.log("Save Button");
+    //console.log(extraction);
     // injectDataToPage(tournaments);
   };
 
   // <ThemeProvider />
   return (
-    <div className="popup">
+    <div className={styles.popup}>
+      <Header />
       <TimezoneSelect />
       <Button
         variant="contained"

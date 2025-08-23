@@ -2,12 +2,33 @@
 
 This Chrome extension scrapes tournament information from the ClubWPT lobby website and adds them to your Google Calendar.
 
+## Pre-commit commands
+
+1. Auto fix linting errors and improve code quality.  
+``` shell
+$ npm run lint-fix
+```
+2. Auto fix code formatting to improve readability and my sanity.  
+``` shell
+$ npm run pretty
+```
+
 ## Installation
 
-1. Clone or download this repository.
-2. Open Google Chrome and navigate to `chrome://extensions/`.
-3. Enable "Developer mode".
-4. Click "Load unpacked" and select the directory containing this project.
+1. Open Google Chrome and navigate to `chrome://extensions/`.  
+2. Enable "Developer mode".  
+3. Clone or download this repository.  
+4. Build package from source code.  This allows for code to run within google chrome.  
+``` shell
+$ npm run build
+```
+5. Click "Load unpacked" and select the directory containing this project.  
+
+## Storybook
+6. Build package components for use in storybook.  
+``` shell
+$ npm run build-storybook  
+```
 
 ## Usage
 

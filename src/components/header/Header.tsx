@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import { Icon } from "../../icons/";
+import Icon from "../icon/Icon";
+
+import styles from "./Header.module.scss";
 
 const Header: React.FC = () => {
   return (
-    <div>
-      <Icon src="" />
-      <h3>Club WPT</h3>
+    <div className={styles.header}>
+      <Icon src="icon48.png" alt="Club WPT" className={styles.headerIcon} />
+      <h3 className={styles.headerTitle}>Club WPT</h3>
     </div>
   );
 };

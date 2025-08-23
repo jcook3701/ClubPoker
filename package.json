@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "clean": "rm -rf dist",
     "build": "webpack --config webpack.config.js",
     "watch": "webpack -w --config webpack.config.js",
     "storybook": "sb dev",
@@ -45,6 +46,7 @@
     "eslint-plugin-react": "^7.37.3",
     "eslint-plugin-typescript": "^0.14.0",
     "html-webpack-plugin": "^5.6.3",
+    "mini-css-extract-plugin": "^2.9.4",
     "prettier": "^2.3.2",
     "react-inspector": "^6.0.2",
     "sass": "^1.83.1",

@@ -12,11 +12,13 @@
     "resolveJsonModule": true,
     "forceConsistentCasingInFileNames": true,
     "noImplicitAny": false,
+    "typeRoots": ["./node_modules/@types", "./src/types"],
     "outDir": "./dist"
   },
   "include": [
     "src/**/*.ts",
-    "src/**/*.tsx"
+    "src/**/*.tsx",
+    "src/types/*.d.ts"
   ],
   "exclude": [
     "node_modules"

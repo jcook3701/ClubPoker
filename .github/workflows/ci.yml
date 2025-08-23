@@ -1,3 +1,4 @@
+---
 name: CI Workflow
 
 on:
@@ -14,7 +15,7 @@ jobs:
   lint:
     name: Lint Code with ESLint and Format with Prettier
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
@@ -34,4 +35,4 @@ jobs:
 
       - name: Run Prettier Check
         run: |
-          npm run pretty-check  # Fix formatting
+          npm run pretty-check  # Check formatting

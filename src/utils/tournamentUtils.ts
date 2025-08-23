@@ -38,6 +38,7 @@ export const extractTournamentData = (
 export const scrapeTournaments = (timeZone: string): TournamentData[] => {
   const rows = document.querySelectorAll(".grid-rows.row");
   const ionrows = document.getElementsByTagName("grid-poker");
+  console.log("Hello World");
   console.log("document: ", document);
 
   console.log("scrapeTournaments rows:", rows);
