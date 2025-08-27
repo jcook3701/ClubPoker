@@ -1,6 +1,8 @@
 .header {
+  position: sticky; // or fixed
+  top: 0; /* stick to the top */
   display: flex; // ✅ puts children in a row
-  align-items: center; // ✅ vertically centers them
+  padding: 1rem 0rem;
   gap: 8px; // ✅ spacing between img and h3
 }
 
@@ -12,4 +14,16 @@
 .headerTitle {
   margin: 0; // remove default h3 spacing
   font-size: 1.2rem;
+  padding-right: 5rem; /* only on the right side */
+}
+
+.icon {
+  font-size: 32px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.icon:hover {
+  transform: scale(1.2);
+  color: #1976d2; /* MUI blue highlight */
 }

@@ -2,7 +2,11 @@
   width: 300px;
   height: 400px;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  // justify-content: center;
+  // align-items: center;
   flex-direction: column;
+  background: white; // or whatever background you want
+  border: 2px solid #1976d2; // thickness, style, and color
+  border-radius: 8px; // optional, gives rounded corners
+  padding: 1rem; // keeps content from touching border
 }

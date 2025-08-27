@@ -1,5 +1,15 @@
 import React, { useState } from "react";
 import Select from "react-select";
+import UpdateIcon from "@mui/icons-material/Update";
+
+// Helpful: https://mui.com/material-ui/material-icons/?query=ques
+//
+// import SaveIcon from "@mui/icons-material/Save";
+// Maybe for saving settings within the app.
+
+import { Button } from "@mui/material";
+
+import styles from "./TimezoneSelect.module.scss";
 
 interface Option {
   value: string;
@@ -24,8 +34,15 @@ const TimezoneSelect: React.FC = () => {
     // Trigger logic for the selected timezone if needed
   };
 
+  const handleClick = (): void => {
+    // const extraction = extractTournamentData;
+    console.log("Save Button");
+    //console.log(extraction);
+    // injectDataToPage(tournaments);
+  };
+
   return (
-    <div>
+    <div className={styles.timezoneSelect}>
       <h3>Select Timezone:</h3>
       <Select
         value={selectedOption}
@@ -34,6 +51,14 @@ const TimezoneSelect: React.FC = () => {
         placeholder="Choose a timezone"
         isSearchable
       />
+      <Button
+        variant="contained"
+        color="primary"
+        endIcon={<UpdateIcon />}
+        onClick={handleClick}
+      >
+        Update
+      </Button>
     </div>
   );
 };
