@@ -1,16 +1,27 @@
-import { scrapeTournaments } from "../utils/tournamentUtils";
+import TournamentData from "../types/TournamentData";
+import getTournamentsData from "../utils/scrapers/getTournamentData";
 
-console.log("Content");
+console.log("ClubWPT Content Script Started");
 
-document.addEventListener("DOMContentLoaded", function () {
-  const tournaments = scrapeTournaments("America/New_York");
-  console.log("tournamentsData: ", tournaments);
-});
+const observeTournaments = (
+  callback: (data: TournamentData[]) => void
+): void => {
+  const targetNode = document.body;
+  const config = { childList: true, subtree: true };
 
-/*  
-  // Send scraped data to background script
-  chrome.runtime.sendMessage({
-    action: "scrapedTournaments",
-    data: scrapeTournaments("America/New_York"),
+  const observer = new MutationObserver(() => {
+    const tournaments = getTournamentsData();
+    if (tournaments.length > 0) {
+      callback(tournaments);
+      observer.disconnect(); // stop once data is collected
+    }
   });
-*/
+
+  observer.observe(targetNode, config);
+};
+
+// Usage in content script
+observeTournaments((data) => {
+  console.log("Tournaments loaded:", data);
+  // You can send data to background script or process here
+});

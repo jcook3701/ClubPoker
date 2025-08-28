@@ -8,9 +8,7 @@ import WindowSelector from "../window-selector/WindowSelector";
 
 const Popup: React.FC = () => {
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
-  const [timezone, setTimezone] = useState(
-    localStorage.getItem("timezone") || "America/Los_Angeles"
-  );
+  const [selectedWindow, setSelectedWindow] = useState("timezone");
 
   useEffect(() => {
     // This code will run after the component renders
@@ -23,18 +21,15 @@ const Popup: React.FC = () => {
     };
   }, []); // Empty dependency array means the effect runs once on mount
 
-  const handleTimezoneChange = (
-    event: React.ChangeEvent<HTMLSelectElement>
-  ): void => {
-    setTimezone(event.target.value);
-  };
-
   // <ThemeProvider />
   return (
     <div className={styles.popup}>
       <Header />
-      <WindowSelector />
-      <TimezoneSelect />
+      <WindowSelector
+        selectedWindow={selectedWindow}
+        onChange={setSelectedWindow}
+      />
+      {selectedWindow === "timezone" ? <TimezoneSelect /> : null}
     </div>
   );
 };

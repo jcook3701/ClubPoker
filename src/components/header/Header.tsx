@@ -3,7 +3,6 @@ import Icon from "../icon/Icon";
 import LiveHelpIcon from "@mui/icons-material/LiveHelp";
 import SettingsIcon from "@mui/icons-material/Settings";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-// import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 
 import styles from "./Header.module.scss";
 

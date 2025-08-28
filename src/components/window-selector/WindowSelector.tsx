@@ -6,17 +6,28 @@ import AccessTimeIcon from "@mui/icons-material/AccessTime"; // update time page
 
 import styles from "./WindowSelector.module.scss";
 
-const WindowSelector: React.FC = () => {
-  const [value, setValue] = useState("timezone");
+type WindowSelectorProps = {
+  selectedWindow: string;
+  onChange: (value: string) => void;
+};
 
-  const handleChange = (_: React.MouseEvent<HTMLElement>, newValue: string) => {
-    if (newValue !== null) setValue(newValue); // prevent deselecting all
+const WindowSelector: React.FC<WindowSelectorProps> = ({
+  selectedWindow,
+  onChange,
+}) => {
+  const handleChange = (
+    _event: React.MouseEvent<HTMLElement>,
+    newValue: string | null
+  ) => {
+    if (newValue !== null) {
+      onChange(newValue);
+    }
   };
 
   return (
     <ToggleButtonGroup
       className={styles.windowSelector}
-      value={value}
+      value={selectedWindow}
       exclusive
       onChange={handleChange}
       fullWidth

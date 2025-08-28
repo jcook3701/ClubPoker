@@ -10,33 +10,43 @@ import UpdateIcon from "@mui/icons-material/Update";
 import { Button } from "@mui/material";
 
 import styles from "./TimezoneSelect.module.scss";
-
-interface Option {
-  value: string;
-  label: string;
-}
+import Timezone from "../../types/Timezone";
+import getTournamentsData from "../../utils/scrapers/getTournamentData";
 
 // Dynamically generate timezone options
 const timezones = Intl.supportedValuesOf("timeZone");
-const timezoneOptions: Option[] = timezones.map((tz) => ({
+const timezoneOptions: Timezone[] = timezones.map((tz) => ({
   value: tz,
   label: tz.replace("_", " "),
 }));
 
 const TimezoneSelect: React.FC = () => {
-  const [selectedOption, setSelectedOption] = useState<Option | null>(
-    timezoneOptions[0]
+  const [timezone, setTimezone] = useState<string>(
+    localStorage.getItem("timezone") || "America/Los_Angeles"
   );
 
-  const handleChange = (option: Option | null) => {
+  const [selectedOption, setSelectedOption] = useState<Timezone | null>(
+    timezoneOptions[133]
+  );
+
+  const handleTimezoneChange = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ): void => {
+    setTimezone(event.target.value);
+  };
+
+  const handleChange = (option: Timezone | null) => {
     setSelectedOption(option);
+    // onChange(option?.value);
     console.log("Selected Timezone:", option?.value);
     // Trigger logic for the selected timezone if needed
   };
 
   const handleClick = (): void => {
     // const extraction = extractTournamentData;
-    console.log("Save Button");
+    console.log("Update Time");
+    const tournaments = getTournamentsData();
+    console.log("scraped tournaments: ", tournaments);
     //console.log(extraction);
     // injectDataToPage(tournaments);
   };

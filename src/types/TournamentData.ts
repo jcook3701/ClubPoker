@@ -5,7 +5,7 @@ interface TournamentData {
   name: string;
   id: string;
   status: string;
-  enrolled: string;
+  enrolled: number;
 }
 
 export default TournamentData;
