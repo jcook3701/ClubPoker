@@ -15,9 +15,7 @@
   },
   "content_scripts": [
     {
-      "matches": [
-	"https://clubwpt.com/*",
-	"https://*.clubwpt.com/*"],
+      "matches": ["https://clubwpt.com/*", "https://*.clubwpt.com/*"],
       "js": ["js/content.js"]
     }
   ]

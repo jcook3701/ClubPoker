@@ -1,9 +1,9 @@
 .header {
-  position: sticky; // or fixed
+  position: sticky; /* or fixed */
   top: 0; /* stick to the top */
-  display: flex; // ✅ puts children in a row
+  display: flex; /* puts children in a row */
   padding: 1rem 0rem;
-  gap: 8px; // ✅ spacing between img and h3
+  gap: 8px; /* spacing between img and h3 */
 }
 
 .headerIcon {
@@ -12,7 +12,7 @@
 }
 
 .headerTitle {
-  margin: 0; // remove default h3 spacing
+  margin: 0; /* remove default h3 spacing */
   font-size: 1.2rem;
   padding-right: 5rem; /* only on the right side */
 }
