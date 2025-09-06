@@ -5,5 +5,7 @@
 *.tmp
 *.tmp.*
 
+club-wtp-chrome-extension.zip
+
 dist/
 node_modules/

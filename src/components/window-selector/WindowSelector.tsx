@@ -5,6 +5,9 @@ import CalendarMonthIcon from "@mui/icons-material/CalendarMonth"; // update Goo
 import AccessTimeIcon from "@mui/icons-material/AccessTime"; // update time page
 
 import styles from "./WindowSelector.module.scss";
+import TimezoneSelect from "../timezone-select/TimezoneSelect";
+import Filters from "../filters/Filters";
+import GoogleCalendarUpdater from "../google-calendar-updater/GoogleCalendarUpdater";
 
 type WindowSelectorProps = {
   selectedWindow: string;
@@ -25,23 +28,28 @@ const WindowSelector: React.FC<WindowSelectorProps> = ({
   };
 
   return (
-    <ToggleButtonGroup
-      className={styles.windowSelector}
-      value={selectedWindow}
-      exclusive
-      onChange={handleChange}
-      fullWidth
-    >
-      <ToggleButton value="timezone" aria-label="timezone">
-        <AccessTimeIcon />
-      </ToggleButton>
-      <ToggleButton value="filter" aria-label="Filter">
-        <FilterIcon />
-      </ToggleButton>
-      <ToggleButton value="calendar" aria-label="calendar">
-        <CalendarMonthIcon />
-      </ToggleButton>
-    </ToggleButtonGroup>
+    <div>
+      <ToggleButtonGroup
+        className={styles.windowSelector}
+        value={selectedWindow}
+        exclusive
+        onChange={handleChange}
+        fullWidth
+      >
+        <ToggleButton value="timezone" aria-label="timezone">
+          <AccessTimeIcon />
+        </ToggleButton>
+        <ToggleButton value="filter" aria-label="Filter">
+          <FilterIcon />
+        </ToggleButton>
+        <ToggleButton value="calendar" aria-label="calendar">
+          <CalendarMonthIcon />
+        </ToggleButton>
+      </ToggleButtonGroup>
+      {selectedWindow === "timezone" ? <TimezoneSelect /> : null}
+      {selectedWindow === "filter" ? <Filters /> : null}
+      {selectedWindow === "calendar" ? <GoogleCalendarUpdater /> : null}
+    </div>
   );
 };
 

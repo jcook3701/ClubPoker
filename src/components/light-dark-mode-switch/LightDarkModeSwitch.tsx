@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { styled } from "@mui/material/styles";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -202,7 +202,18 @@ const AntSwitch = styled(Switch)(({ theme }) => ({
   },
 }));
 
-export default function CustomizedSwitches() {
+const LightDarkModeSwitch: React.FC = () => {
+  return (
+    <FormControlLabel
+      control={<MaterialUISwitch sx={{ m: 1 }} defaultChecked />}
+      label="Theme"
+    />
+  );
+};
+
+export default LightDarkModeSwitch;
+
+const CustomizedSwitches: React.FC = () => {
   return (
     <FormGroup>
       <FormControlLabel
@@ -224,4 +235,4 @@ export default function CustomizedSwitches() {
       </Stack>
     </FormGroup>
   );
-}
+};

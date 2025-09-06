@@ -5,10 +5,12 @@ import Header from "../header/Header";
 
 import styles from "./Popup.module.scss";
 import WindowSelector from "../window-selector/WindowSelector";
+import Settings from "../settings/Settings";
 
 const Popup: React.FC = () => {
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
   const [selectedWindow, setSelectedWindow] = useState("timezone");
+  const [settingsSelected, setSettingsSelected] = useState(false);
 
   useEffect(() => {
     // This code will run after the component renders
@@ -24,12 +26,18 @@ const Popup: React.FC = () => {
   // <ThemeProvider />
   return (
     <div className={styles.popup}>
-      <Header />
-      <WindowSelector
-        selectedWindow={selectedWindow}
-        onChange={setSelectedWindow}
+      <Header
+        settingsSelected={settingsSelected}
+        setSettingsSelected={setSettingsSelected}
       />
-      {selectedWindow === "timezone" ? <TimezoneSelect /> : null}
+      {settingsSelected ? (
+        <Settings />
+      ) : (
+        <WindowSelector
+          selectedWindow={selectedWindow}
+          onChange={setSelectedWindow}
+        />
+      )}
     </div>
   );
 };

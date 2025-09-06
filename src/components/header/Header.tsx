@@ -6,13 +6,22 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 import styles from "./Header.module.scss";
 
-const Header: React.FC = () => {
+type HeaderProps = {
+  settingsSelected: boolean;
+  setSettingsSelected: (value: boolean) => void;
+};
+
+const Header: React.FC<HeaderProps> = ({
+  settingsSelected,
+  setSettingsSelected,
+}) => {
   const handleHelpClick = () => {
     alert("Help clicked!");
   };
 
   const handleSettingsClick = () => {
-    alert("Settings clicked!");
+    setSettingsSelected(!settingsSelected);
+    console.log(settingsSelected);
   };
 
   const handleMenuClick = () => {
