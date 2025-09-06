@@ -39,7 +39,7 @@ const Filter: React.FC<FilterProps> = ({
     };
 
   return (
-    <div className={className}>
+    <div className={`${styles.filter} ${className ?? ""}`}>
       <h3>{title}</h3>
       {filters.map((opt) => (
         <FormControlLabel

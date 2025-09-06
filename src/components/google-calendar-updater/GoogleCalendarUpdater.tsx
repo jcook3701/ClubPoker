@@ -1,57 +1,32 @@
 import React, { useEffect, useState } from "react";
-import {
-  createEvent,
-  listCalendars,
-  fetchCalendarEvents,
-} from "../../api/googleCalendarApi";
+import { useCalendar } from "../../context/GoogleCalendarContext";
+import { createEvent, fetchCalendarEvents } from "../../api/googleCalendarApi";
 import { Calendar, CalendarEvent } from "../../types/calendar";
 
 import styles from "./GoogleCalendarUpdater.module.scss";
 
 const GoogleCalendarUpdater: React.FC = () => {
-  const [calendars, setCalendars] = useState<Calendar[]>([]);
-  const [selectedCalendar, setSelectedCalendar] = useState<Calendar | null>(
-    null
-  );
+  const { calendars, selectedCalendar, setSelectedCalendar, loading, error } =
+    useCalendar();
   const [events, setEvents] = useState<CalendarEvent[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [eventLoading, setEventLoading] = useState(false);
+  const [eventError, setEventError] = useState<string | null>(null);
 
-  // Fetch list of calendars when component mounts
-  useEffect(() => {
-    const loadCalendars = async () => {
-      setLoading(true);
-      try {
-        const cals = await listCalendars();
-        setCalendars(cals);
-        if (cals.length > 0) setSelectedCalendar(cals[0]);
-      } catch (err: unknown) {
-        console.error(err);
-        if (err instanceof Error) setError(err.message);
-        else setError(String(err));
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadCalendars();
-  }, []);
-
-  // Fetch events whenever the selected calendar changes
+  // Fetch events whenever selected calendar changes
   useEffect(() => {
     if (!selectedCalendar) return;
 
     const loadEvents = async () => {
-      setLoading(true);
+      setEventLoading(true);
       try {
         const evs = await fetchCalendarEvents(selectedCalendar.id);
         setEvents(evs ?? []);
       } catch (err: unknown) {
         console.error(err);
-        if (err instanceof Error) setError(err.message);
-        else setError(String(err));
+        if (err instanceof Error) setEventError(err.message);
+        else setEventError(String(err));
       } finally {
-        setLoading(false);
+        setEventLoading(false);
       }
     };
 
@@ -65,25 +40,26 @@ const GoogleCalendarUpdater: React.FC = () => {
       summary: "New Event",
       description: "Created from Club WPT extension",
       start: { dateTime: new Date().toISOString() },
-      end: { dateTime: new Date(Date.now() + 60 * 60 * 1000).toISOString() }, // 1 hour later
+      end: { dateTime: new Date(Date.now() + 60 * 60 * 1000).toISOString() },
     };
 
     try {
-      setLoading(true);
+      setEventLoading(true);
       await createEvent(selectedCalendar.id, newEvent);
       const evs = await fetchCalendarEvents(selectedCalendar.id);
       setEvents(evs ?? []);
     } catch (err: unknown) {
       console.error(err);
-      if (err instanceof Error) setError(err.message);
-      else setError(String(err));
+      if (err instanceof Error) setEventError(err.message);
+      else setEventError(String(err));
     } finally {
-      setLoading(false);
+      setEventLoading(false);
     }
   };
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div style={{ color: "red" }}>{error}</div>;
+  if (loading || eventLoading) return <div>Loading...</div>;
+  if (error || eventError)
+    return <div style={{ color: "red" }}>{error || eventError}</div>;
 
   return (
     <div>
