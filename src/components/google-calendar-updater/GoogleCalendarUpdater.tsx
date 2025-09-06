@@ -1,101 +1,117 @@
 import React, { useEffect, useState } from "react";
 import {
-  authenticate,
-  getToken,
+  createEvent,
   listCalendars,
+  fetchCalendarEvents,
 } from "../../api/googleCalendarApi";
-
-import { Calendar } from "../../types/calendar";
+import { Calendar, CalendarEvent } from "../../types/calendar";
 
 import styles from "./GoogleCalendarUpdater.module.scss";
 
 const GoogleCalendarUpdater: React.FC = () => {
-  const [isAuthed, setIsAuthed] = useState(false);
-  const [token, setToken] = useState<string | null>(null);
   const [calendars, setCalendars] = useState<Calendar[]>([]);
-  const [selectedCalendar, setSelectedCalendar] = useState<string>("");
-  const [reminder, setReminder] = useState("10");
+  const [selectedCalendar, setSelectedCalendar] = useState<Calendar | null>(
+    null
+  );
+  const [events, setEvents] = useState<CalendarEvent[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
+  // Fetch list of calendars when component mounts
   useEffect(() => {
-    getToken().then((storedToken) => {
-      if (storedToken) {
-        setToken(storedToken);
-        setIsAuthed(true);
+    const loadCalendars = async () => {
+      setLoading(true);
+      try {
+        const cals = await listCalendars();
+        setCalendars(cals);
+        if (cals.length > 0) setSelectedCalendar(cals[0]);
+      } catch (err: unknown) {
+        console.error(err);
+        if (err instanceof Error) setError(err.message);
+        else setError(String(err));
+      } finally {
+        setLoading(false);
       }
-    });
+    };
+
+    loadCalendars();
   }, []);
 
+  // Fetch events whenever the selected calendar changes
   useEffect(() => {
-    if (token) {
-      listCalendars(token).then(setCalendars);
-    }
-  }, [token]);
+    if (!selectedCalendar) return;
 
-  const handleAuth = async () => {
-    const t = await authenticate();
-    if (t) {
-      setToken(t);
-      setIsAuthed(true);
+    const loadEvents = async () => {
+      setLoading(true);
+      try {
+        const evs = await fetchCalendarEvents(selectedCalendar.id);
+        setEvents(evs ?? []);
+      } catch (err: unknown) {
+        console.error(err);
+        if (err instanceof Error) setError(err.message);
+        else setError(String(err));
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadEvents();
+  }, [selectedCalendar]);
+
+  const handleCreateEvent = async () => {
+    if (!selectedCalendar) return;
+
+    const newEvent: CalendarEvent = {
+      summary: "New Event",
+      description: "Created from Club WPT extension",
+      start: { dateTime: new Date().toISOString() },
+      end: { dateTime: new Date(Date.now() + 60 * 60 * 1000).toISOString() }, // 1 hour later
+    };
+
+    try {
+      setLoading(true);
+      await createEvent(selectedCalendar.id, newEvent);
+      const evs = await fetchCalendarEvents(selectedCalendar.id);
+      setEvents(evs ?? []);
+    } catch (err: unknown) {
+      console.error(err);
+      if (err instanceof Error) setError(err.message);
+      else setError(String(err));
+    } finally {
+      setLoading(false);
     }
   };
 
-  const handleSave = () => {
-    chrome.storage.sync.set({
-      gcal_calendar: selectedCalendar,
-      gcal_reminder: reminder,
-    });
-    alert("Google Calendar settings saved!");
-  };
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div style={{ color: "red" }}>{error}</div>;
 
   return (
-    <div className={styles.googleCalendarUpdator}>
-      <h3>Google Calender Updater:</h3>
-      {!isAuthed ? (
-        <button
-          onClick={handleAuth}
-          className="bg-blue-600 text-white px-4 py-2 rounded-lg"
-        >
-          Connect to Google Calendar
-        </button>
-      ) : (
-        <div className="space-y-4">
-          <div>
-            <label className="block mb-1">Choose Calendar</label>
-            <select
-              value={selectedCalendar}
-              onChange={(e) => setSelectedCalendar(e.target.value)}
-              className="border rounded p-2 w-full"
-            >
-              <option value="">-- Select a calendar --</option>
-              {calendars.map((cal) => (
-                <option key={cal.id} value={cal.id}>
-                  {cal.summary}
-                </option>
-              ))}
-            </select>
-          </div>
+    <div>
+      <h2>Google Calendars</h2>
+      <select
+        value={selectedCalendar?.id || ""}
+        onChange={(e) => {
+          const cal = calendars.find((c) => c.id === e.target.value);
+          setSelectedCalendar(cal ?? null);
+        }}
+      >
+        {calendars.map((cal) => (
+          <option key={cal.id} value={cal.id}>
+            {cal.summary}
+          </option>
+        ))}
+      </select>
 
-          <div>
-            <label className="block mb-1">Default Reminder</label>
-            <select
-              value={reminder}
-              onChange={(e) => setReminder(e.target.value)}
-              className="border rounded p-2 w-full"
-            >
-              <option value="10">10 minutes</option>
-              <option value="30">30 minutes</option>
-              <option value="60">1 hour</option>
-            </select>
-          </div>
+      <h3>Events</h3>
+      <ul>
+        {events.map((ev) => (
+          <li key={ev.id ?? ev.summary}>
+            {ev.summary} ({ev.start?.dateTime ?? ev.start?.date})
+          </li>
+        ))}
+      </ul>
 
-          <button
-            onClick={handleSave}
-            className="bg-green-600 text-white px-4 py-2 rounded-lg"
-          >
-            Save Settings
-          </button>
-        </div>
-      )}
+      <button onClick={handleCreateEvent}>Create Test Event</button>
     </div>
   );
 };

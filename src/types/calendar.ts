@@ -4,15 +4,18 @@ export interface Calendar {
 }
 
 export interface CalendarEvent {
+  id?: string;
   summary: string;
   description?: string;
   location?: string;
   start: {
     dateTime: string; // ISO 8601
+    date?: string;
     timeZone?: string;
   };
   end: {
     dateTime: string;
+    date?: string;
     timeZone?: string;
   };
   reminders?: {
