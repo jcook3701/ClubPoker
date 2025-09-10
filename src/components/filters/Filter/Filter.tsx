@@ -1,41 +1,28 @@
-import React, { useState } from "react";
+import React from "react";
 import FormControlLabel from "@mui/material/FormControlLabel";
 
 import styles from "./Filter.module.scss";
 import { Checkbox } from "@mui/material";
-
-type Filter = {
-  id: string;
-  label: string;
-  defaultChecked?: boolean;
-};
+import { FilterState, FilterItem } from "../../../types/filter";
 
 type FilterProps = {
   title: string;
-  filters: Filter[];
+  filters: FilterItem[];
+  checkedState: FilterState;
   className?: string;
-  onChange?: string;
+  onChange?: (filterState: Record<string, boolean>) => void;
 };
 
 const Filter: React.FC<FilterProps> = ({
   title,
   filters,
+  checkedState,
   className,
   onChange,
 }) => {
-  const defaultState = filters.reduce<Record<string, boolean>>((acc, opt) => {
-    acc[opt.id] = opt.defaultChecked ?? false;
-    return acc;
-  }, {});
-
-  const [checkedItems, setCheckedItems] = useState(defaultState);
-
   const handleChange =
     (id: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
-      setCheckedItems((prev) => ({
-        ...prev,
-        [id]: e.target.checked,
-      }));
+      onChange?.({ [id]: e.target.checked });
     };
 
   return (
@@ -46,7 +33,7 @@ const Filter: React.FC<FilterProps> = ({
           key={opt.id}
           control={
             <Checkbox
-              checked={checkedItems[opt.id]}
+              checked={checkedState[opt.id] ?? !!opt.defaultChecked}
               onChange={handleChange(opt.id)}
             />
           }

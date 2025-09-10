@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Select from "react-select";
-import UpdateIcon from "@mui/icons-material/Update";
+import SaveIcon from "@mui/icons-material/Save";
+import { STORAGE_KEYS } from "../../config/chrome";
 
 // Helpful: https://mui.com/material-ui/material-icons/?query=ques
 //
@@ -11,7 +12,7 @@ import { Button } from "@mui/material";
 
 import styles from "./TimezoneSelect.module.scss";
 import Timezone from "../../types/Timezone";
-import getTournamentsData from "../../utils/scrapers/getTournamentData";
+import { setSyncStorageItem } from "../../services/storageService";
 
 // Dynamically generate timezone options
 const timezones = Intl.supportedValuesOf("timeZone");
@@ -21,34 +22,30 @@ const timezoneOptions: Timezone[] = timezones.map((tz) => ({
 }));
 
 const TimezoneSelect: React.FC = () => {
-  const [timezone, setTimezone] = useState<string>(
-    localStorage.getItem("timezone") || "America/Los_Angeles"
-  );
-
   const [selectedOption, setSelectedOption] = useState<Timezone | null>(
     timezoneOptions[133]
   );
 
-  const handleTimezoneChange = (
-    event: React.ChangeEvent<HTMLSelectElement>
-  ): void => {
-    setTimezone(event.target.value);
-  };
-
   const handleChange = (option: Timezone | null) => {
     setSelectedOption(option);
-    // onChange(option?.value);
     console.log("Selected Timezone:", option?.value);
-    // Trigger logic for the selected timezone if needed
   };
 
-  const handleClick = (): void => {
-    // const extraction = extractTournamentData;
-    console.log("Update Time");
-    const tournaments = getTournamentsData();
-    console.log("scraped tournaments: ", tournaments);
-    //console.log(extraction);
-    // injectDataToPage(tournaments);
+  const handleClick = async () => {
+    await setSyncStorageItem(STORAGE_KEYS.timezone, selectedOption);
+    console.log("Timezone saved: ", selectedOption);
+
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+      const tabId = tabs[0]?.id;
+      const tabUrl = tabs[0]?.url;
+      console.log(tabId, tabUrl);
+      if (tabId !== undefined) {
+        chrome.tabs.sendMessage(tabId, {
+          type: "TIMEZONE_UPDATED",
+          payload: selectedOption,
+        });
+      }
+    });
   };
 
   return (
@@ -64,10 +61,10 @@ const TimezoneSelect: React.FC = () => {
       <Button
         variant="contained"
         color="primary"
-        endIcon={<UpdateIcon />}
+        endIcon={<SaveIcon />}
         onClick={handleClick}
       >
-        Update
+        Save
       </Button>
     </div>
   );

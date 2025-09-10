@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
+import Select from "react-select";
 import { useCalendar } from "../../context/GoogleCalendarContext";
 import { createEvent, fetchCalendarEvents } from "../../api/googleCalendarApi";
 import { Calendar, CalendarEvent } from "../../types/calendar";
+import { Button } from "@mui/material";
 
 import styles from "./GoogleCalendarUpdater.module.scss";
 
@@ -62,21 +64,24 @@ const GoogleCalendarUpdater: React.FC = () => {
     return <div style={{ color: "red" }}>{error || eventError}</div>;
 
   return (
-    <div>
+    <div className={styles.googleCalendarUpdator}>
       <h2>Google Calendars</h2>
-      <select
-        value={selectedCalendar?.id || ""}
-        onChange={(e) => {
-          const cal = calendars.find((c) => c.id === e.target.value);
+      <Select
+        value={
+          selectedCalendar
+            ? { value: selectedCalendar.id, label: selectedCalendar.summary }
+            : null
+        }
+        onChange={(option) => {
+          const cal = calendars.find((c) => c.id === option?.value);
           setSelectedCalendar(cal ?? null);
         }}
-      >
-        {calendars.map((cal) => (
-          <option key={cal.id} value={cal.id}>
-            {cal.summary}
-          </option>
-        ))}
-      </select>
+        options={calendars.map((cal) => ({
+          value: cal.id,
+          label: cal.summary,
+        }))}
+        placeholder="Select a calendar..."
+      />
 
       <h3>Events</h3>
       <ul>
@@ -87,7 +92,9 @@ const GoogleCalendarUpdater: React.FC = () => {
         ))}
       </ul>
 
-      <button onClick={handleCreateEvent}>Create Test Event</button>
+      <Button variant="contained" color="primary" onClick={handleCreateEvent}>
+        Create Test Event
+      </Button>
     </div>
   );
 };

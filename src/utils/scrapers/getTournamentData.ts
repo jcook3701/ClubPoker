@@ -22,8 +22,8 @@ const rowExport = (rows: Element[]): TournamentData[] => {
 
 const colExport = (cols: Element[]): TournamentData[] => {
   return cols
-    .map((cols) => {
-      const row = Array.from(cols.querySelectorAll("span.tiles-text"));
+    .map((col) => {
+      const row = Array.from(col.querySelectorAll("span.tiles-text"));
       if (row.length < 7) return null; // skip invalid rows
 
       return {
@@ -39,7 +39,7 @@ const colExport = (cols: Element[]): TournamentData[] => {
     .filter((tournament): tournament is TournamentData => tournament !== null);
 };
 
-const getExportSelector = (): string => {
+export const getSelectorMode = (): string => {
   const viewMode = getViewMode();
   const rowView = "ion-row.grid-rows.row";
   const colView = "ion-col.nested-col.col";
@@ -48,10 +48,10 @@ const getExportSelector = (): string => {
 
 const getTournamentsData = (): TournamentData[] => {
   const viewMode = getViewMode();
-  const exportSelector = getExportSelector();
+  const selector = getSelectorMode();
   const container = document.querySelector("tournaments-grid");
   const data = container
-    ? Array.from(container.querySelectorAll(exportSelector))
+    ? Array.from(container.querySelectorAll(selector))
     : [];
 
   return viewMode.isRow ? rowExport(data) : colExport(data);

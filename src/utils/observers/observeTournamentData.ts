@@ -11,7 +11,6 @@ const observeTournamentData = (
     const tournaments = getTournamentsData();
     if (tournaments.length > 0) {
       callback(tournaments);
-      observer.disconnect(); // stop once data is collected
     }
   });
 
