@@ -1,18 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Select from "react-select";
 import SaveIcon from "@mui/icons-material/Save";
 import { STORAGE_KEYS } from "../../config/chrome";
-
-// Helpful: https://mui.com/material-ui/material-icons/?query=ques
-//
-// import SaveIcon from "@mui/icons-material/Save";
-// Maybe for saving settings within the app.
-
 import { Button } from "@mui/material";
-
 import styles from "./TimezoneSelect.module.scss";
 import Timezone from "../../types/Timezone";
-import { setSyncStorageItem } from "../../services/storageService";
+import {
+  getSyncStorageItem,
+  setSyncStorageItem,
+} from "../../services/storageService";
+import { sendTabMessage } from "../../services/messageService";
+import { MessageTypes } from "../../constants/messages";
 
 // Dynamically generate timezone options
 const timezones = Intl.supportedValuesOf("timeZone");
@@ -22,9 +20,24 @@ const timezoneOptions: Timezone[] = timezones.map((tz) => ({
 }));
 
 const TimezoneSelect: React.FC = () => {
-  const [selectedOption, setSelectedOption] = useState<Timezone | null>(
-    timezoneOptions[133]
-  );
+  const [selectedOption, setSelectedOption] = useState<Timezone | null>(null);
+
+  // Load saved timezone on mount
+  useEffect(() => {
+    const loadSavedTimezone = async () => {
+      const saved = await getSyncStorageItem<Timezone>(STORAGE_KEYS.timezone);
+      if (saved) {
+        const match = timezoneOptions.find((tz) => tz.value === saved.value);
+        if (match) {
+          setSelectedOption(match);
+        }
+      } else {
+        // fallback to default (Pacific/Auckland in this case, index 133)
+        setSelectedOption(timezoneOptions[133]);
+      }
+    };
+    loadSavedTimezone();
+  }, []);
 
   const handleChange = (option: Timezone | null) => {
     setSelectedOption(option);
@@ -37,12 +50,9 @@ const TimezoneSelect: React.FC = () => {
 
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
       const tabId = tabs[0]?.id;
-      const tabUrl = tabs[0]?.url;
-      console.log(tabId, tabUrl);
       if (tabId !== undefined) {
-        chrome.tabs.sendMessage(tabId, {
-          type: "TIMEZONE_UPDATED",
-          payload: selectedOption,
+        sendTabMessage(tabId, MessageTypes.TIMEZONE_UPDATED, {
+          timeZone: selectedOption,
         });
       }
     });

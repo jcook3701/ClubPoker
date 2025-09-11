@@ -1,3 +1,4 @@
+import tournamentDataListener from "../listeners/tournamentDataListener";
 import timezoneChangeListener from "../listeners/timezoneChangeListener";
 import observeTournamentData from "../utils/observers/observeTournamentData";
 
@@ -11,4 +12,5 @@ observeTournamentData((data) => {
 
 console.log("hello world -----------------------------------------");
 
+tournamentDataListener();
 timezoneChangeListener();

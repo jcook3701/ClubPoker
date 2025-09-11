@@ -3,7 +3,7 @@ import { Button } from "@mui/material";
 import SaveIcon from "@mui/icons-material/Save";
 import Filter from "./Filter/Filter";
 import { STORAGE_KEYS } from "../../config/chrome";
-import { WPTFILTERS } from "../../config/filters";
+import { WPTFILTERS } from "../../constants/filters";
 import {
   getSyncStorageItem,
   setSyncStorageItem,

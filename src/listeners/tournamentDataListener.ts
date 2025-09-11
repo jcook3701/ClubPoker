@@ -1,16 +1,18 @@
+import { MessageTypes } from "../constants/messages";
+import { onMessage } from "../services/messageService";
 import TournamentData from "../types/TournamentData";
+import getTournamentsData from "../utils/scrapers/getTournamentData";
 
 let cachedTournaments: TournamentData[] = [];
 
-const tournamentDataListener = (
-  message: any,
-  sender: chrome.runtime.MessageSender,
-  sendResponse: (response?: any) => void
-): boolean | void => {
-  const handleNewData = (data: TournamentData[]) => (cachedTournaments = data);
+const tournamentDataListener = (): void => {
+  onMessage(MessageTypes.TOURNAMENTS_UPDATED, (payload) => {
+    // TODO: Get Current set timezone if it is set.
+    const tournaments: TournamentData[] = getTournamentsData();
 
-  if (message.type === "TOURNAMENTS_FOUND") handleNewData(message.data);
-  if (message.type === "GET_TOURNAMENTS") sendResponse(cachedTournaments);
+    const handleNewData = (data: TournamentData[]) =>
+      (cachedTournaments = data);
+  });
 };
 
 export default tournamentDataListener;

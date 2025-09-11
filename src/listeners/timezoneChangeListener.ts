@@ -1,33 +1,35 @@
+import { MessageTypes } from "../constants/messages";
 import {
   updateOfficalTime,
   updateTournamentStartTimes,
 } from "../content/dom/TournamentsGridUpdater/TournamentDataUpdater";
+import { onMessage } from "../services/messageService";
 import Timezone from "../types/Timezone";
 import TournamentData from "../types/TournamentData";
 import getTournamentsData from "../utils/scrapers/getTournamentData";
 import { convertToTimeZone } from "../utils/time/timeZoneHelpers";
 
 const timezoneChangeListener = (): void => {
-  console.log("started timezone listener ----------------------------");
-  chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-    if (message.type === "TIMEZONE_UPDATED") {
-      const newTimezone: Timezone = message.payload;
+  onMessage(MessageTypes.TIMEZONE_UPDATED, (payload) => {
+    const newTimezone: Timezone | null = payload.timeZone;
 
-      // Re-fetch tournaments from the page
-      const tournaments: TournamentData[] = getTournamentsData();
-
-      // Adjust start times for the new timezone
-      const adjusted = tournaments.map((t) => ({
-        ...t,
-        start: convertToTimeZone(t.start, newTimezone),
-      }));
-
-      // Update the DOM with new times
-      updateTournamentStartTimes(adjusted);
-      updateOfficalTime(newTimezone);
-
-      sendResponse({ status: "ok" });
+    if (!newTimezone) {
+      console.warn("No timezone set — skipping updates");
+      return;
     }
+
+    // Re-fetch tournaments from the page
+    const tournaments: TournamentData[] = getTournamentsData();
+
+    // Adjust start times for the new timezone
+    const adjusted = tournaments.map((t) => ({
+      ...t,
+      start: convertToTimeZone(t.start, newTimezone),
+    }));
+
+    // Update the DOM with new times
+    updateTournamentStartTimes(adjusted);
+    updateOfficalTime(newTimezone);
   });
 };
 

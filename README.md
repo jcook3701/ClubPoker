@@ -50,3 +50,7 @@ $ npm run build-storybook
 - **`background/`**: Contains the background script for API interactions.
 - **`popup/`**: Contains the popup UI files.
 - **`icons/`**: Contains the extension icons.
+
+## Helpful Links:
+[Icons](https://mui.com/material-ui/material-icons/?query=ques)  
+[Poker Icons](https://www.freepik.com/icons/poker)  
