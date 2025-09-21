@@ -1,7 +1,7 @@
 import { parse } from "date-fns";
 import { fromZonedTime, toZonedTime, toDate, format } from "date-fns-tz";
 import Timezone from "../../types/Timezone";
-import TournamentData from "../../types/TournamentData";
+import { Tournaments } from "../../types/tournament";
 import { DateTime } from "luxon";
 
 /*
@@ -33,19 +33,27 @@ export const convertFromTzAbbrToUser = (
  */
 export const convertToTimeZone = (
   dateTime: string,
-  timeZone: Timezone
+  startTimeZone: Timezone,
+  endTimeZone: Timezone
 ): string => {
   const parsed = parse(dateTime, "MMM d h:mm a", new Date());
-  const utcDate = fromZonedTime(parsed, "America/New_York");
-  const zoned = toZonedTime(utcDate, timeZone.value);
-  return format(zoned, "MMM d h:mm a", { timeZone: timeZone.value });
+  const utcDate = fromZonedTime(parsed, startTimeZone.value);
+  const zoned = toZonedTime(utcDate, endTimeZone.value);
+  return format(zoned, "MMM d h:mm a");
 };
 
+/*
+ * Convert startimes within tournaments object to new timezone
+ */
 export const convertTournamentTimes = (
-  tournaments: TournamentData[],
+  tournamentData: Tournaments,
   timeZone: Timezone
-): TournamentData[] =>
-  tournaments.map((t) => ({
-    ...t,
-    start: convertToTimeZone(t.start, timeZone),
-  }));
+): Tournaments => {
+  return {
+    timeZone: timeZone,
+    tournaments: tournamentData.tournaments.map((t) => ({
+      ...t,
+      start: convertToTimeZone(t.start, tournamentData.timeZone, timeZone),
+    })),
+  };
+};

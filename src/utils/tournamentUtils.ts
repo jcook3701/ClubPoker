@@ -1,6 +1,6 @@
-import TournamentData from "../types/TournamentData";
+import { Tournament } from "../types/tournament";
 
-export const extractTournamentData = (row: Element): TournamentData => {
+export const extractTournamentData = (row: Element): Tournament => {
   console.log("ExtractTournamentData");
   const columns = row.querySelectorAll("ion-col");
   console.log("ion-col: ", columns);
@@ -16,7 +16,7 @@ export const extractTournamentData = (row: Element): TournamentData => {
   return { start: startTime, game, buyin, name, id, status, enrolled };
 };
 
-export const scrapeTournaments = (): TournamentData[] => {
+export const scrapeTournaments = (): Tournament[] => {
   const rows = document.querySelectorAll(".grid-rows.row");
   const ionrows = document.getElementsByTagName("grid-poker");
   console.log("scrapeTournaments");

@@ -1,3 +1,6 @@
+/*
+ * Gets Offical time from lobby.clubwpt.com dom
+ */
 const getTimeInfo = (): { time: string; tzAbbr: string } | null => {
   const header = document.querySelector(
     "ion-header.time-header p span.heading span:last-child"

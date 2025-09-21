@@ -1,16 +1,25 @@
-import tournamentDataListener from "../listeners/tournamentDataListener";
-import timezoneChangeListener from "../listeners/timezoneChangeListener";
 import observeTournamentData from "../utils/observers/observeTournamentData";
+import { registerContentListeners } from "../listeners";
+import { sendMessage } from "../services/messageService";
+import { MessageTypes } from "../constants/messages";
+import { clubwptDomUpdater } from "./dom/TournamentsDataUpdater/TournamentDataUpdater";
+import { getLocalStorageItem } from "../services/storageService";
+import { LOCAL_STORAGE_KEYS } from "../config/chrome";
 
-console.log("ClubWPT Content Script Started");
+console.log("lobby.clubwpt.com Content Script Started:");
 
-// Usage in content script
+sendMessage(MessageTypes.PAGE_RELOADED, undefined);
+
 observeTournamentData((data) => {
-  console.log("Tournaments loaded:", data);
-  // chrome.runtime.sendMessage({ type: "TOURNAMENT_DATA", payload: data });
+  getLocalStorageItem(LOCAL_STORAGE_KEYS.tournaments)
+    .then((tournaments) => {
+      tournaments ??
+        sendMessage(MessageTypes.SAVE_TOURNAMENTS, { tournamentData: data });
+    })
+    .then(() => {
+      console.log("Tournaments loaded:", data);
+      clubwptDomUpdater(data);
+    });
 });
 
-console.log("hello world -----------------------------------------");
-
-tournamentDataListener();
-timezoneChangeListener();
+registerContentListeners();

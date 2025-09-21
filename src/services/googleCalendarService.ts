@@ -1,9 +1,13 @@
 import { CalendarEvent } from "../types/calendar";
-import TournamentData from "../types/TournamentData";
+import Timezone from "../types/Timezone";
+import { Tournament } from "../types/tournament";
 
-// Create a Google Calendar event from tournament data
-const tournamentToCalendarEvent = (
-  tournament: TournamentData
+/*
+ * Create a Google Calendar event object from lobby.clubwpt.com tournament data.
+ */
+export const tournamentToCalendarEvent = (
+  tournament: Tournament,
+  timeZone: Timezone
 ): CalendarEvent => {
   const startDateTime = new Date(tournament.start).toISOString();
   const endDateTime = new Date(
@@ -15,11 +19,11 @@ const tournamentToCalendarEvent = (
     description: `${tournament.game} - ${tournament.buyin}`,
     start: {
       dateTime: startDateTime,
-      timeZone: "America/Los_Angeles",
+      timeZone: timeZone.value,
     },
     end: {
       dateTime: endDateTime,
-      timeZone: "America/Los_Angeles",
+      timeZone: timeZone.value,
     },
   };
 

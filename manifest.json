@@ -23,5 +23,8 @@
       "matches": ["https://clubwpt.com/*", "https://*.clubwpt.com/*"],
       "js": ["js/content.js"]
     }
-  ]
+  ],
+  "background": {
+    "service_worker": "js/background.js"
+  }
 }

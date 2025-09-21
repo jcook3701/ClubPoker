@@ -1,7 +1,10 @@
-import TournamentData from "../../types/TournamentData";
+import { Tournament } from "../../types/tournament";
 import getViewMode from "./getViewMode";
 
-const rowExport = (rows: Element[]): TournamentData[] => {
+/*
+ * Exports tournament data when in lobby.clubwpt.com is in row mode.
+ */
+const rowExport = (rows: Element[]): Tournament[] => {
   return rows
     .map((row) => {
       const cols = Array.from(row.querySelectorAll("ion-col.col"));
@@ -15,12 +18,15 @@ const rowExport = (rows: Element[]): TournamentData[] => {
         id: cols[5].textContent?.trim() || "",
         status: cols[6].textContent?.trim() || "",
         enrolled: Number(cols[7].textContent?.trim() || "0"),
-      } as TournamentData;
+      } as Tournament;
     })
-    .filter((tournament): tournament is TournamentData => tournament !== null);
+    .filter((tournament): tournament is Tournament => tournament !== null);
 };
 
-const colExport = (cols: Element[]): TournamentData[] => {
+/*
+ * Exports tournament data when in lobby.clubwpt.com is in col mode.
+ */
+const colExport = (cols: Element[]): Tournament[] => {
   return cols
     .map((col) => {
       const row = Array.from(col.querySelectorAll("span.tiles-text"));
@@ -34,21 +40,27 @@ const colExport = (cols: Element[]): TournamentData[] => {
         id: row[4].textContent?.trim() || "",
         status: row[5].textContent?.trim() || "",
         enrolled: Number(row[6].textContent?.trim() || "0"),
-      } as TournamentData;
+      } as Tournament;
     })
-    .filter((tournament): tournament is TournamentData => tournament !== null);
+    .filter((tournament): tournament is Tournament => tournament !== null);
 };
 
-export const getSelectorMode = (): string => {
+/*
+ * Collects current selector mode from the loby.clubwpt.com dom.
+ */
+export const getSelectorModeFromDom = (): string => {
   const viewMode = getViewMode();
   const rowView = "ion-row.grid-rows.row";
   const colView = "ion-col.nested-col.col";
   return viewMode.isRow ? rowView : colView;
 };
 
-const getTournamentsData = (): TournamentData[] => {
+/*
+ * Collects tournament data from the loby.clubwpt.com dom.
+ */
+const getTournamentsFromDom = (): Tournament[] => {
   const viewMode = getViewMode();
-  const selector = getSelectorMode();
+  const selector = getSelectorModeFromDom();
   const container = document.querySelector("tournaments-grid");
   const data = container
     ? Array.from(container.querySelectorAll(selector))
@@ -57,4 +69,4 @@ const getTournamentsData = (): TournamentData[] => {
   return viewMode.isRow ? rowExport(data) : colExport(data);
 };
 
-export default getTournamentsData;
+export default getTournamentsFromDom;

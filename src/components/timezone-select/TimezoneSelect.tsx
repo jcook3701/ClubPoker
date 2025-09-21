@@ -32,7 +32,7 @@ const TimezoneSelect: React.FC = () => {
           setSelectedOption(match);
         }
       } else {
-        // fallback to default (Pacific/Auckland in this case, index 133)
+        // fallback to default (America/Los_Angeles in this case, index 133)
         setSelectedOption(timezoneOptions[133]);
       }
     };
@@ -51,7 +51,7 @@ const TimezoneSelect: React.FC = () => {
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
       const tabId = tabs[0]?.id;
       if (tabId !== undefined) {
-        sendTabMessage(tabId, MessageTypes.TIMEZONE_UPDATED, {
+        sendTabMessage(tabId, MessageTypes.SAVE_TIMEZONE, {
           timeZone: selectedOption,
         });
       }

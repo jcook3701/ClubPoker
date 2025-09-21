@@ -1,7 +1,7 @@
 import ViewMode from "../../types/ViewMode";
 
 /*
- * Used to tell if page is in row or column mode.
+ * Used to tell if lobby.clubwpt.com dom is in row or column mode.
  */
 const getViewMode = (): ViewMode => {
   const toggle = document.querySelector("toggle-view");

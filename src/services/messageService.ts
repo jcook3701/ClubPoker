@@ -1,4 +1,5 @@
 import { Message, MessageMap } from "../constants/messages";
+import { ResponseMap } from "../constants/responses";
 
 /* Strongly-typed chrome.runtime.sendMessage wrapper */
 export const sendMessage = <T extends keyof MessageMap>(
@@ -25,22 +26,29 @@ export const onMessage = <T extends keyof MessageMap>(
   handler: (
     payload: MessageMap[T],
     sender: chrome.runtime.MessageSender
-  ) => void | boolean | Promise<void | boolean>
+  ) => ResponseMap[T] | Promise<ResponseMap[T]> | void
 ): (() => void) => {
   const listener = (
     message: Message,
     sender: chrome.runtime.MessageSender,
-    sendResponse: (response?: unknown) => void
+    sendResponse: (response?: ResponseMap[T]) => void
   ) => {
     if (message.type === type) {
-      const result = handler(message.payload as MessageMap[T], sender);
+      try {
+        const result = handler(message.payload as MessageMap[T], sender);
 
-      // Support async handlers (returning Promise)
-      if (result instanceof Promise) {
-        result.then(sendResponse);
-        return true; // keep channel open for async responses
+        // Support async handlers (returning Promise)
+        if (result instanceof Promise) {
+          result.then((res) => sendResponse(res));
+          return true; // keep channel open for async responses
+        } else if (result !== undefined) {
+          sendResponse(result);
+        }
+      } catch (err) {
+        console.error(`Error handling message ${type}:`, err);
+        sendResponse(undefined); // optional: send empty response on error
       }
-      return result;
+      return true;
     }
   };
 
