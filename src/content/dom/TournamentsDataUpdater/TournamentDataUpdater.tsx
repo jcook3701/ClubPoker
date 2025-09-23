@@ -1,4 +1,4 @@
-import { STORAGE_KEYS } from "../../../config/chrome";
+import { SYNC_STORAGE_KEYS } from "../../../config/chrome";
 import { MessageTypes } from "../../../constants/messages";
 import { sendMessage } from "../../../services/messageService";
 import { getSyncStorageItem } from "../../../services/storageService";
@@ -81,7 +81,7 @@ const updateOfficalTime = (timezone: Timezone): void => {
  */
 export const clubwptDomUpdater = (tournamentData: Tournaments): void => {
   console.log("Updating Tournaments");
-  getSyncStorageItem<Timezone>(STORAGE_KEYS.timezone).then((timezone) => {
+  getSyncStorageItem<Timezone>(SYNC_STORAGE_KEYS.timezone).then((timezone) => {
     if (!timezone) {
       console.warn("No stored timezone collected yet — skipping updates");
       return;

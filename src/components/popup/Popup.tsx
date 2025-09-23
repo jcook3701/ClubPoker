@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ThemeProvider, createTheme, Button } from "@mui/material";
-import TimezoneSelect from "../timezone-select/TimezoneSelect";
+import { ThemeProvider, createTheme } from "@mui/material";
 import Header from "../header/Header";
 
 import styles from "./Popup.module.scss";
@@ -31,7 +30,10 @@ const Popup: React.FC = () => {
         setSettingsSelected={setSettingsSelected}
       />
       {settingsSelected ? (
-        <Settings />
+        <Settings
+          settingsSelected={settingsSelected}
+          setSettingsSelected={setSettingsSelected}
+        />
       ) : (
         <WindowSelector
           selectedWindow={selectedWindow}

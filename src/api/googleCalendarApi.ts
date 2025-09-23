@@ -1,5 +1,5 @@
 import { Calendar, CalendarEvent } from "../types/calendar";
-import { TOKEN_KEY } from "../config/chrome";
+import { SYNC_STORAGE_KEYS } from "../config/chrome";
 
 /**
  * Returns the full redirect URI based on extension ID + "oauth2" path.
@@ -22,7 +22,9 @@ export const getToken = async (): Promise<string | null> => {
       if (!token) return resolve(null);
 
       // Store token for future API calls
-      chrome.storage.sync.set({ [TOKEN_KEY]: token }, () => resolve(token));
+      chrome.storage.sync.set({ [SYNC_STORAGE_KEYS.token]: token }, () =>
+        resolve(token)
+      );
     });
   });
 };

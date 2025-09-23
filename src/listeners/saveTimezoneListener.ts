@@ -1,17 +1,13 @@
-import { LOCAL_STORAGE_KEYS, STORAGE_KEYS } from "../config/chrome";
+import { SYNC_STORAGE_KEYS } from "../config/chrome";
 import { MessageTypes } from "../constants/messages";
 import { ResponseMap } from "../constants/responses";
-import { clubwptDomUpdater } from "../content/dom/TournamentsDataUpdater/TournamentDataUpdater";
-import { onMessage } from "../services/messageService";
-import {
-  getLocalStorageItem,
-  setSyncStorageItem,
-} from "../services/storageService";
+import { onMessage, sendMessage } from "../services/messageService";
+import { setSyncStorageItem } from "../services/storageService";
 import Timezone from "../types/Timezone";
-import { Tournaments } from "../types/tournament";
 
 /*
- *
+ * Saves Timezone object to chrome.sync storage and sends message
+ * that timezone change has occured.
  */
 const saveTimezoneListener = (): void => {
   const messageType = MessageTypes.SAVE_TIMEZONE;
@@ -24,24 +20,13 @@ const saveTimezoneListener = (): void => {
       return;
     }
 
-    setSyncStorageItem(STORAGE_KEYS.timezone, newTimezone);
-
-    getLocalStorageItem<Tournaments>(LOCAL_STORAGE_KEYS.tournaments).then(
-      (tournaments) => {
-        if (!tournaments) {
-          console.warn("No tournaments collected yet — skipping updates");
-          return;
-        }
-
-        clubwptDomUpdater(tournaments);
-
-        const response: ResponseMap[typeof messageType] = {
-          success: true,
-          timezone: newTimezone,
-        };
-        return response;
-      }
-    );
+    setSyncStorageItem(SYNC_STORAGE_KEYS.timezone, newTimezone).then(() => {
+      sendMessage(MessageTypes.TIMEZONE_CHANGE);
+      const response: ResponseMap[typeof messageType] = {
+        success: true,
+      };
+      return response;
+    });
   });
 };
 

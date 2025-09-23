@@ -1,4 +1,5 @@
-import { DEFAULT_TIMEZONE, LOCAL_STORAGE_KEYS } from "../../config/chrome";
+import { LOCAL_STORAGE_KEYS } from "../../config/chrome";
+import { DEFAULT_TIMEZONE } from "../../constants/timezone";
 import { getLocalStorageItem } from "../../services/storageService";
 import { Tournaments, Tournament } from "../../types/tournament";
 import getTournamentsFromDom from "../scrapers/getTournamentData";

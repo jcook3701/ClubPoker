@@ -1,3 +1,8 @@
+export interface CalendarEvents {
+  calendar: Calendar;
+  calendarEvents: CalendarEvent[];
+}
+
 export interface Calendar {
   id: string;
   summary: string;

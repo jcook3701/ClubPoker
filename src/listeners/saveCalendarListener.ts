@@ -5,12 +5,13 @@ import { onMessage } from "../services/messageService";
 import { setSyncStorageItem } from "../services/storageService";
 
 /*
- * Saves app settings to chrome.sync storage.
+ * Saves Calendar object to chrome.sync storage.
  */
-const saveSettingsListener = (): void => {
-  const messageType = MessageTypes.SAVE_SETTINGS;
+const saveCalendarListener = (): void => {
+  const messageType = MessageTypes.SAVE_CALENDAR;
+
   onMessage(messageType, (payload) => {
-    setSyncStorageItem(SYNC_STORAGE_KEYS.settings, payload.settings).then(
+    setSyncStorageItem(SYNC_STORAGE_KEYS.calender, payload.calendar).then(
       () => {
         const response: ResponseMap[typeof messageType] = {
           success: true,
@@ -21,4 +22,4 @@ const saveSettingsListener = (): void => {
   });
 };
 
-export default saveSettingsListener;
+export default saveCalendarListener;

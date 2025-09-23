@@ -1,26 +1,32 @@
 import { Message, MessageMap } from "../constants/messages";
 import { ResponseMap } from "../constants/responses";
 
-/* Strongly-typed chrome.runtime.sendMessage wrapper */
+/*
+ * Strongly-typed chrome.runtime.sendMessage wrapper
+ */
 export const sendMessage = <T extends keyof MessageMap>(
   type: T,
-  payload: MessageMap[T]
-): Promise<unknown> => {
+  payload?: MessageMap[T]
+): Promise<ResponseMap[T]> => {
   return chrome.runtime.sendMessage({ type, payload } as Message<T>);
 };
 
-/* Strongly-typed chrome.tab.sendMessage wrapper */
+/*
+ * Strongly-typed chrome.tab.sendMessage wrapper
+ */
 export const sendTabMessage = <T extends keyof MessageMap>(
   tabId: number,
   type: T,
   payload: MessageMap[T]
-): Promise<unknown> => {
+): Promise<ResponseMap[T]> => {
   return new Promise((resolve) => {
     chrome.tabs.sendMessage(tabId, { type, payload }, resolve);
   });
 };
 
-/* Strongly-typed onMessage wrapper */
+/*
+ * Strongly-typed onMessage wrapper
+ */
 export const onMessage = <T extends keyof MessageMap>(
   type: T,
   handler: (

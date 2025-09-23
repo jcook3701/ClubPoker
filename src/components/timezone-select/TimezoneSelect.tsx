@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Select from "react-select";
 import SaveIcon from "@mui/icons-material/Save";
-import { STORAGE_KEYS } from "../../config/chrome";
+import { SYNC_STORAGE_KEYS } from "../../config/chrome";
 import { Button } from "@mui/material";
 import styles from "./TimezoneSelect.module.scss";
 import Timezone from "../../types/Timezone";
@@ -25,7 +25,9 @@ const TimezoneSelect: React.FC = () => {
   // Load saved timezone on mount
   useEffect(() => {
     const loadSavedTimezone = async () => {
-      const saved = await getSyncStorageItem<Timezone>(STORAGE_KEYS.timezone);
+      const saved = await getSyncStorageItem<Timezone>(
+        SYNC_STORAGE_KEYS.timezone
+      );
       if (saved) {
         const match = timezoneOptions.find((tz) => tz.value === saved.value);
         if (match) {
@@ -45,7 +47,7 @@ const TimezoneSelect: React.FC = () => {
   };
 
   const handleClick = async () => {
-    await setSyncStorageItem(STORAGE_KEYS.timezone, selectedOption);
+    await setSyncStorageItem(SYNC_STORAGE_KEYS.timezone, selectedOption);
     console.log("Timezone saved: ", selectedOption);
 
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {

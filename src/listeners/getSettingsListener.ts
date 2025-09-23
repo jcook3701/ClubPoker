@@ -3,19 +3,19 @@ import { MessageTypes } from "../constants/messages";
 import { ResponseMap } from "../constants/responses";
 import { onMessage } from "../services/messageService";
 import { getSyncStorageItem } from "../services/storageService";
-import { Calendar } from "../types/calendar";
+import { Settings } from "../types/settings";
 
 /*
- * Returns Calendar object from chrome.sync storage.
+ * Returns Settings object from chrome.sync storage.
  */
-const getCalendarListener = (): void => {
-  const messageType = MessageTypes.GET_CALENDAR;
+const getSettingsListener = (): void => {
+  const messageType = MessageTypes.GET_SETTINGS;
   onMessage(messageType, () => {
-    getSyncStorageItem<Calendar>(SYNC_STORAGE_KEYS.calender).then(
-      (calendar) => {
+    getSyncStorageItem<Settings>(SYNC_STORAGE_KEYS.settings).then(
+      (settings) => {
         const response: ResponseMap[typeof messageType] = {
           success: true,
-          calendar: calendar ? calendar : undefined,
+          settings: settings ? settings : undefined,
         };
         return response;
       }
@@ -23,4 +23,4 @@ const getCalendarListener = (): void => {
   });
 };
 
-export default getCalendarListener;
+export default getSettingsListener;

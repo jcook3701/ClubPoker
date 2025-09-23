@@ -3,19 +3,19 @@ import { MessageTypes } from "../constants/messages";
 import { ResponseMap } from "../constants/responses";
 import { onMessage } from "../services/messageService";
 import { getSyncStorageItem } from "../services/storageService";
-import { Calendar } from "../types/calendar";
+import Timezone from "../types/Timezone";
 
 /*
- * Returns Calendar object from chrome.sync storage.
+ * Returns Timezone object from chrome.sync storage.
  */
-const getCalendarListener = (): void => {
-  const messageType = MessageTypes.GET_CALENDAR;
+const getTimezoneListener = (): void => {
+  const messageType = MessageTypes.GET_TIMEZONE;
   onMessage(messageType, () => {
-    getSyncStorageItem<Calendar>(SYNC_STORAGE_KEYS.calender).then(
-      (calendar) => {
+    getSyncStorageItem<Timezone>(SYNC_STORAGE_KEYS.timezone).then(
+      (timezone) => {
         const response: ResponseMap[typeof messageType] = {
           success: true,
-          calendar: calendar ? calendar : undefined,
+          timezone: timezone ? timezone : undefined,
         };
         return response;
       }
@@ -23,4 +23,4 @@ const getCalendarListener = (): void => {
   });
 };
 
-export default getCalendarListener;
+export default getTimezoneListener;
