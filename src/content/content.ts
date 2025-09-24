@@ -17,7 +17,7 @@ observeTournamentData((data) => {
         sendMessage(MessageTypes.SAVE_TOURNAMENTS, { tournamentData: data });
     })
     .then(() => {
-      console.log("Tournaments loaded:", data);
+      /* console.log("Tournaments loaded:", data); */
       clubwptDomUpdater(data);
     });
 });

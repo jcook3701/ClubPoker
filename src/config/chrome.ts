@@ -1,5 +1,3 @@
-import Timezone from "../types/Timezone";
-
 /*
  * Individual sync storage keys
  */
@@ -16,11 +14,14 @@ const WPTSETTINGS = "wptSettings";
 export const SYNC_STORAGE_KEYS = {
   token: TOKEN,
   timezone: TIMEZONE,
-  calender: CALENDAR,
+  calendar: CALENDAR,
   filters: FILTERS,
   settings: SETTINGS,
   wptSettings: WPTSETTINGS,
-};
+} as const;
+
+export type SyncStorageKeys =
+  (typeof SYNC_STORAGE_KEYS)[keyof typeof SYNC_STORAGE_KEYS];
 
 /*
  * Individual local storage keys
@@ -32,7 +33,10 @@ const CALENDAR_EVENTS = "calendar_events";
 export const LOCAL_STORAGE_KEYS = {
   tournaments: TOURNAMENTS,
   calendarEvents: CALENDAR_EVENTS,
-};
+} as const;
+
+export type LOCAL_STORAGE_KEYS =
+  (typeof LOCAL_STORAGE_KEYS)[keyof typeof LOCAL_STORAGE_KEYS];
 
 /*
  * Individual Filter keys

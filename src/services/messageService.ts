@@ -20,7 +20,7 @@ export const sendTabMessage = <T extends keyof MessageMap>(
   payload: MessageMap[T]
 ): Promise<ResponseMap[T]> => {
   return new Promise((resolve) => {
-    chrome.tabs.sendMessage(tabId, { type, payload }, resolve);
+    chrome.tabs.sendMessage(tabId, { type, payload } as Message<T>, resolve);
   });
 };
 

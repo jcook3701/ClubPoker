@@ -46,7 +46,7 @@ const GAMEFILTER: Filter = {
 /*
  * All filters for club wpt tournaments object
  */
-export const WpwFilterMap = {
+export const WptFilterMap = {
   [FILTER_KEYS.gameFilter]: GAMEFILTER,
   [FILTER_KEYS.buyInFilter]: BUYINFILTER,
 };

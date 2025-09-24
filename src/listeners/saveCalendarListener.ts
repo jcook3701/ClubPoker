@@ -11,7 +11,7 @@ const saveCalendarListener = (): void => {
   const messageType = MessageTypes.SAVE_CALENDAR;
 
   onMessage(messageType, (payload) => {
-    setSyncStorageItem(SYNC_STORAGE_KEYS.calender, payload.calendar).then(
+    setSyncStorageItem(SYNC_STORAGE_KEYS.calendar, payload.calendar).then(
       () => {
         const response: ResponseMap[typeof messageType] = {
           success: true,

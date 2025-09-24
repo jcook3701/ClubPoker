@@ -22,7 +22,7 @@ const Settings: React.FC<SettingsProps> = ({
 
   useEffect(() => {
     const loadSavedSettings = async () => {
-      const saved = await sendMessage(MessageTypes.GET_SETTINGS, undefined);
+      const saved = await sendMessage(MessageTypes.GET_SETTINGS);
       if (saved) {
         setSettingsState(saved.settings);
       } else {

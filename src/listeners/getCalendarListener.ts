@@ -11,7 +11,7 @@ import { Calendar } from "../types/calendar";
 const getCalendarListener = (): void => {
   const messageType = MessageTypes.GET_CALENDAR;
   onMessage(messageType, () => {
-    getSyncStorageItem<Calendar>(SYNC_STORAGE_KEYS.calender).then(
+    getSyncStorageItem<Calendar>(SYNC_STORAGE_KEYS.calendar).then(
       (calendar) => {
         const response: ResponseMap[typeof messageType] = {
           success: true,

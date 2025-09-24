@@ -3,6 +3,7 @@ import { FiltersState } from "../types/filter";
 import { Settings } from "../types/settings";
 import Timezone from "../types/Timezone";
 import { Tournaments } from "../types/tournament";
+import { WarningMessage } from "../types/warnings";
 
 /*
  * Central list of message type names
@@ -30,6 +31,8 @@ export const MessageTypes = {
   SAVE_TOURNAMENTS: "SAVE_TOURNAMENTS",
 } as const;
 
+export type MessageTypes = (typeof MessageTypes)[keyof typeof MessageTypes];
+
 /*
  *  Map each message type → its payload shape
  */
@@ -39,7 +42,7 @@ export type MessageMap = {
   [MessageTypes.SETTINGS_CHANGE]: undefined;
   [MessageTypes.TIMEZONE_CHANGE]: undefined;
   [MessageTypes.ERROR]: undefined;
-  [MessageTypes.WARNING]: undefined;
+  [MessageTypes.WARNING]: { warning: WarningMessage };
   /* chrome.sync storage messages */
   [MessageTypes.GET_CALENDAR]: undefined;
   [MessageTypes.GET_FILTERS]: undefined;

@@ -2,14 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Button } from "@mui/material";
 import SaveIcon from "@mui/icons-material/Save";
 import Filter from "./Filter/Filter";
-import { SYNC_STORAGE_KEYS } from "../../config/chrome";
-import { WpwFilterMap } from "../../constants/filters";
-import {
-  getSyncStorageItem,
-  setSyncStorageItem,
-} from "../../services/storageService";
+import { WptFilterMap } from "../../constants/filters";
 import { FiltersState } from "../../types/filter";
 import styles from "./Filters.module.scss";
+import { sendMessage } from "../../services/messageService";
+import { MessageTypes } from "../../constants/messages";
 
 const Filters: React.FC = () => {
   const [filterState, setFilterState] = useState<FiltersState>({});
@@ -17,22 +14,9 @@ const Filters: React.FC = () => {
   useEffect(() => {
     const loadFilters = async () => {
       try {
-        const saved = await getSyncStorageItem<FiltersState>(
-          SYNC_STORAGE_KEYS.filters
-        );
-        if (saved) {
-          setFilterState(saved);
-        } else {
-          // fallback: build from defaults
-          const initial: FiltersState = {};
-          Object.values(WpwFilterMap).forEach((group) => {
-            initial[group.filterKey] = {};
-            group.filter.forEach((opt) => {
-              initial[group.filterKey][opt.id] = !!opt.defaultChecked;
-            });
-          });
-          setFilterState(initial);
-        }
+        sendMessage(MessageTypes.GET_FILTERS).then((saved) => {
+          setFilterState(saved.filters);
+        });
       } catch (err) {
         console.error("Error loading filter state:", err);
       }
@@ -59,20 +43,20 @@ const Filters: React.FC = () => {
 
   const handleClick = async () => {
     console.log("Update Filter Options");
-    await setSyncStorageItem(SYNC_STORAGE_KEYS.filters, filterState);
+    sendMessage(MessageTypes.SAVE_FILTERS, { filters: filterState });
   };
 
   return (
     <div className={styles.filterContainer}>
       <h3>Filters:</h3>
       <div className={styles.filters}>
-        {Object.values(WpwFilterMap).map((FILTER) => (
+        {Object.values(WptFilterMap).map((FILTER) => (
           <Filter
-            key={FILTER.title} // unique key required by React
+            key={FILTER.filterKey} // unique key required by React
             className={FILTER.className}
             title={FILTER.title}
             filters={FILTER.filter}
-            checkedState={filterState[FILTER.title] || {}}
+            checkedState={filterState[FILTER.filterKey] || {}}
             onChange={(updated) =>
               handleFilterUpdate(FILTER.filterKey, updated)
             }

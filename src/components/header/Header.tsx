@@ -38,11 +38,14 @@ const Header: React.FC<HeaderProps> = ({
         <Icon src="icon48.png" alt="ClubWPT" className={styles.headerIcon} />
       </a>
       <h3 className={styles.headerTitle}>ClubWPT</h3>
-      <LiveHelpIcon
-        className={styles.icon}
-        titleAccess="help"
-        onClick={handleHelpClick}
-      />
+      <a
+        href="https://github.com/jcook3701/club-wpt-chrome-extension"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <LiveHelpIcon className={styles.icon} titleAccess="help" />
+      </a>
+
       <SettingsIcon
         className={styles.icon}
         titleAccess="options"
