@@ -1,4 +1,4 @@
-import { SYNC_STORAGE_KEYS } from "../config/chrome";
+import { StorageMap } from "../constants/chromeStorage";
 import { MessageTypes } from "../constants/messages";
 import { ResponseMap } from "../constants/responses";
 import { onMessage } from "../services/messageService";
@@ -10,16 +10,15 @@ import { Calendar } from "../types/calendar";
  */
 const getCalendarListener = (): void => {
   const messageType = MessageTypes.GET_CALENDAR;
-  onMessage(messageType, () => {
-    getSyncStorageItem<Calendar>(SYNC_STORAGE_KEYS.calendar).then(
-      (calendar) => {
-        const response: ResponseMap[typeof messageType] = {
-          success: true,
-          calendar: calendar ? calendar : undefined,
-        };
-        return response;
-      }
-    );
+  const storageKey = StorageMap.GET_CALENDAR;
+  onMessage(messageType, async () => {
+    const calendar = await getSyncStorageItem<Calendar>(storageKey);
+    const resolvedCalendar = calendar ?? undefined;
+    const response: ResponseMap[typeof messageType] = {
+      success: true,
+      calendar: resolvedCalendar,
+    };
+    return response;
   });
 };
 

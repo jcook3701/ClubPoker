@@ -21,7 +21,6 @@ const Header: React.FC<HeaderProps> = ({
 
   const handleSettingsClick = () => {
     setSettingsSelected(!settingsSelected);
-    console.log(settingsSelected);
   };
 
   const handleMenuClick = () => {

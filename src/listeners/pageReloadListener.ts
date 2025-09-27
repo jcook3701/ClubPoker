@@ -10,8 +10,8 @@ import { removeLocalStorageItem } from "../services/storageService";
 const pageReloadListener = (): void => {
   const messageType = MessageTypes.PAGE_RELOADED;
 
-  onMessage(messageType, () => {
-    removeLocalStorageItem(LOCAL_STORAGE_KEYS.tournaments);
+  onMessage(messageType, async () => {
+    await removeLocalStorageItem(LOCAL_STORAGE_KEYS.tournaments);
 
     const response: ResponseMap[typeof messageType] = {
       success: true,

@@ -1,16 +1,21 @@
 import { MessageTypes } from "../constants/messages";
+import { ResponseMap } from "../constants/responses";
 import { onMessage } from "../services/messageService";
-import { formatWarning } from "../types/warnings";
+import { formatWarningMessage } from "../types/warnings";
 
 /*
- * Handle Warnings sent by other listeners.
- * Intended to simplify future debuging.
+ * Handles warning messages
+ * Intended to simplify message debuging.
  */
 const warningListener = (): void => {
   const messageType = MessageTypes.WARNING;
-  onMessage(messageType, (payload) => {
+  onMessage(messageType, async (payload) => {
     const warning = payload.warning;
-    console.warn(formatWarning(warning));
+    console.warn(formatWarningMessage(warning));
+    const response: ResponseMap[typeof messageType] = {
+      success: true,
+    };
+    return response;
   });
 };
 

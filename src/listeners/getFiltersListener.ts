@@ -1,5 +1,4 @@
-import { SYNC_STORAGE_KEYS } from "../config/chrome";
-import { WptFilterMap } from "../constants/filters";
+import { StorageMap } from "../constants/chromeStorage";
 import { MessageTypes } from "../constants/messages";
 import { ResponseMap } from "../constants/responses";
 import { WarningCodeMap } from "../constants/warnings";
@@ -10,29 +9,28 @@ import { buildDefaultFilters } from "../utils/filter/filterHelpers";
 import { createWarning } from "../utils/messages/warnings";
 
 /*
- * Returns FiltersState object from chrome.sync storage.
+ * Returns FiltersState object from chrome.sync storage or
+ * default filters from filter constants
  */
 const getFiltersListener = (): void => {
   const messageType = MessageTypes.GET_FILTERS;
   const warningCode = WarningCodeMap.GET_FILTERS;
-  onMessage(messageType, () => {
-    getSyncStorageItem<FiltersState>(SYNC_STORAGE_KEYS.filters).then(
-      (filters) => {
-        if (!filters) {
-          sendMessage(MessageTypes.WARNING, {
-            warning: createWarning(warningCode, "", messageType),
-          });
-        }
+  const storageKey = StorageMap.GET_FILTERS;
+  onMessage(messageType, async () => {
+    const filters = await getSyncStorageItem<FiltersState>(storageKey);
+    if (!filters) {
+      sendMessage(MessageTypes.WARNING, {
+        warning: createWarning(warningCode, messageType),
+      });
+    }
 
-        const resolvedFilters = filters ?? buildDefaultFilters();
-
-        const response: ResponseMap[typeof messageType] = {
-          success: true,
-          filters: resolvedFilters,
-        };
-        return response;
-      }
-    );
+    const resolvedFilters = filters ?? buildDefaultFilters();
+    console.log("Get Filters: ", resolvedFilters);
+    const response: ResponseMap[typeof messageType] = {
+      success: true,
+      filters: resolvedFilters,
+    };
+    return response;
   });
 };
 

@@ -1,4 +1,5 @@
 import { Calendar, CalendarEvents } from "../types/calendar";
+import { ErrorMessage } from "../types/errors";
 import { FiltersState } from "../types/filter";
 import { Settings } from "../types/settings";
 import Timezone from "../types/Timezone";
@@ -41,7 +42,7 @@ export type MessageMap = {
   [MessageTypes.PAGE_RELOADED]: undefined;
   [MessageTypes.SETTINGS_CHANGE]: undefined;
   [MessageTypes.TIMEZONE_CHANGE]: undefined;
-  [MessageTypes.ERROR]: undefined;
+  [MessageTypes.ERROR]: { error: ErrorMessage };
   [MessageTypes.WARNING]: { warning: WarningMessage };
   /* chrome.sync storage messages */
   [MessageTypes.GET_CALENDAR]: undefined;
@@ -50,8 +51,8 @@ export type MessageMap = {
   [MessageTypes.GET_TIMEZONE]: undefined;
   [MessageTypes.SAVE_CALENDAR]: { calendar: Calendar };
   [MessageTypes.SAVE_FILTERS]: { filters: FiltersState };
-  [MessageTypes.SAVE_SETTINGS]: { settings?: Settings };
-  [MessageTypes.SAVE_TIMEZONE]: { timeZone: Timezone | null };
+  [MessageTypes.SAVE_SETTINGS]: { settings: Settings };
+  [MessageTypes.SAVE_TIMEZONE]: { timeZone: Timezone };
   /* chrome.local storage messages */
   [MessageTypes.GET_CALENDAR_EVENTS]: undefined;
   [MessageTypes.GET_TOURNAMENTS]: undefined;

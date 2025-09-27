@@ -1,25 +1,35 @@
-import { SYNC_STORAGE_KEYS } from "../config/chrome";
+import { StorageMap } from "../constants/chromeStorage";
 import { MessageTypes } from "../constants/messages";
 import { ResponseMap } from "../constants/responses";
-import { onMessage } from "../services/messageService";
+import { DEFAULT_SETTINGS } from "../constants/settings";
+import { WarningCodeMap } from "../constants/warnings";
+import { onMessage, sendMessage } from "../services/messageService";
 import { getSyncStorageItem } from "../services/storageService";
 import { Settings } from "../types/settings";
+import { createWarning } from "../utils/messages/warnings";
 
 /*
- * Returns Settings object from chrome.sync storage.
+ * Returns Settings object from chrome.sync storage or
+ * default settings object from constants.
  */
 const getSettingsListener = (): void => {
   const messageType = MessageTypes.GET_SETTINGS;
-  onMessage(messageType, () => {
-    getSyncStorageItem<Settings>(SYNC_STORAGE_KEYS.settings).then(
-      (settings) => {
-        const response: ResponseMap[typeof messageType] = {
-          success: true,
-          settings: settings ? settings : undefined,
-        };
-        return response;
-      }
-    );
+  const warningCode = WarningCodeMap.GET_SETTINGS;
+  const storageKey = StorageMap.GET_SETTINGS;
+  onMessage(messageType, async () => {
+    const settings = await getSyncStorageItem<Settings>(storageKey);
+    if (!settings) {
+      sendMessage(MessageTypes.WARNING, {
+        warning: createWarning(warningCode, messageType),
+      });
+    }
+    const resolvedSettings = settings ?? DEFAULT_SETTINGS;
+    console.log("resolvedSettings: ", resolvedSettings);
+    const response: ResponseMap[typeof messageType] = {
+      success: true,
+      settings: resolvedSettings,
+    };
+    return response;
   });
 };
 

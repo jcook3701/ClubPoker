@@ -1,9 +1,10 @@
-import { SYNC_STORAGE_KEYS } from "../config/chrome";
+import { StorageMap } from "../constants/chromeStorage";
 import { MessageTypes } from "../constants/messages";
 import { ResponseMap } from "../constants/responses";
+import { WarningCodeMap } from "../constants/warnings";
 import { onMessage, sendMessage } from "../services/messageService";
 import { setSyncStorageItem } from "../services/storageService";
-import Timezone from "../types/Timezone";
+import { createWarning } from "../utils/messages/warnings";
 
 /*
  * Saves Timezone object to chrome.sync storage and sends message
@@ -11,22 +12,27 @@ import Timezone from "../types/Timezone";
  */
 const saveTimezoneListener = (): void => {
   const messageType = MessageTypes.SAVE_TIMEZONE;
-
-  onMessage(messageType, (payload) => {
-    const newTimezone: Timezone | null = payload.timeZone;
+  const warningCode = WarningCodeMap.SAVE_TIMEZONE;
+  const storageKey = StorageMap.SAVE_TIMEZONE;
+  onMessage(messageType, async (payload) => {
+    const newTimezone = payload.timeZone;
 
     if (!newTimezone) {
-      console.warn("No timezone set — skipping updates");
-      return;
-    }
-
-    setSyncStorageItem(SYNC_STORAGE_KEYS.timezone, newTimezone).then(() => {
-      sendMessage(MessageTypes.TIMEZONE_CHANGE);
-      const response: ResponseMap[typeof messageType] = {
+      sendMessage(MessageTypes.WARNING, {
+        warning: createWarning(warningCode, messageType),
+      });
+      const failResponse: ResponseMap[typeof messageType] = {
         success: true,
       };
-      return response;
-    });
+      return failResponse;
+    } else {
+      await setSyncStorageItem(storageKey, newTimezone);
+      sendMessage(MessageTypes.TIMEZONE_CHANGE);
+      const successResponse: ResponseMap[typeof messageType] = {
+        success: true,
+      };
+      return successResponse;
+    }
   });
 };
 

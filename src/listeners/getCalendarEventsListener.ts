@@ -10,16 +10,15 @@ import { CalendarEvents } from "../types/calendar";
  */
 const getCalendarEventsListener = (): void => {
   const messageType = MessageTypes.GET_CALENDAR_EVENTS;
-  onMessage(messageType, () => {
-    getSyncStorageItem<CalendarEvents>(LOCAL_STORAGE_KEYS.calendarEvents).then(
-      (calendarData) => {
-        const response: ResponseMap[typeof messageType] = {
-          success: true,
-          calendarData: calendarData ? calendarData : undefined,
-        };
-        return response;
-      }
+  onMessage(messageType, async () => {
+    const calendarData = await getSyncStorageItem<CalendarEvents>(
+      LOCAL_STORAGE_KEYS.calendarEvents
     );
+    const response: ResponseMap[typeof messageType] = {
+      success: true,
+      calendarData: calendarData ? calendarData : undefined,
+    };
+    return response;
   });
 };
 

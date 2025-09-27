@@ -1,7 +1,13 @@
-.settings {
+.settingsHeader {
   display: flex;
   flex-direction: column;
   justify-content: space-between; /* pushes last child to the right */
+  gap: 8px;
+}
+
+.settingsBody {
+  display: flex;
+  flex-direction: column;
   gap: 8px;
 }
 

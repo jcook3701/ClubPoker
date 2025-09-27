@@ -1,15 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Select from "react-select";
 import SaveIcon from "@mui/icons-material/Save";
-import { SYNC_STORAGE_KEYS } from "../../config/chrome";
 import { Button } from "@mui/material";
 import styles from "./TimezoneSelect.module.scss";
 import Timezone from "../../types/Timezone";
-import {
-  getSyncStorageItem,
-  setSyncStorageItem,
-} from "../../services/storageService";
-import { sendTabMessage } from "../../services/messageService";
+import { sendMessage, sendTabMessage } from "../../services/messageService";
 import { MessageTypes } from "../../constants/messages";
 
 // Dynamically generate timezone options
@@ -20,51 +15,61 @@ const timezoneOptions: Timezone[] = timezones.map((tz) => ({
 }));
 
 const TimezoneSelect: React.FC = () => {
-  const [selectedOption, setSelectedOption] = useState<Timezone | null>(null);
+  const [selectedTimezone, setSelectedTimezone] = useState<Timezone | null>(
+    null
+  );
 
   // Load saved timezone on mount
   useEffect(() => {
     const loadSavedTimezone = async () => {
-      const saved = await getSyncStorageItem<Timezone>(
-        SYNC_STORAGE_KEYS.timezone
-      );
+      const saved = await sendMessage(MessageTypes.GET_TIMEZONE);
       if (saved) {
-        const match = timezoneOptions.find((tz) => tz.value === saved.value);
+        console.log("Timezone Select: ", saved);
+        const match = timezoneOptions.find(
+          (tz) => tz.value === saved.timezone.value
+        );
         if (match) {
-          setSelectedOption(match);
+          setSelectedTimezone(match);
         }
       } else {
         // fallback to default (America/Los_Angeles in this case, index 133)
-        setSelectedOption(timezoneOptions[133]);
+        setSelectedTimezone(timezoneOptions[133]);
       }
     };
     loadSavedTimezone();
   }, []);
 
   const handleChange = (option: Timezone | null) => {
-    setSelectedOption(option);
+    setSelectedTimezone(option);
     console.log("Selected Timezone:", option?.value);
   };
 
   const handleClick = async () => {
-    await setSyncStorageItem(SYNC_STORAGE_KEYS.timezone, selectedOption);
-    console.log("Timezone saved: ", selectedOption);
+    if (selectedTimezone) {
+      sendMessage(MessageTypes.SAVE_TIMEZONE, {
+        timeZone: selectedTimezone,
+      });
+    }
+    // await setSyncStorageItem(SYNC_STORAGE_KEYS.timezone, selectedTimezone);
+    console.log("Timezone saved: ", selectedTimezone);
 
+    /*
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
       const tabId = tabs[0]?.id;
       if (tabId !== undefined) {
         sendTabMessage(tabId, MessageTypes.SAVE_TIMEZONE, {
-          timeZone: selectedOption,
+          timeZone: selectedTimezone,
         });
       }
     });
+    */
   };
 
   return (
     <div className={styles.timezoneSelect}>
       <h3>Select Timezone:</h3>
       <Select
-        value={selectedOption}
+        value={selectedTimezone}
         onChange={handleChange}
         options={timezoneOptions}
         placeholder="Choose a timezone"

@@ -4,7 +4,6 @@ import { Tournaments } from "../types/tournament";
 import { Calendar, CalendarEvents } from "../types/calendar";
 import { Settings } from "../types/settings";
 import { FiltersState } from "../types/filter";
-import { WarningMessage } from "../types/warnings";
 
 /* Map each request type → response payload shape */
 export type ResponseMap = {
@@ -12,8 +11,8 @@ export type ResponseMap = {
   [MessageTypes.PAGE_RELOADED]: { success: boolean };
   [MessageTypes.SETTINGS_CHANGE]: { success: boolean };
   [MessageTypes.TIMEZONE_CHANGE]: { success: boolean };
-  [MessageTypes.WARNING]: undefined;
-  [MessageTypes.ERROR]: undefined;
+  [MessageTypes.WARNING]: { success: boolean };
+  [MessageTypes.ERROR]: { success: boolean };
   /* chrome.sync storage responses */
   [MessageTypes.GET_CALENDAR]: {
     success: boolean;
@@ -25,11 +24,11 @@ export type ResponseMap = {
   };
   [MessageTypes.GET_SETTINGS]: {
     success: boolean;
-    settings?: Settings;
+    settings: Settings;
   };
   [MessageTypes.GET_TIMEZONE]: {
     success: boolean;
-    timezone?: Timezone;
+    timezone: Timezone;
   };
   [MessageTypes.SAVE_CALENDAR]: { success: boolean };
   [MessageTypes.SAVE_FILTERS]: { success: boolean };

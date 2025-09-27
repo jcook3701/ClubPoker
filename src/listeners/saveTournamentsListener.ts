@@ -1,4 +1,4 @@
-import { LOCAL_STORAGE_KEYS } from "../config/chrome";
+import { StorageMap } from "../constants/chromeStorage";
 import { MessageTypes } from "../constants/messages";
 import { ResponseMap } from "../constants/responses";
 import { onMessage } from "../services/messageService";
@@ -9,8 +9,10 @@ import { setLocalStorageItem } from "../services/storageService";
  */
 const saveTournamentsListener = (): void => {
   const messageType = MessageTypes.SAVE_TOURNAMENTS;
-  onMessage(messageType, (payload) => {
-    setLocalStorageItem(LOCAL_STORAGE_KEYS.tournaments, payload.tournamentData);
+  const storageKey = StorageMap.SAVE_TOURNAMENTS;
+  onMessage(messageType, async (payload) => {
+    const newTournaments = payload.tournamentData;
+    await setLocalStorageItem(storageKey, newTournaments);
     const response: ResponseMap[typeof messageType] = {
       success: true,
     };

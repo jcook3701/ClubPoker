@@ -6,6 +6,7 @@ import { MessageTypes } from "../constants/messages";
 export enum WarningCode {
   emptySyncStorage,
   emptyLocalStorage,
+  missingPayload,
 }
 
 /*
@@ -13,7 +14,6 @@ export enum WarningCode {
  */
 export interface WarningMessage {
   code: WarningCode;
-  message: string;
   origin: MessageTypes;
   timestamp: Date;
 }
@@ -21,8 +21,8 @@ export interface WarningMessage {
 /*
  * Formats a Warning object as a string.
  */
-export const formatWarning = (warning: WarningMessage): string => {
-  return `[${warning.code}] ${warning.message} (origin: ${
+export const formatWarningMessage = (warning: WarningMessage): string => {
+  return `[${warning.code}] (origin: ${
     warning.origin
   }, time: ${warning.timestamp.toISOString()})`;
 };

@@ -9,7 +9,7 @@ import { getLocalStorageItem } from "../services/storageService";
  */
 const settingsChangeListener = (): void => {
   const messageType = MessageTypes.SETTINGS_CHANGE;
-  onMessage(messageType, () => {
+  onMessage(messageType, async () => {
     const response: ResponseMap[typeof messageType] = {
       success: true,
     };

@@ -37,19 +37,21 @@ export const registerBackgroundListeners = (): void => {
   warningListener();
 
   /* chrome.sync storage listeners */
+  // getters
   getCalendarListener();
   getFiltersListener();
   getSettingsListener();
   getTimezoneListener();
-
+  // setters
   saveCalendarListener();
   saveFiltersListener();
   saveSettingsListener();
   saveTimezoneListener();
   /* chrome.local storage listeners */
+  // getters
   getCalendarEventsListener();
   getTournamentsListener();
-
+  // setters
   saveCalendarEventsListener();
   saveTournamentsListener();
 };

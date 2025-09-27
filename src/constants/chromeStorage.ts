@@ -4,7 +4,7 @@ import { MessageTypes } from "./messages";
 /*
  * map message warnings to keys in a chrome config object
  */
-export const MessageToStorageMap = {
+export const StorageMap = {
   /* chrome.sync storage messages */
   [MessageTypes.GET_CALENDAR]: SYNC_STORAGE_KEYS.calendar,
   [MessageTypes.GET_FILTERS]: SYNC_STORAGE_KEYS.filters,

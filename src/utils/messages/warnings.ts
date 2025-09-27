@@ -9,11 +9,9 @@ import { WarningCode, WarningMessage } from "../../types/warnings";
  */
 export const createWarning = (
   code: WarningCode,
-  message: string,
   origin: MessageTypes
 ): WarningMessage => ({
   code,
-  message,
   origin,
   timestamp: new Date(),
 });
