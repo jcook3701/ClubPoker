@@ -1,46 +1,70 @@
 import React, { useEffect, useState } from "react";
-import { ThemeProvider, createTheme } from "@mui/material";
+import { Box, ThemeProvider } from "@mui/material";
 import Header from "../header/Header";
 
 import styles from "./Popup.module.scss";
 import WindowSelector from "../window-selector/WindowSelector";
 import Settings from "../settings/Settings";
+import type { AppSettings } from "../../types/settings";
+import { sendMessage } from "../../services/messageService";
+import { MessageTypes } from "../../constants/messages";
+import { DARK_THEME, LIGHT_THEME } from "../../constants/settings";
 
 const Popup: React.FC = () => {
-  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+  const [settings, setSettings] = useState<AppSettings>();
   const [selectedWindow, setSelectedWindow] = useState("timezone");
-  const [settingsSelected, setSettingsSelected] = useState(false);
+  const [settingsWindowSelected, setSettingsWindowSelected] = useState(false);
 
   useEffect(() => {
-    // This code will run after the component renders
-    console.log("Component mounted");
-    console.log("styles: ", styles);
-
-    // Cleanup function (optional)
-    return () => {
-      console.log("Component unmounted");
+    const loadSavedSettings = async () => {
+      try {
+        const saved = await sendMessage(MessageTypes.GET_SETTINGS);
+        if (saved) {
+          setSettings(saved.settings);
+        }
+      } catch (err) {
+        console.error("Error loading Settings State:", err);
+      }
     };
-  }, []); // Empty dependency array means the effect runs once on mount
 
-  // <ThemeProvider />
+    loadSavedSettings();
+  }, []);
+
   return (
-    <div className={styles.popup}>
-      <Header
-        settingsSelected={settingsSelected}
-        setSettingsSelected={setSettingsSelected}
-      />
-      {settingsSelected ? (
-        <Settings
-          settingsSelected={settingsSelected}
-          setSettingsSelected={setSettingsSelected}
+    <ThemeProvider theme={settings?.theme ? DARK_THEME : LIGHT_THEME}>
+      <Box
+        sx={{
+          width: 300,
+          height: 400,
+          display: "flex",
+          flexDirection: "column",
+          borderRadius: 2, // theme-based spacing (8px * 2 = 16px)
+          p: 2, // padding: theme.spacing(2) = 16px
+          bgcolor: "background.default",
+          color: "text.primary",
+          border: "2px solid",
+          borderColor: "primary.main",
+        }}
+      >
+        <Header
+          settingsSelected={settingsWindowSelected}
+          setSettingsSelected={setSettingsWindowSelected}
         />
-      ) : (
-        <WindowSelector
-          selectedWindow={selectedWindow}
-          onChange={setSelectedWindow}
-        />
-      )}
-    </div>
+        {settingsWindowSelected ? (
+          <Settings
+            settings={settings}
+            setSettings={setSettings}
+            settingsSelected={settingsWindowSelected}
+            setSettingsSelected={setSettingsWindowSelected}
+          />
+        ) : (
+          <WindowSelector
+            selectedWindow={selectedWindow}
+            onChange={setSelectedWindow}
+          />
+        )}
+      </Box>
+    </ThemeProvider>
   );
 };
 

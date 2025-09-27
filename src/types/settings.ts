@@ -4,7 +4,7 @@ export type AllSettingsState = Record<string, SettingsState>;
 /*
  * clubWpt app settings
  */
-export interface Settings {
+export interface AppSettings {
   theme: Theme;
 }
 

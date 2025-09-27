@@ -27,3 +27,8 @@
   transform: scale(1.2);
   color: #1976d2; /* MUI blue highlight */
 }
+
+.iconLink {
+  color: inherit; // use parent or icon color
+  text-decoration: none; // remove underline if any
+}

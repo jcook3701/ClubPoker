@@ -24,7 +24,7 @@ const LightDarkModeSwitch: React.FC<LightDarkModeSwitchProps> = ({
           onChange={onChange}
         />
       }
-      label="lightDarkModeSwitch"
+      label="Light or Dark Mode"
     />
   );
 };

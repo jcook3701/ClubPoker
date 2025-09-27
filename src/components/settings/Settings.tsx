@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import SaveIcon from "@mui/icons-material/Save";
 import styles from "./Settings.module.scss";
@@ -8,39 +8,26 @@ import { MessageTypes } from "../../constants/messages";
 import { Button } from "@mui/material";
 import {
   boolToTheme,
-  Settings,
+  AppSettings,
   Theme,
   themeToBool,
 } from "../../types/settings";
 
 type SettingsProps = {
+  settings?: AppSettings;
+  setSettings: React.Dispatch<React.SetStateAction<AppSettings | undefined>>;
   settingsSelected: boolean;
   setSettingsSelected: (value: boolean) => void;
 };
 
 const Settings: React.FC<SettingsProps> = ({
+  settings,
+  setSettings,
   settingsSelected,
   setSettingsSelected,
 }) => {
-  const [settingsState, setSettingsState] = useState<Settings>();
-
-  useEffect(() => {
-    const loadSavedSettings = async () => {
-      try {
-        const saved = await sendMessage(MessageTypes.GET_SETTINGS);
-        if (saved) {
-          setSettingsState(saved.settings);
-        }
-      } catch (err) {
-        console.error("Error loading Settings State:", err);
-      }
-    };
-
-    loadSavedSettings();
-  }, []);
-
   const handleSettingsThemeUpdate = async (updated: Theme) => {
-    setSettingsState((prev) => {
+    setSettings((prev) => {
       const newState = {
         ...(prev ?? {}),
         theme: updated,
@@ -54,9 +41,9 @@ const Settings: React.FC<SettingsProps> = ({
   };
 
   const handleSaveClick = async () => {
-    if (settingsState) {
+    if (settings) {
       await sendMessage(MessageTypes.SAVE_SETTINGS, {
-        settings: settingsState,
+        settings: settings,
       });
     }
   };
@@ -71,11 +58,11 @@ const Settings: React.FC<SettingsProps> = ({
   return (
     <div className={styles.settingsHeader}>
       <ArrowBackIosNewIcon className={styles.icon} onClick={handleBackClick} />
-      {settingsState ? (
+      {settings ? (
         <div className={styles.settingsBody}>
           <h3>Settings:</h3>
           <LightDarkModeSwitch
-            checked={themeToBool(settingsState.theme)}
+            checked={themeToBool(settings.theme)}
             onChange={(event, checked) => {
               handleLightDarkModeSwitch(event, checked);
             }}

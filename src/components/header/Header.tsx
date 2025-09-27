@@ -41,6 +41,7 @@ const Header: React.FC<HeaderProps> = ({
         href="https://github.com/jcook3701/club-wpt-chrome-extension"
         target="_blank"
         rel="noopener noreferrer"
+        className={styles.iconLink}
       >
         <LiveHelpIcon className={styles.icon} titleAccess="help" />
       </a>

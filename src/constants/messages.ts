@@ -1,7 +1,7 @@
 import { Calendar, CalendarEvents } from "../types/calendar";
 import { ErrorMessage } from "../types/errors";
 import { FiltersState } from "../types/filter";
-import { Settings } from "../types/settings";
+import { AppSettings } from "../types/settings";
 import Timezone from "../types/Timezone";
 import { Tournaments } from "../types/tournament";
 import { WarningMessage } from "../types/warnings";
@@ -17,6 +17,7 @@ export const MessageTypes = {
   ERROR: "ERROR",
   WARNING: "WARNING",
   /* chrome.sync storage messages */
+  // TODO: Add GETTERS and SETTERS for google token
   GET_CALENDAR: "GET_CALENDAR",
   GET_FILTERS: "GET_FILTERS",
   GET_SETTINGS: "GET_SETTINGS",
@@ -30,6 +31,7 @@ export const MessageTypes = {
   GET_TOURNAMENTS: "GET_TOURNAMENTS",
   SAVE_CALENDAR_EVENTS: "SAVE_CALENDAR_EVENTS",
   SAVE_TOURNAMENTS: "SAVE_TOURNAMENTS",
+  /* Google Calander API messages */
 } as const;
 
 export type MessageTypes = (typeof MessageTypes)[keyof typeof MessageTypes];
@@ -51,7 +53,7 @@ export type MessageMap = {
   [MessageTypes.GET_TIMEZONE]: undefined;
   [MessageTypes.SAVE_CALENDAR]: { calendar: Calendar };
   [MessageTypes.SAVE_FILTERS]: { filters: FiltersState };
-  [MessageTypes.SAVE_SETTINGS]: { settings: Settings };
+  [MessageTypes.SAVE_SETTINGS]: { settings: AppSettings };
   [MessageTypes.SAVE_TIMEZONE]: { timeZone: Timezone };
   /* chrome.local storage messages */
   [MessageTypes.GET_CALENDAR_EVENTS]: undefined;

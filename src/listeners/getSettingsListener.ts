@@ -5,7 +5,7 @@ import { DEFAULT_SETTINGS } from "../constants/settings";
 import { WarningCodeMap } from "../constants/warnings";
 import { onMessage, sendMessage } from "../services/messageService";
 import { getSyncStorageItem } from "../services/storageService";
-import { Settings } from "../types/settings";
+import { AppSettings } from "../types/settings";
 import { createWarning } from "../utils/messages/warnings";
 
 /*
@@ -17,7 +17,7 @@ const getSettingsListener = (): void => {
   const warningCode = WarningCodeMap.GET_SETTINGS;
   const storageKey = StorageMap.GET_SETTINGS;
   onMessage(messageType, async () => {
-    const settings = await getSyncStorageItem<Settings>(storageKey);
+    const settings = await getSyncStorageItem<AppSettings>(storageKey);
     if (!settings) {
       sendMessage(MessageTypes.WARNING, {
         warning: createWarning(warningCode, messageType),
