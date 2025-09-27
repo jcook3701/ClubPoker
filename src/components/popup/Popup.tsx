@@ -49,6 +49,7 @@ const Popup: React.FC = () => {
         <Header
           settingsSelected={settingsWindowSelected}
           setSettingsSelected={setSettingsWindowSelected}
+          title="PokerClubs"
         />
         {settingsWindowSelected ? (
           <Settings

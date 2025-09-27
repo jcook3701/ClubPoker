@@ -1,6 +1,6 @@
 # club-wpt-chrome-extension
 
-This Chrome extension scrapes tournament information from the ClubWPT lobby website and adds them to your Google Calendar.
+Unofficial helper tool for  ClubWPT's website. Not affiliated with WPT in any way. This Chrome extension scrapes tournament information from the ClubWPT lobby website modifies live tournament times for user specified timezone and allows the ability to add tournaments to a specified Google Calendar. No longer will you miss the large daily tournaments.  
 
 ## Pre-commit commands
 

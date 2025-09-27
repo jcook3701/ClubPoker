@@ -4,6 +4,7 @@ import { useCalendar } from "../../context/GoogleCalendarContext";
 import { createEvent, fetchCalendarEvents } from "../../api/googleCalendarApi";
 import { Calendar, CalendarEvent } from "../../types/calendar";
 import { Button } from "@mui/material";
+import SaveIcon from "@mui/icons-material/Save";
 
 import styles from "./GoogleCalendarUpdater.module.scss";
 
@@ -65,7 +66,7 @@ const GoogleCalendarUpdater: React.FC = () => {
 
   return (
     <div className={styles.googleCalendarUpdator}>
-      <h2>Google Calendars</h2>
+      <h3>Google Calendars:</h3>
       <Select
         value={
           selectedCalendar
@@ -84,7 +85,7 @@ const GoogleCalendarUpdater: React.FC = () => {
       />
 
       <h3>Events</h3>
-      <ul>
+      <ul className={styles.events}>
         {events.map((ev) => (
           <li key={ev.id ?? ev.summary}>
             {ev.summary} ({ev.start?.dateTime ?? ev.start?.date})
@@ -92,8 +93,13 @@ const GoogleCalendarUpdater: React.FC = () => {
         ))}
       </ul>
 
-      <Button variant="contained" color="primary" onClick={handleCreateEvent}>
-        Create Test Event
+      <Button
+        variant="contained"
+        color="primary"
+        endIcon={<SaveIcon />}
+        onClick={handleCreateEvent}
+      >
+        Save
       </Button>
     </div>
   );

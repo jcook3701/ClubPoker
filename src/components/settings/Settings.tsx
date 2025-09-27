@@ -5,12 +5,14 @@ import styles from "./Settings.module.scss";
 import LightDarkModeSwitch from "../switches/light-dark-mode-switch/LightDarkModeSwitch";
 import { sendMessage } from "../../services/messageService";
 import { MessageTypes } from "../../constants/messages";
-import { Button } from "@mui/material";
+import { Button, Autocomplete, TextField } from "@mui/material";
 import {
   boolToTheme,
   AppSettings,
   Theme,
   themeToBool,
+  ClubTypeValues,
+  Club,
 } from "../../types/settings";
 
 type SettingsProps = {
@@ -29,8 +31,18 @@ const Settings: React.FC<SettingsProps> = ({
   const handleSettingsThemeUpdate = async (updated: Theme) => {
     setSettings((prev) => {
       const newState = {
-        ...(prev ?? {}),
+        ...prev,
         theme: updated,
+      };
+      return newState;
+    });
+  };
+
+  const handleSettingsClubUpdate = async (updated: Club) => {
+    setSettings((prev) => {
+      const newState = {
+        ...prev,
+        club: updated,
       };
       return newState;
     });
@@ -40,19 +52,28 @@ const Settings: React.FC<SettingsProps> = ({
     setSettingsSelected(!settingsSelected);
   };
 
+  const handleLightDarkModeSwitch = async (
+    _event: React.ChangeEvent<HTMLInputElement>,
+    checked: boolean
+  ) => {
+    handleSettingsThemeUpdate(boolToTheme(checked));
+  };
+
+  const handleSelectChange = (
+    _event: React.SyntheticEvent,
+    option: Club | null
+  ) => {
+    if (option) {
+      handleSettingsClubUpdate(option);
+    }
+  };
+
   const handleSaveClick = async () => {
     if (settings) {
       await sendMessage(MessageTypes.SAVE_SETTINGS, {
         settings: settings,
       });
     }
-  };
-
-  const handleLightDarkModeSwitch = async (
-    _event: React.ChangeEvent<HTMLInputElement>,
-    checked: boolean
-  ) => {
-    handleSettingsThemeUpdate(boolToTheme(checked));
   };
 
   return (
@@ -66,6 +87,16 @@ const Settings: React.FC<SettingsProps> = ({
             onChange={(event, checked) => {
               handleLightDarkModeSwitch(event, checked);
             }}
+          />
+          <Autocomplete
+            options={ClubTypeValues}
+            value={settings.club}
+            onChange={handleSelectChange}
+            getOptionLabel={(option) => option.label}
+            renderInput={(params) => (
+              <TextField {...params} label="Poker Club" variant="outlined" />
+            )}
+            fullWidth
           />
           <Button
             variant="contained"

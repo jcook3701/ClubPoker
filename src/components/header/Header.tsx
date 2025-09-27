@@ -9,11 +9,13 @@ import styles from "./Header.module.scss";
 type HeaderProps = {
   settingsSelected: boolean;
   setSettingsSelected: (value: boolean) => void;
+  title: string;
 };
 
 const Header: React.FC<HeaderProps> = ({
   settingsSelected,
   setSettingsSelected,
+  title,
 }) => {
   const handleHelpClick = () => {
     alert("Help clicked!");
@@ -36,7 +38,7 @@ const Header: React.FC<HeaderProps> = ({
       >
         <Icon src="icon48.png" alt="ClubWPT" className={styles.headerIcon} />
       </a>
-      <h3 className={styles.headerTitle}>ClubWPT</h3>
+      <h3 className={styles.headerTitle}>{title}</h3>
       <a
         href="https://github.com/jcook3701/club-wpt-chrome-extension"
         target="_blank"

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Select from "react-select";
 import SaveIcon from "@mui/icons-material/Save";
-import { Button } from "@mui/material";
+import { Button, Autocomplete, TextField } from "@mui/material";
 import styles from "./TimezoneSelect.module.scss";
 import Timezone from "../../types/Timezone";
 import { sendMessage, sendTabMessage } from "../../services/messageService";
@@ -39,7 +38,10 @@ const TimezoneSelect: React.FC = () => {
     loadSavedTimezone();
   }, []);
 
-  const handleChange = (option: Timezone | null) => {
+  const handleSelectChange = (
+    _event: React.SyntheticEvent,
+    option: Timezone | null
+  ) => {
     setSelectedTimezone(option);
     console.log("Selected Timezone:", option?.value);
   };
@@ -68,12 +70,15 @@ const TimezoneSelect: React.FC = () => {
   return (
     <div className={styles.timezoneSelect}>
       <h3>Select Timezone:</h3>
-      <Select
-        value={selectedTimezone}
-        onChange={handleChange}
+      <Autocomplete
         options={timezoneOptions}
-        placeholder="Choose a timezone"
-        isSearchable
+        value={selectedTimezone}
+        onChange={handleSelectChange}
+        getOptionLabel={(option) => option.label}
+        renderInput={(params) => (
+          <TextField {...params} label="Timezone" variant="outlined" />
+        )}
+        fullWidth
       />
       <Button
         variant="contained"
@@ -88,3 +93,12 @@ const TimezoneSelect: React.FC = () => {
 };
 
 export default TimezoneSelect;
+
+/* 
+	  <Select
+		value={selectedTimezone}
+		onChange={handleSelectChange}
+		options={timezoneOptions}
+		placeholder="Choose a timezone"
+		isSearchable
+	  /> */

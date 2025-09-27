@@ -1,11 +1,15 @@
 import { createTheme } from "@mui/material";
-import { AppSettings, Theme } from "../types/settings";
+import { AppSettings, Club, ClubTypeValues, Theme } from "../types/settings";
+
+const DEFAULT_THEME = Theme.lightMode;
+const DEFAULT_CLUB: Club = ClubTypeValues[0];
 
 /*
  * Default Settings object
  */
 export const DEFAULT_SETTINGS: AppSettings = {
-  theme: Theme.lightMode,
+  theme: DEFAULT_THEME,
+  club: DEFAULT_CLUB,
 };
 
 /*
