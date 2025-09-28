@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import SaveIcon from "@mui/icons-material/Save";
 import Filter from "./Filter/Filter";
 import { WptFilterMap } from "../../constants/filters";
@@ -47,9 +47,12 @@ const Filters: React.FC = () => {
   };
 
   return (
-    <div className={styles.filterContainer}>
-      <h3>Filters:</h3>
-      <div className={styles.filters}>
+    <Box className={styles.filterContainer}>
+      <Typography variant="subtitle1" noWrap>
+        {"Filters:"}
+      </Typography>
+
+      <Box className={styles.filters}>
         {Object.values(WptFilterMap).map((FILTER) => (
           <Filter
             key={FILTER.filterKey} // unique key required by React
@@ -62,7 +65,7 @@ const Filters: React.FC = () => {
             }
           />
         ))}
-      </div>
+      </Box>
       <Button
         variant="contained"
         color="primary"
@@ -71,7 +74,7 @@ const Filters: React.FC = () => {
       >
         Save
       </Button>
-    </div>
+    </Box>
   );
 };
 

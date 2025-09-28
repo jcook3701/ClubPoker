@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import Icon from "../icon/Icon";
-import LiveHelpIcon from "@mui/icons-material/LiveHelp";
-import SettingsIcon from "@mui/icons-material/Settings";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
-
-import styles from "./Header.module.scss";
+import React from "react";
+import { AppBar, Box, Toolbar, Typography } from "@mui/material";
+import LiveHelpIconButton from "../buttons/icon-buttons/LiveHelpIconButton";
+import MoreIconButton from "../buttons/icon-buttons/MoreIconButton";
+import SettingsIconButton from "../buttons/icon-buttons/SettingsIconButton";
+import WptIconButton from "../buttons/icon-buttons/WptIconButton";
+import { CLUB_WPT_URL, HELP_PAGE_URI } from "../../config/chrome";
 
 type HeaderProps = {
   settingsSelected: boolean;
@@ -17,10 +17,6 @@ const Header: React.FC<HeaderProps> = ({
   setSettingsSelected,
   title,
 }) => {
-  const handleHelpClick = () => {
-    alert("Help clicked!");
-  };
-
   const handleSettingsClick = () => {
     setSettingsSelected(!settingsSelected);
   };
@@ -30,35 +26,22 @@ const Header: React.FC<HeaderProps> = ({
   };
 
   return (
-    <div className={styles.header}>
-      <a
-        href="https://lobby.clubwpt.com/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <Icon src="icon48.png" alt="ClubWPT" className={styles.headerIcon} />
-      </a>
-      <h3 className={styles.headerTitle}>{title}</h3>
-      <a
-        href="https://github.com/jcook3701/club-wpt-chrome-extension"
-        target="_blank"
-        rel="noopener noreferrer"
-        className={styles.iconLink}
-      >
-        <LiveHelpIcon className={styles.icon} titleAccess="help" />
-      </a>
+    <AppBar position="static" color="default" elevation={0} enableColorOnDark>
+      <Toolbar sx={{ justifyContent: "space-between" }}>
+        <Box sx={{ display: "flex", alignItems: "center", gap: 0 }}>
+          <WptIconButton title="ClubWPT" link={CLUB_WPT_URL} />
+          <Typography variant="h6" noWrap>
+            {title}
+          </Typography>
+        </Box>
 
-      <SettingsIcon
-        className={styles.icon}
-        titleAccess="options"
-        onClick={handleSettingsClick}
-      />
-      <MoreVertIcon
-        className={styles.icon}
-        titleAccess="more"
-        onClick={handleMenuClick}
-      />
-    </div>
+        <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+          <LiveHelpIconButton link={HELP_PAGE_URI} />
+          <SettingsIconButton onClick={handleSettingsClick} />
+          <MoreIconButton onClick={handleMenuClick} />
+        </Box>
+      </Toolbar>
+    </AppBar>
   );
 };
 

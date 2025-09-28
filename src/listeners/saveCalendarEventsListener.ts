@@ -3,7 +3,7 @@ import { MessageTypes } from "../constants/messages";
 import { ResponseMap } from "../constants/responses";
 import { WarningCodeMap } from "../constants/warnings";
 import { onMessage, sendMessage } from "../services/messageService";
-import { setSyncStorageItem } from "../services/storageService";
+import { setLocalStorageItem } from "../services/storageService";
 import { createWarning } from "../utils/messages/warnings";
 
 /*
@@ -26,7 +26,7 @@ const saveCalendarEventsListener = (): void => {
       };
       return failResponse;
     } else {
-      await setSyncStorageItem(storageKey, newCalendarEvents);
+      await setLocalStorageItem(storageKey, newCalendarEvents);
       const successResponse: ResponseMap[typeof messageType] = {
         success: true,
       };

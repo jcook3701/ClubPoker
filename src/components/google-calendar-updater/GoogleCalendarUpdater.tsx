@@ -3,7 +3,7 @@ import Select from "react-select";
 import { useCalendar } from "../../context/GoogleCalendarContext";
 import { createEvent, fetchCalendarEvents } from "../../api/googleCalendarApi";
 import { Calendar, CalendarEvent } from "../../types/calendar";
-import { Button } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import SaveIcon from "@mui/icons-material/Save";
 
 import styles from "./GoogleCalendarUpdater.module.scss";
@@ -65,8 +65,10 @@ const GoogleCalendarUpdater: React.FC = () => {
     return <div style={{ color: "red" }}>{error || eventError}</div>;
 
   return (
-    <div className={styles.googleCalendarUpdator}>
-      <h3>Google Calendars:</h3>
+    <Box className={styles.googleCalendarUpdator}>
+      <Typography variant="subtitle1" noWrap>
+        {"Google Calendars:"}
+      </Typography>
       <Select
         value={
           selectedCalendar
@@ -84,7 +86,9 @@ const GoogleCalendarUpdater: React.FC = () => {
         placeholder="Select a calendar..."
       />
 
-      <h3>Events</h3>
+      <Typography variant="subtitle2" noWrap>
+        {"Events:"}
+      </Typography>
       <ul className={styles.events}>
         {events.map((ev) => (
           <li key={ev.id ?? ev.summary}>
@@ -101,7 +105,7 @@ const GoogleCalendarUpdater: React.FC = () => {
       >
         Save
       </Button>
-    </div>
+    </Box>
   );
 };
 

@@ -1,7 +1,5 @@
-import { SYNC_STORAGE_KEYS } from "../../../config/chrome";
 import { MessageTypes } from "../../../constants/messages";
 import { sendMessage } from "../../../services/messageService";
-import { getSyncStorageItem } from "../../../services/storageService";
 import Timezone from "../../../types/Timezone";
 import { Tournament, Tournaments } from "../../../types/tournament";
 import { getSelectorModeFromDom } from "../../../utils/scrapers/getTournamentData";
@@ -79,25 +77,31 @@ const updateOfficalTime = (timezone: Timezone): void => {
 /*
  * Updates all required DOM objects on lobby.clubwpt.com
  */
-export const clubwptDomUpdater = (tournamentData: Tournaments): void => {
+export const clubwptDomUpdater = async (
+  tournamentData: Tournaments
+): Promise<Tournaments | undefined> => {
   console.log("Updating Tournaments");
-  getSyncStorageItem<Timezone>(SYNC_STORAGE_KEYS.timezone).then((timezone) => {
-    if (!timezone) {
-      console.warn("No stored timezone collected yet — skipping updates");
-      return;
-    }
+  const saved = await sendMessage(MessageTypes.GET_TIMEZONE);
+  const timezone = saved.timezone;
+  if (!timezone) {
+    console.warn("No stored timezone collected yet — skipping updates");
+    return;
+  }
 
-    if (tournamentData.timeZone != timezone) {
-      // Adjust start times for the new timezone
-      const adjusted = convertTournamentTimes(tournamentData, timezone);
+  if (tournamentData.timeZone != timezone) {
+    // Adjust start times for the new timezone
+    const adjusted = convertTournamentTimes(tournamentData, timezone);
 
-      // Update local storage with adjusted times
-      sendMessage(MessageTypes.SAVE_TOURNAMENTS, {
-        tournamentData: adjusted,
-      }).then(() => {
-        // Update the DOM with new times
-        updateTournamentStartTimes(adjusted);
-      });
-    }
-  });
+    // Update local storage with adjusted times
+    await sendMessage(MessageTypes.SAVE_TOURNAMENTS, {
+      tournamentData: adjusted,
+    });
+    // Update the DOM with new times
+    updateTournamentStartTimes(adjusted);
+
+    return adjusted;
+  }
+
+  // Nothing changed, return undefined.
+  return;
 };

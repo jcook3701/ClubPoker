@@ -37,7 +37,7 @@ export type ResponseMap = {
   /* chrome.local storage responses */
   [MessageTypes.GET_CALENDAR_EVENTS]: {
     success: boolean;
-    calendarData?: CalendarEvents;
+    calendarData: CalendarEvents | null;
   };
   [MessageTypes.GET_TOURNAMENTS]: {
     success: boolean;

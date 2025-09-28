@@ -2,14 +2,14 @@
  * clubWpt app settings
  */
 export interface AppSettings {
-  theme?: Theme;
+  theme?: ThemeMode;
   club?: Club;
 }
 
 /*
  * Light and Dark mode theme options
  */
-export enum Theme {
+export enum ThemeMode {
   lightMode,
   darkMode,
 }
@@ -44,11 +44,11 @@ export const ClubTypeValues: Club[] = Object.values(ClubTypes).map((club) => {
 /*
  * Converts Theme enumeration to boolean
  */
-export const themeToBool = (theme: Theme | undefined): boolean =>
-  theme === Theme.darkMode;
+export const themeToBool = (theme: ThemeMode | undefined): boolean =>
+  theme === ThemeMode.darkMode;
 
 /*
  * Converts boolean to Theme enumeration
  */
-export const boolToTheme = (checked: boolean | undefined): Theme =>
-  checked ? Theme.darkMode : Theme.lightMode;
+export const boolToTheme = (checked: boolean | undefined): ThemeMode =>
+  checked ? ThemeMode.darkMode : ThemeMode.lightMode;

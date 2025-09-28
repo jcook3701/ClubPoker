@@ -1,5 +1,5 @@
 export interface CalendarEvents {
-  calendar: Calendar;
+  calendar?: Calendar;
   calendarEvents: CalendarEvent[];
 }
 

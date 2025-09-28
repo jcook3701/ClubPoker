@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { ToggleButton, ToggleButtonGroup } from "@mui/material";
+import React from "react";
+import { Box, ToggleButton, ToggleButtonGroup } from "@mui/material";
 import FilterIcon from "@mui/icons-material/Filter"; // Filters page
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth"; // update Google Calander
 import AccessTimeIcon from "@mui/icons-material/AccessTime"; // update time page
@@ -18,6 +18,12 @@ const WindowSelector: React.FC<WindowSelectorProps> = ({
   selectedWindow,
   onChange,
 }) => {
+  const COMPONENTS: Record<string, React.ReactNode> = {
+    timezone: <TimezoneSelect />,
+    filter: <Filters />,
+    calendar: <GoogleCalendarUpdater />,
+  };
+
   const handleChange = (
     _event: React.MouseEvent<HTMLElement>,
     newValue: string | null
@@ -28,13 +34,17 @@ const WindowSelector: React.FC<WindowSelectorProps> = ({
   };
 
   return (
-    <div>
+    <Box>
       <ToggleButtonGroup
         className={styles.windowSelector}
         value={selectedWindow}
         exclusive
         onChange={handleChange}
         fullWidth
+        sx={{
+          mt: 1, // adds spacing above the buttons
+          mb: 1, // adds spacing below the buttons
+        }}
       >
         <ToggleButton value="timezone" aria-label="timezone">
           <AccessTimeIcon />
@@ -46,10 +56,8 @@ const WindowSelector: React.FC<WindowSelectorProps> = ({
           <CalendarMonthIcon />
         </ToggleButton>
       </ToggleButtonGroup>
-      {selectedWindow === "timezone" ? <TimezoneSelect /> : null}
-      {selectedWindow === "filter" ? <Filters /> : null}
-      {selectedWindow === "calendar" ? <GoogleCalendarUpdater /> : null}
-    </div>
+      {COMPONENTS[selectedWindow] ?? null}
+    </Box>
   );
 };
 

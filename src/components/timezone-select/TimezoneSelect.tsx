@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from "react";
 import SaveIcon from "@mui/icons-material/Save";
-import { Button, Autocomplete, TextField } from "@mui/material";
+import {
+  Button,
+  Autocomplete,
+  TextField,
+  Typography,
+  Box,
+} from "@mui/material";
 import styles from "./TimezoneSelect.module.scss";
 import Timezone from "../../types/Timezone";
 import { sendMessage, sendTabMessage } from "../../services/messageService";
@@ -68,8 +74,11 @@ const TimezoneSelect: React.FC = () => {
   };
 
   return (
-    <div className={styles.timezoneSelect}>
-      <h3>Select Timezone:</h3>
+    <Box className={styles.timezoneSelect}>
+      <Typography variant="subtitle1" noWrap>
+        {"Select Timezone:"}
+      </Typography>
+
       <Autocomplete
         options={timezoneOptions}
         value={selectedTimezone}
@@ -88,7 +97,7 @@ const TimezoneSelect: React.FC = () => {
       >
         Save
       </Button>
-    </div>
+    </Box>
   );
 };
 

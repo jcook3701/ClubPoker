@@ -8,7 +8,7 @@ import Settings from "../settings/Settings";
 import type { AppSettings } from "../../types/settings";
 import { sendMessage } from "../../services/messageService";
 import { MessageTypes } from "../../constants/messages";
-import { DARK_THEME, LIGHT_THEME } from "../../constants/settings";
+import { DARK_THEME, LIGHT_THEME } from "../../constants/theme";
 
 const Popup: React.FC = () => {
   const [settings, setSettings] = useState<AppSettings>();

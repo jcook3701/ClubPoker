@@ -1,19 +1,27 @@
 import React from "react";
-import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
-import SaveIcon from "@mui/icons-material/Save";
+
 import styles from "./Settings.module.scss";
 import LightDarkModeSwitch from "../switches/light-dark-mode-switch/LightDarkModeSwitch";
 import { sendMessage } from "../../services/messageService";
 import { MessageTypes } from "../../constants/messages";
-import { Button, Autocomplete, TextField } from "@mui/material";
+import {
+  Autocomplete,
+  TextField,
+  Typography,
+  Tooltip,
+  IconButton,
+  Box,
+} from "@mui/material";
 import {
   boolToTheme,
   AppSettings,
-  Theme,
+  ThemeMode,
   themeToBool,
   ClubTypeValues,
   Club,
 } from "../../types/settings";
+import SaveButton from "../buttons/SaveButton";
+import BackArrowIconButton from "../buttons/icon-buttons/BackArrowIconButton";
 
 type SettingsProps = {
   settings?: AppSettings;
@@ -28,7 +36,7 @@ const Settings: React.FC<SettingsProps> = ({
   settingsSelected,
   setSettingsSelected,
 }) => {
-  const handleSettingsThemeUpdate = async (updated: Theme) => {
+  const handleSettingsThemeUpdate = async (updated: ThemeMode) => {
     setSettings((prev) => {
       const newState = {
         ...prev,
@@ -77,11 +85,16 @@ const Settings: React.FC<SettingsProps> = ({
   };
 
   return (
-    <div className={styles.settingsHeader}>
-      <ArrowBackIosNewIcon className={styles.icon} onClick={handleBackClick} />
+    <Box className={styles.settingsHeader}>
+      <Box>
+        <Typography variant="h6" noWrap>
+          {"Settings:"}
+        </Typography>
+        <BackArrowIconButton onClick={handleBackClick} />
+      </Box>
+
       {settings ? (
-        <div className={styles.settingsBody}>
-          <h3>Settings:</h3>
+        <Box className={styles.settingsBody}>
           <LightDarkModeSwitch
             checked={themeToBool(settings.theme)}
             onChange={(event, checked) => {
@@ -98,19 +111,12 @@ const Settings: React.FC<SettingsProps> = ({
             )}
             fullWidth
           />
-          <Button
-            variant="contained"
-            color="primary"
-            endIcon={<SaveIcon />}
-            onClick={handleSaveClick}
-          >
-            Save
-          </Button>
-        </div>
+          <SaveButton onClick={handleSaveClick} />
+        </Box>
       ) : (
         <> </>
       )}
-    </div>
+    </Box>
   );
 };
 

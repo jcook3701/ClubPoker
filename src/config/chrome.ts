@@ -57,6 +57,9 @@ export const FILTER_KEYS = {
  */
 export const EXTENSION_ID = "bnnhlonpnkdahlgdihflafccalglcgej";
 export const REDIRECT_URI = `https://${EXTENSION_ID}.chromiumapp.org/oauth2`;
+export const HELP_PAGE_URI =
+  "https://github.com/jcook3701/club-wpt-chrome-extension";
+export const CLUB_WPT_URL = "https://lobby.clubwpt.com/";
 
 /*
  * OAuth / Chrome extension constants
