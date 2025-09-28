@@ -3,10 +3,10 @@ import Select from "react-select";
 import { useCalendar } from "../../context/GoogleCalendarContext";
 import { createEvent, fetchCalendarEvents } from "../../api/googleCalendarApi";
 import { Calendar, CalendarEvent } from "../../types/calendar";
-import { Box, Button, Typography } from "@mui/material";
-import SaveIcon from "@mui/icons-material/Save";
+import { Box, Typography } from "@mui/material";
 
 import styles from "./GoogleCalendarUpdater.module.scss";
+import SaveButton from "../buttons/SaveButton";
 
 const GoogleCalendarUpdater: React.FC = () => {
   const { calendars, selectedCalendar, setSelectedCalendar, loading, error } =
@@ -96,15 +96,7 @@ const GoogleCalendarUpdater: React.FC = () => {
           </li>
         ))}
       </ul>
-
-      <Button
-        variant="contained"
-        color="primary"
-        endIcon={<SaveIcon />}
-        onClick={handleCreateEvent}
-      >
-        Save
-      </Button>
+      <SaveButton onClick={handleCreateEvent} />
     </Box>
   );
 };

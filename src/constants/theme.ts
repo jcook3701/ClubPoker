@@ -1,5 +1,33 @@
 import { createTheme } from "@mui/material";
 
+const MUI_AUTOCOMPLETE_STYLE = {
+  MuiAutocomplete: {
+    defaultProps: {
+      size: "small" as const,
+    },
+  },
+};
+
+const MIU_APPBAR_STYLE = {
+  MuiAppBar: {
+    styleOverrides: {
+      root: {
+        borderBottom: "1px solid #ff7961", // custom border
+      },
+    },
+  },
+};
+
+const MIU_TOOLBAR_STYLE = {
+  MuiToolbar: {
+    styleOverrides: {
+      root: {
+        justifyContent: "space-between",
+      },
+    },
+  },
+};
+
 const MUI_BUTTON_STYLE = {
   MuiButton: {
     styleOverrides: {
@@ -33,6 +61,16 @@ const MUI_TYPOGRAPHY_STYLE = {
   },
 };
 
+const MUI_COMPONENTS_STYLES = {
+  components: {
+    ...MIU_APPBAR_STYLE,
+    ...MIU_TOOLBAR_STYLE,
+    ...MUI_TYPOGRAPHY_STYLE,
+    ...MUI_BUTTON_STYLE,
+    ...MUI_AUTOCOMPLETE_STYLE,
+  },
+};
+
 /*
  * Mui Light Theme
  */
@@ -61,10 +99,7 @@ export const LIGHT_THEME = createTheme({
   shape: {
     borderRadius: 8,
   },
-  components: {
-    ...MUI_TYPOGRAPHY_STYLE,
-    ...MUI_BUTTON_STYLE,
-  },
+  ...MUI_COMPONENTS_STYLES,
 });
 
 /*
@@ -95,8 +130,5 @@ export const DARK_THEME = createTheme({
   shape: {
     borderRadius: 8,
   },
-  components: {
-    ...MUI_TYPOGRAPHY_STYLE,
-    ...MUI_BUTTON_STYLE,
-  },
+  ...MUI_COMPONENTS_STYLES,
 });

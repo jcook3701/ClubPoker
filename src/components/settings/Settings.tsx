@@ -1,5 +1,4 @@
 import React from "react";
-
 import styles from "./Settings.module.scss";
 import LightDarkModeSwitch from "../switches/light-dark-mode-switch/LightDarkModeSwitch";
 import { sendMessage } from "../../services/messageService";
@@ -8,9 +7,8 @@ import {
   Autocomplete,
   TextField,
   Typography,
-  Tooltip,
-  IconButton,
   Box,
+  Toolbar,
 } from "@mui/material";
 import {
   boolToTheme,
@@ -86,12 +84,20 @@ const Settings: React.FC<SettingsProps> = ({
 
   return (
     <Box className={styles.settingsHeader}>
-      <Box>
-        <Typography variant="h6" noWrap>
-          {"Settings:"}
-        </Typography>
-        <BackArrowIconButton onClick={handleBackClick} />
-      </Box>
+      <Toolbar>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            width: "100%",
+          }}
+        >
+          <Typography variant="h6" noWrap>
+            {"Settings:"}
+          </Typography>
+          <BackArrowIconButton onClick={handleBackClick} />
+        </Box>
+      </Toolbar>
 
       {settings ? (
         <Box className={styles.settingsBody}>
@@ -107,7 +113,12 @@ const Settings: React.FC<SettingsProps> = ({
             onChange={handleSelectChange}
             getOptionLabel={(option) => option.label}
             renderInput={(params) => (
-              <TextField {...params} label="Poker Club" variant="outlined" />
+              <TextField
+                {...params}
+                label="Poker Club"
+                variant="outlined"
+                margin="dense"
+              />
             )}
             fullWidth
           />

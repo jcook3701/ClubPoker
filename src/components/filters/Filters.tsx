@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Box, Button, Typography } from "@mui/material";
-import SaveIcon from "@mui/icons-material/Save";
+import { Box, Typography } from "@mui/material";
 import Filter from "./Filter/Filter";
 import { WptFilterMap } from "../../constants/filters";
 import { FiltersState } from "../../types/filter";
 import styles from "./Filters.module.scss";
 import { sendMessage } from "../../services/messageService";
 import { MessageTypes } from "../../constants/messages";
+import SaveButton from "../buttons/SaveButton";
 
 const Filters: React.FC = () => {
   const [filterState, setFilterState] = useState<FiltersState>({});
@@ -66,14 +66,7 @@ const Filters: React.FC = () => {
           />
         ))}
       </Box>
-      <Button
-        variant="contained"
-        color="primary"
-        endIcon={<SaveIcon />}
-        onClick={handleClick}
-      >
-        Save
-      </Button>
+      <SaveButton onClick={handleClick} />
     </Box>
   );
 };

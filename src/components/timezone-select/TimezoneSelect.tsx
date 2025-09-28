@@ -1,16 +1,10 @@
 import React, { useEffect, useState } from "react";
-import SaveIcon from "@mui/icons-material/Save";
-import {
-  Button,
-  Autocomplete,
-  TextField,
-  Typography,
-  Box,
-} from "@mui/material";
+import { Autocomplete, TextField, Typography, Box } from "@mui/material";
 import styles from "./TimezoneSelect.module.scss";
 import Timezone from "../../types/Timezone";
 import { sendMessage, sendTabMessage } from "../../services/messageService";
 import { MessageTypes } from "../../constants/messages";
+import SaveButton from "../buttons/SaveButton";
 
 // Dynamically generate timezone options
 const timezones = Intl.supportedValuesOf("timeZone");
@@ -89,25 +83,9 @@ const TimezoneSelect: React.FC = () => {
         )}
         fullWidth
       />
-      <Button
-        variant="contained"
-        color="primary"
-        endIcon={<SaveIcon />}
-        onClick={handleClick}
-      >
-        Save
-      </Button>
+      <SaveButton onClick={handleClick} />
     </Box>
   );
 };
 
 export default TimezoneSelect;
-
-/* 
-	  <Select
-		value={selectedTimezone}
-		onChange={handleSelectChange}
-		options={timezoneOptions}
-		placeholder="Choose a timezone"
-		isSearchable
-	  /> */

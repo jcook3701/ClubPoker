@@ -26,16 +26,18 @@ const Header: React.FC<HeaderProps> = ({
   };
 
   return (
-    <AppBar position="static" color="default" elevation={0} enableColorOnDark>
-      <Toolbar sx={{ justifyContent: "space-between" }}>
-        <Box sx={{ display: "flex", alignItems: "center", gap: 0 }}>
+    <AppBar position="sticky" color="default" elevation={0} enableColorOnDark>
+      <Toolbar
+        sx={{ display: "flex", justifyContent: "space-between", width: "100%" }}
+      >
+        <Box sx={{ display: "inherit" }}>
           <WptIconButton title="ClubWPT" link={CLUB_WPT_URL} />
           <Typography variant="h6" noWrap>
             {title}
           </Typography>
         </Box>
 
-        <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+        <Box sx={{ display: "inherit" }}>
           <LiveHelpIconButton link={HELP_PAGE_URI} />
           <SettingsIconButton onClick={handleSettingsClick} />
           <MoreIconButton onClick={handleMenuClick} />
