@@ -3,7 +3,15 @@ import Select from "react-select";
 import { useCalendar } from "../../context/GoogleCalendarContext";
 import { createEvent, fetchCalendarEvents } from "../../api/googleCalendarApi";
 import { Calendar, CalendarEvent } from "../../types/calendar";
-import { Box, Typography } from "@mui/material";
+import {
+  Autocomplete,
+  Box,
+  List,
+  ListItem,
+  ListItemText,
+  TextField,
+  Typography,
+} from "@mui/material";
 
 import styles from "./GoogleCalendarUpdater.module.scss";
 import SaveButton from "../buttons/SaveButton";
@@ -64,38 +72,54 @@ const GoogleCalendarUpdater: React.FC = () => {
   if (error || eventError)
     return <div style={{ color: "red" }}>{error || eventError}</div>;
 
+  const handleSelectChange = (
+    _event: React.SyntheticEvent,
+    option: { value: string; label: string } | null
+  ) => {
+    if (option) {
+      const cal = calendars.find((c) => c.id === option.value);
+      setSelectedCalendar(cal ?? null);
+    }
+  };
+
   return (
     <Box className={styles.googleCalendarUpdator}>
       <Typography variant="subtitle1" noWrap>
         {"Google Calendars:"}
       </Typography>
-      <Select
+      <Autocomplete
+        options={calendars.map((cal) => ({
+          value: cal.id,
+          label: cal.summary,
+        }))}
         value={
           selectedCalendar
             ? { value: selectedCalendar.id, label: selectedCalendar.summary }
             : null
         }
-        onChange={(option) => {
-          const cal = calendars.find((c) => c.id === option?.value);
-          setSelectedCalendar(cal ?? null);
+        onChange={(event, option) => {
+          handleSelectChange(event, option);
         }}
-        options={calendars.map((cal) => ({
-          value: cal.id,
-          label: cal.summary,
-        }))}
-        placeholder="Select a calendar..."
+        getOptionLabel={(option) => option.label}
+        renderInput={(params) => (
+          <TextField {...params} label="Calendar" variant="outlined" />
+        )}
+        fullWidth
       />
 
       <Typography variant="subtitle2" noWrap>
         {"Events:"}
       </Typography>
-      <ul className={styles.events}>
+      <List className={styles.events}>
         {events.map((ev) => (
-          <li key={ev.id ?? ev.summary}>
-            {ev.summary} ({ev.start?.dateTime ?? ev.start?.date})
-          </li>
+          <ListItem key={ev.id ?? ev.summary}>
+            <ListItemText
+              primary={ev.summary}
+              secondary={ev.start?.dateTime ?? ev.start?.date}
+            />
+          </ListItem>
         ))}
-      </ul>
+      </List>
       <SaveButton onClick={handleCreateEvent} />
     </Box>
   );

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Box, ThemeProvider } from "@mui/material";
 import Header from "../header/Header";
 
-import styles from "./Popup.module.scss";
 import WindowSelector from "../window-selector/WindowSelector";
 import Settings from "../settings/Settings";
 import type { AppSettings } from "../../types/settings";
@@ -49,7 +48,7 @@ const Popup: React.FC = () => {
         <Header
           settingsSelected={settingsWindowSelected}
           setSettingsSelected={setSettingsWindowSelected}
-          title="PokerClubs"
+          title="ClubPoker"
         />
         {settingsWindowSelected ? (
           <Settings
