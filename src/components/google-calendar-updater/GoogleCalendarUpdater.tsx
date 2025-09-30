@@ -14,6 +14,7 @@ import {
 import styles from "./GoogleCalendarUpdater.module.scss";
 import UpdateCalendarButton from "../buttons/UpdateCalendarButton";
 import { formatDateHumanReadable } from "../../utils/time/timeZoneHelpers";
+import CalendarBadge from "../badges/CalendarBadge";
 
 const GoogleCalendarUpdater: React.FC = () => {
   const {
@@ -69,6 +70,7 @@ const GoogleCalendarUpdater: React.FC = () => {
 
       <Typography variant="subtitle2" noWrap>
         {"Poker Tournaments:"}
+        <CalendarBadge events={events} />
       </Typography>
       <List className={styles.events}>
         {events.map((ev) => (
