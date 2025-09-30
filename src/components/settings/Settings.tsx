@@ -92,7 +92,7 @@ const Settings: React.FC<SettingsProps> = ({
             width: "100%",
           }}
         >
-          <Typography variant="h6" noWrap>
+          <Typography variant="subtitle1" noWrap>
             {"Settings:"}
           </Typography>
           <BackArrowIconButton onClick={handleBackClick} />

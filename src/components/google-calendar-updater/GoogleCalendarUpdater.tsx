@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import Select from "react-select";
 import { useCalendar } from "../../context/GoogleCalendarContext";
 import { createEvent, fetchCalendarEvents } from "../../api/googleCalendarApi";
 import { Calendar, CalendarEvent } from "../../types/calendar";
 import {
   Autocomplete,
   Box,
+  CircularProgress,
   List,
   ListItem,
   ListItemText,
@@ -14,7 +14,7 @@ import {
 } from "@mui/material";
 
 import styles from "./GoogleCalendarUpdater.module.scss";
-import SaveButton from "../buttons/SaveButton";
+import UpdateCalendarButton from "../buttons/UpdateCalendarButton";
 
 const GoogleCalendarUpdater: React.FC = () => {
   const { calendars, selectedCalendar, setSelectedCalendar, loading, error } =
@@ -68,7 +68,7 @@ const GoogleCalendarUpdater: React.FC = () => {
     }
   };
 
-  if (loading || eventLoading) return <div>Loading...</div>;
+  if (loading || eventLoading) return <CircularProgress />;
   if (error || eventError)
     return <div style={{ color: "red" }}>{error || eventError}</div>;
 
@@ -120,7 +120,7 @@ const GoogleCalendarUpdater: React.FC = () => {
           </ListItem>
         ))}
       </List>
-      <SaveButton onClick={handleCreateEvent} />
+      <UpdateCalendarButton onClick={handleCreateEvent} />
     </Box>
   );
 };

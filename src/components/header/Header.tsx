@@ -21,7 +21,9 @@ const Header: React.FC<HeaderProps> = ({
     setSettingsSelected(!settingsSelected);
   };
 
-  const handleMenuClick = () => {
+  // TODO: Figure out if I actaully want this.
+  const moreVisible = false;
+  const handleMoreClick = () => {
     alert("Menu clicked!");
   };
 
@@ -40,7 +42,7 @@ const Header: React.FC<HeaderProps> = ({
         <Box sx={{ display: "inherit" }}>
           <LiveHelpIconButton link={HELP_PAGE_URI} />
           <SettingsIconButton onClick={handleSettingsClick} />
-          <MoreIconButton onClick={handleMenuClick} />
+          {moreVisible ? <MoreIconButton onClick={handleMoreClick} /> : <></>}
         </Box>
       </Toolbar>
     </AppBar>
