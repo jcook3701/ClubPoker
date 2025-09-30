@@ -23,4 +23,8 @@ export const WarningCodeMap = {
   [MessageTypes.GET_TOURNAMENTS]: WarningCode.emptyLocalStorage,
   [MessageTypes.SAVE_CALENDAR_EVENTS]: WarningCode.emptyLocalStorage,
   [MessageTypes.SAVE_TOURNAMENTS]: WarningCode.emptyLocalStorage,
+  /* Google Calander API messages */
+  [MessageTypes.LIST_CALENDARS]: WarningCode.googleCalendar,
+  [MessageTypes.FETCH_CALENDAR_EVENTS]: WarningCode.googleCalendar,
+  [MessageTypes.CREATE_EVENT]: WarningCode.googleCalendar,
 } as const;

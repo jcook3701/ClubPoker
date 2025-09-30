@@ -7,6 +7,7 @@ export enum WarningCode {
   emptySyncStorage,
   emptyLocalStorage,
   missingPayload,
+  googleCalendar,
 }
 
 /*

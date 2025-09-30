@@ -45,6 +45,16 @@ export type ResponseMap = {
   };
   [MessageTypes.SAVE_CALENDAR_EVENTS]: { success: boolean };
   [MessageTypes.SAVE_TOURNAMENTS]: { success: boolean };
+  /* Google Calander API messages */
+  [MessageTypes.LIST_CALENDARS]: { success: boolean; calendars: Calendar[] };
+  [MessageTypes.FETCH_CALENDAR_EVENTS]: {
+    success: boolean;
+    calendarData: CalendarEvents;
+  };
+  [MessageTypes.CREATE_EVENT]: {
+    success: boolean;
+    calendarData?: CalendarEvents;
+  };
 };
 
 /* Generic response type (for union across all responses) */

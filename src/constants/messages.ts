@@ -17,7 +17,6 @@ export const MessageTypes = {
   ERROR: "ERROR",
   WARNING: "WARNING",
   /* chrome.sync storage messages */
-  // TODO: Add GETTERS and SETTERS for google token
   GET_CALENDAR: "GET_CALENDAR",
   GET_FILTERS: "GET_FILTERS",
   GET_SETTINGS: "GET_SETTINGS",
@@ -32,6 +31,9 @@ export const MessageTypes = {
   SAVE_CALENDAR_EVENTS: "SAVE_CALENDAR_EVENTS",
   SAVE_TOURNAMENTS: "SAVE_TOURNAMENTS",
   /* Google Calander API messages */
+  LIST_CALENDARS: "LIST_CALENDARS",
+  FETCH_CALENDAR_EVENTS: "FETCH_CALENDAR_EVENTS",
+  CREATE_EVENT: "CREATE_EVENT",
 } as const;
 
 export type MessageTypes = (typeof MessageTypes)[keyof typeof MessageTypes];
@@ -60,6 +62,10 @@ export type MessageMap = {
   [MessageTypes.GET_TOURNAMENTS]: undefined;
   [MessageTypes.SAVE_CALENDAR_EVENTS]: { calendarData: CalendarEvents };
   [MessageTypes.SAVE_TOURNAMENTS]: { tournamentData: Tournaments };
+  /* Google Calander API messages */
+  [MessageTypes.LIST_CALENDARS]: undefined;
+  [MessageTypes.FETCH_CALENDAR_EVENTS]: { calendar: Calendar };
+  [MessageTypes.CREATE_EVENT]: { calendarData: CalendarEvents };
 };
 
 /*

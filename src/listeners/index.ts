@@ -15,6 +15,9 @@ import timezoneChangeListener from "./timezoneChangeListener";
 import errorListener from "./errorListener";
 import warningListener from "./warningListener";
 import settingsChangeListener from "./settingsChangeListener";
+import createEventsListener from "./createEventListener";
+import listCalendarsListener from "./listCalendarsListener";
+import fetchCalendarEventsListener from "./fetchCalendarEventsListener";
 
 /*
  * Listeners to register in the context script.
@@ -47,6 +50,7 @@ export const registerBackgroundListeners = (): void => {
   saveFiltersListener();
   saveSettingsListener();
   saveTimezoneListener();
+
   /* chrome.local storage listeners */
   // getters
   getCalendarEventsListener();
@@ -54,4 +58,9 @@ export const registerBackgroundListeners = (): void => {
   // setters
   saveCalendarEventsListener();
   saveTournamentsListener();
+
+  /* Google Calander API listeners */
+  listCalendarsListener();
+  fetchCalendarEventsListener();
+  createEventsListener();
 };

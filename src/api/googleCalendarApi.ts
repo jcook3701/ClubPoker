@@ -54,7 +54,8 @@ export const createEvent = async (
   );
 
   if (!res.ok) throw new Error(`Google API error: ${res.status}`);
-  return res.json();
+  const data: CalendarEvent = await res.json();
+  return data;
 };
 
 /**
