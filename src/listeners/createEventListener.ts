@@ -1,21 +1,18 @@
-import { createEvent, fetchCalendarEvents } from "../api/googleCalendarApi";
-import { StorageMap } from "../constants/chromeStorage";
+import { createEvent } from "../api/googleCalendarApi";
 import { MessageTypes } from "../constants/messages";
 import { ResponseMap } from "../constants/responses";
 import { WarningCodeMap } from "../constants/warnings";
 import { onMessage, sendMessage } from "../services/messageService";
-import { getSyncStorageItem } from "../services/storageService";
 import { CalendarEvent, CalendarEvents } from "../types/calendar";
 import { createWarning } from "../utils/messages/warnings";
 
 /*
- * Returns CalendarEvents object from  storage or
- * default filters from filter constants
+ * Creates Google Calendar Event using the Google Calendar API
+ * Returns CalendarEvents
  */
 const createEventsListener = (): void => {
   const messageType = MessageTypes.CREATE_EVENT;
   const warningCode = WarningCodeMap.CREATE_EVENT;
-  // const storageKey = StorageMap.CREATE_EVENT;
   onMessage(messageType, async (payload) => {
     const calendar = payload.calendarData.calendar;
     const events = payload.calendarData.calendarEvents;

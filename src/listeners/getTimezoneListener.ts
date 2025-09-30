@@ -24,7 +24,7 @@ const getTimezoneListener = (): void => {
       });
     }
     const resolvedTimezone = timezone ?? DEFAULT_TIMEZONE;
-    console.log("Get Timezone: ", resolvedTimezone);
+    // console.log("Get Timezone: ", resolvedTimezone);
     const response: ResponseMap[typeof messageType] = {
       success: true,
       timezone: resolvedTimezone,

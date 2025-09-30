@@ -1,4 +1,3 @@
-import { LOCAL_STORAGE_KEYS } from "../config/chrome";
 import { StorageMap } from "../constants/chromeStorage";
 import { MessageTypes } from "../constants/messages";
 import { ResponseMap } from "../constants/responses";

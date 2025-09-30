@@ -80,7 +80,6 @@ const updateOfficalTime = (timezone: Timezone): void => {
 export const clubwptDomUpdater = async (
   tournamentData: Tournaments
 ): Promise<Tournaments | undefined> => {
-  console.log("Updating Tournaments");
   const saved = await sendMessage(MessageTypes.GET_TIMEZONE);
   const timezone = saved.timezone;
   if (!timezone) {

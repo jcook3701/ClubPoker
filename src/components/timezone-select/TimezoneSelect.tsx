@@ -23,7 +23,6 @@ const TimezoneSelect: React.FC = () => {
     const loadSavedTimezone = async () => {
       const saved = await sendMessage(MessageTypes.GET_TIMEZONE);
       if (saved) {
-        console.log("Timezone Select: ", saved);
         const match = timezoneOptions.find(
           (tz) => tz.value === saved.timezone.value
         );
@@ -43,7 +42,6 @@ const TimezoneSelect: React.FC = () => {
     option: Timezone | null
   ) => {
     setSelectedTimezone(option);
-    console.log("Selected Timezone:", option?.value);
   };
 
   const handleClick = async () => {
@@ -53,7 +51,6 @@ const TimezoneSelect: React.FC = () => {
       });
     }
     // await setSyncStorageItem(SYNC_STORAGE_KEYS.timezone, selectedTimezone);
-    console.log("Timezone saved: ", selectedTimezone);
 
     /*
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {

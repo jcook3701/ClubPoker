@@ -25,7 +25,7 @@ const getFiltersListener = (): void => {
     }
 
     const resolvedFilters = filters ?? buildDefaultFilters();
-    console.log("Get Filters: ", resolvedFilters);
+    // console.log("Get Filters: ", resolvedFilters);
     const response: ResponseMap[typeof messageType] = {
       success: true,
       filters: resolvedFilters,

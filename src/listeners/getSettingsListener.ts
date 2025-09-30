@@ -24,7 +24,7 @@ const getSettingsListener = (): void => {
       });
     }
     const resolvedSettings = settings ?? DEFAULT_SETTINGS;
-    console.log("resolvedSettings: ", resolvedSettings);
+    // console.log("resolvedSettings: ", resolvedSettings);
     const response: ResponseMap[typeof messageType] = {
       success: true,
       settings: resolvedSettings,

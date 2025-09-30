@@ -42,7 +42,6 @@ const Filters: React.FC = () => {
   };
 
   const handleClick = async () => {
-    console.log("Update Filter Options");
     sendMessage(MessageTypes.SAVE_FILTERS, { filters: filterState });
   };
 

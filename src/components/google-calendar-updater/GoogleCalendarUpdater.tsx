@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useGoogleCalendar } from "../../context/GoogleCalendarContext";
-import { Calendar, CalendarEvent } from "../../types/calendar";
 import {
   Autocomplete,
   Box,
@@ -14,8 +13,7 @@ import {
 
 import styles from "./GoogleCalendarUpdater.module.scss";
 import UpdateCalendarButton from "../buttons/UpdateCalendarButton";
-import { sendMessage } from "../../services/messageService";
-import { MessageTypes } from "../../constants/messages";
+import { formatDateHumanReadable } from "../../utils/time/timeZoneHelpers";
 
 const GoogleCalendarUpdater: React.FC = () => {
   const {
@@ -25,7 +23,6 @@ const GoogleCalendarUpdater: React.FC = () => {
     calendarLoading,
     calendarError,
     events,
-    setEvents,
     eventsLoading,
     eventsError,
     handleCreateEvent,
@@ -78,7 +75,15 @@ const GoogleCalendarUpdater: React.FC = () => {
           <ListItem key={ev.id ?? ev.summary}>
             <ListItemText
               primary={ev.summary}
-              secondary={ev.start?.dateTime ?? ev.start?.date}
+              secondary={
+                <>
+                  {ev.start?.dateTime
+                    ? formatDateHumanReadable(ev.start.dateTime)
+                    : formatDateHumanReadable(ev.start?.date)}
+                  <br />
+                  {ev.description}
+                </>
+              }
             />
           </ListItem>
         ))}

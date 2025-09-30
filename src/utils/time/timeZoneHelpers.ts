@@ -1,4 +1,4 @@
-import { parse } from "date-fns";
+import { parse, parseISO } from "date-fns";
 import { fromZonedTime, toZonedTime, toDate, format } from "date-fns-tz";
 import Timezone from "../../types/Timezone";
 import { Tournaments } from "../../types/tournament";
@@ -37,6 +37,8 @@ export const convertToTimeZone = (
   endTimeZone: Timezone
 ): string => {
   const parsed = parse(dateTime, "MMM d h:mm a", new Date());
+  const currentYear = new Date().getFullYear();
+  parsed.setFullYear(currentYear);
   const utcDate = fromZonedTime(parsed, startTimeZone.value);
   const zoned = toZonedTime(utcDate, endTimeZone.value);
   return format(zoned, "MMM d h:mm a");
@@ -56,4 +58,11 @@ export const convertTournamentTimes = (
       start: convertToTimeZone(t.start, tournamentData.timeZone, timeZone),
     })),
   };
+};
+
+export const formatDateHumanReadable = (date: string | undefined): string => {
+  if (date) {
+    return format(parseISO(date), "MMM d, yyyy h:mm a");
+  }
+  return "";
 };

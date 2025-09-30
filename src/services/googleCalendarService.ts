@@ -9,20 +9,21 @@ export const tournamentToCalendarEvent = (
   tournament: Tournament,
   timeZone: Timezone
 ): CalendarEvent => {
-  const startDateTime = new Date(tournament.start).toISOString();
-  const endDateTime = new Date(
-    new Date(tournament.start).getTime() + 60 * 60 * 1000
-  ).toISOString();
+  // const currentYear = new Date().getFullYear();
+
+  const startDateTime = new Date(tournament.start);
+  // startDateTime.setFullYear(currentYear);
+  const endDateTime = new Date(startDateTime.getTime() + 60 * 60 * 1000);
 
   const event: CalendarEvent = {
     summary: tournament.name,
     description: `${tournament.game} - ${tournament.buyin}`,
     start: {
-      dateTime: startDateTime,
+      dateTime: startDateTime.toISOString(),
       timeZone: timeZone.value,
     },
     end: {
-      dateTime: endDateTime,
+      dateTime: endDateTime.toISOString(),
       timeZone: timeZone.value,
     },
   };

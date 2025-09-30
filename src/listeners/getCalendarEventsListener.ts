@@ -8,7 +8,7 @@ import { CalendarEvents } from "../types/calendar";
 import { createWarning } from "../utils/messages/warnings";
 
 /*
- * Returns CalendarEvents object from chrome.local storage.
+ * Returns filtered CalendarEvents object from chrome.local storage.
  */
 const getCalendarEventsListener = (): void => {
   const messageType = MessageTypes.GET_CALENDAR_EVENTS;
@@ -16,7 +16,6 @@ const getCalendarEventsListener = (): void => {
   const storageKey = StorageMap.GET_CALENDAR_EVENTS;
   onMessage(messageType, async () => {
     const events = await getLocalStorageItem<CalendarEvents>(storageKey);
-
     if (!events) {
       await sendMessage(MessageTypes.WARNING, {
         warning: createWarning(warningCode, messageType),

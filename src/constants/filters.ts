@@ -10,16 +10,17 @@ const BUYINFILTER: Filter = {
   filterKey: FILTER_KEYS.buyInFilter,
   filter: [
     { id: "FREEROLE", label: "FREEROLE" },
-    { id: "50", label: "50" },
-    { id: "75", label: "75" },
-    { id: "250", label: "250" },
-    { id: "400", label: "400", defaultChecked: true },
-    { id: "500", label: "500", defaultChecked: true },
-    { id: "1000", label: "1000", defaultChecked: true },
-    { id: "2000", label: "2000", defaultChecked: true },
+    { id: "50 TP", label: "50 TP" },
+    { id: "75 TP", label: "75 TP" },
+    { id: "250 TP", label: "250 TP" },
+    { id: "400 TP", label: "400 TP", defaultChecked: true },
+    { id: "500 TP", label: "500 TP", defaultChecked: true },
+    { id: "1,000 TP", label: "1000 TP", defaultChecked: true },
+    { id: "2,000 TP", label: "2000 TP", defaultChecked: true },
   ],
   filterFn: (tournament, values: FilterState) => {
-    return values[tournament.buyin] ?? false;
+    const key = tournament.buyin;
+    return values[key] === true; // unspecified or false -> filter out
   },
   className: styles.buyInFilter,
 };
@@ -38,7 +39,8 @@ const GAMEFILTER: Filter = {
     { id: "FL HOLDEM", label: "FL Holdem" },
   ],
   filterFn: (tournament, values: FilterState) => {
-    return values[tournament.game] ?? false;
+    const key = tournament.game;
+    return values[key] === true; // unspecified or false -> filter out
   },
   className: styles.gameFilter,
 };
