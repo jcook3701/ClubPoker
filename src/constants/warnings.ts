@@ -8,7 +8,7 @@ export const WarningCodeMap = {
   /* event messages */
   [MessageTypes.PAGE_RELOADED]: undefined,
   [MessageTypes.SETTINGS_CHANGE]: undefined,
-  [MessageTypes.TIMEZONE_CHANGE]: undefined,
+  [MessageTypes.TIMEZONE_CHANGE]: WarningCode.emptyLocalStorage,
   /* chrome.sync storage messages */
   [MessageTypes.GET_CALENDAR]: WarningCode.emptySyncStorage,
   [MessageTypes.GET_FILTERS]: WarningCode.emptySyncStorage,

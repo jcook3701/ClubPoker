@@ -13,7 +13,7 @@ import {
 
 import styles from "./GoogleCalendarUpdater.module.scss";
 import UpdateCalendarButton from "../buttons/UpdateCalendarButton";
-import { formatDateHumanReadable } from "../../utils/time/timeZoneHelpers";
+import { formatDateHumanReadable } from "../../utils/time/timeHelpers";
 import CalendarBadge from "../badges/CalendarBadge";
 
 const GoogleCalendarUpdater: React.FC = () => {
@@ -26,7 +26,7 @@ const GoogleCalendarUpdater: React.FC = () => {
     events,
     eventsLoading,
     eventsError,
-    handleCreateEvent,
+    handleCreateEvents,
   } = useGoogleCalendar();
 
   if (calendarLoading || eventsLoading) return <CircularProgress />;
@@ -41,6 +41,10 @@ const GoogleCalendarUpdater: React.FC = () => {
       const cal = calendars.find((c) => c.id === option.value);
       setSelectedCalendar(cal ?? null);
     }
+  };
+
+  const updateCalendar = async () => {
+    handleCreateEvents();
   };
 
   return (
@@ -73,8 +77,14 @@ const GoogleCalendarUpdater: React.FC = () => {
         <CalendarBadge events={events} />
       </Typography>
       <List className={styles.events}>
-        {events.map((ev) => (
-          <ListItem key={ev.id ?? ev.summary}>
+        {events.map((ev, index) => (
+          <ListItem
+            key={ev.id ?? ev.summary}
+            sx={{
+              backgroundColor:
+                index % 2 === 0 ? "background.paper" : "grey.100", // alternating>
+            }}
+          >
             <ListItemText
               primary={ev.summary}
               secondary={
@@ -90,7 +100,7 @@ const GoogleCalendarUpdater: React.FC = () => {
           </ListItem>
         ))}
       </List>
-      <UpdateCalendarButton onClick={handleCreateEvent} />
+      <UpdateCalendarButton onClick={updateCalendar} />
     </Box>
   );
 };

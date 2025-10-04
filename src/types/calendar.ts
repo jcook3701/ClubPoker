@@ -1,6 +1,7 @@
 export interface CalendarEvents {
   calendar?: Calendar;
   calendarEvents: CalendarEvent[];
+  timestamp: Date;
 }
 
 export interface Calendar {

@@ -1,16 +1,7 @@
 import React from "react";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import styles from "./Filter.module.scss";
-import {
-  Box,
-  Checkbox,
-  FormControl,
-  FormGroup,
-  FormLabel,
-  InputLabel,
-  OutlinedInput,
-  Typography,
-} from "@mui/material";
+import { Box, Checkbox, Typography } from "@mui/material";
 import { FilterState, FilterItem } from "../../../types/filter";
 
 type FilterProps = {
@@ -35,24 +26,22 @@ const Filter: React.FC<FilterProps> = ({
 
   return (
     <Box className={`${styles.filter} ${className ?? ""}`}>
-      <FormControl component="fieldset" variant="outlined" sx={{ p: 1 }}>
-        <Typography variant="subtitle2" noWrap>
-          {title}
-        </Typography>
+      <Typography variant="subtitle2" noWrap>
+        {title}
+      </Typography>
 
-        {filters.map((opt) => (
-          <FormControlLabel
-            key={opt.id}
-            control={
-              <Checkbox
-                checked={checkedState[opt.id] ?? !!opt.defaultChecked}
-                onChange={handleChange(opt.id)}
-              />
-            }
-            label={opt.label}
-          />
-        ))}
-      </FormControl>
+      {filters.map((opt) => (
+        <FormControlLabel
+          key={opt.id}
+          control={
+            <Checkbox
+              checked={checkedState[opt.id] ?? !!opt.defaultChecked}
+              onChange={handleChange(opt.id)}
+            />
+          }
+          label={opt.label}
+        />
+      ))}
     </Box>
   );
 };

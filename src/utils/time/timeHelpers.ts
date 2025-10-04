@@ -5,7 +5,24 @@ import { Tournaments } from "../../types/tournament";
 import { DateTime } from "luxon";
 
 /*
- * Convert WPT Offical time of format "h:mm a z" to user specified timezone.
+ * Time Formats
+ */
+
+const offficalTimeFormat = "h: mm a ZZZZ";
+const calendarTimeFormat = "MMM d, yyyy h:mm a";
+const tournamentTimeFormat = "MMM d h:mm a";
+
+/*
+ * Time parsers
+ */
+export const parseCalendarTime = (dateTime: string): Date =>
+  parse(dateTime, calendarTimeFormat, new Date());
+
+export const parseTournamentTime = (dateTime: string): Date =>
+  parse(dateTime, tournamentTimeFormat, new Date());
+
+/*
+ * TODO: Convert WPT Offical time of format "h:mm a z" to user specified timezone.
  */
 export const convertFromTzAbbrToUser = (
   dateTime: string, // e.g., "6:09 AM EST"
@@ -23,7 +40,7 @@ export const convertFromTzAbbrToUser = (
   console.log("parsed: ", parsed);
   const zoned = parsed.setZone(timezone.value);
   console.log("zoned: ", zoned);
-  const formated = zoned.toFormat("h:mm a ZZZZ");
+  const formated = zoned.toFormat(offficalTimeFormat);
   console.log("zoned: ", formated);
   return formated;
 };
@@ -36,12 +53,12 @@ export const convertToTimeZone = (
   startTimeZone: Timezone,
   endTimeZone: Timezone
 ): string => {
-  const parsed = parse(dateTime, "MMM d h:mm a", new Date());
+  const parsed = parse(dateTime, tournamentTimeFormat, new Date());
   const currentYear = new Date().getFullYear();
   parsed.setFullYear(currentYear);
   const utcDate = fromZonedTime(parsed, startTimeZone.value);
   const zoned = toZonedTime(utcDate, endTimeZone.value);
-  return format(zoned, "MMM d h:mm a");
+  return format(zoned, tournamentTimeFormat);
 };
 
 /*
@@ -49,20 +66,24 @@ export const convertToTimeZone = (
  */
 export const convertTournamentTimes = (
   tournamentData: Tournaments,
-  timeZone: Timezone
+  newTimeZone: Timezone
 ): Tournaments => {
   return {
-    timeZone: timeZone,
+    ...tournamentData,
+    timeZone: newTimeZone,
     tournaments: tournamentData.tournaments.map((t) => ({
       ...t,
-      start: convertToTimeZone(t.start, tournamentData.timeZone, timeZone),
+      start: convertToTimeZone(t.start, tournamentData.timeZone, newTimeZone),
     })),
   };
 };
 
+/*
+ * Date  formated for Month Day, Year Hour:Min AM/PM
+ */
 export const formatDateHumanReadable = (date: string | undefined): string => {
   if (date) {
-    return format(parseISO(date), "MMM d, yyyy h:mm a");
+    return format(parseISO(date), calendarTimeFormat);
   }
   return "";
 };

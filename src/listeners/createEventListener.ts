@@ -16,6 +16,7 @@ const createEventsListener = (): void => {
   onMessage(messageType, async (payload) => {
     const calendar = payload.calendarData.calendar;
     const events = payload.calendarData.calendarEvents;
+    const timestamp = payload.calendarData.timestamp;
     if (calendar) {
       const savedEvents: CalendarEvent[] = await Promise.all(
         events.map((event) => {
@@ -26,6 +27,7 @@ const createEventsListener = (): void => {
       const resolvedEvents: CalendarEvents = {
         calendar: calendar,
         calendarEvents: savedEvents,
+        timestamp: timestamp,
       };
       const response: ResponseMap[typeof messageType] = {
         success: false,

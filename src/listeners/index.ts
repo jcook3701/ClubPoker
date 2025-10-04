@@ -26,6 +26,7 @@ export const registerContentListeners = (): void => {
   console.log("register context Listeners");
   /* event listeners */
   timezoneChangeListener();
+  // settingsChangeListener(); TODO:
 };
 
 /*
@@ -35,7 +36,6 @@ export const registerBackgroundListeners = (): void => {
   console.log("register background Listeners");
   /* event listeners */
   pageReloadListener();
-  settingsChangeListener();
   errorListener();
   warningListener();
 

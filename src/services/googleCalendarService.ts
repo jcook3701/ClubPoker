@@ -1,6 +1,7 @@
-import { CalendarEvent } from "../types/calendar";
+import { CalendarEvent, CalendarEvents } from "../types/calendar";
 import Timezone from "../types/Timezone";
-import { Tournament } from "../types/tournament";
+import { Tournament, Tournaments } from "../types/tournament";
+import { parseTournamentTime } from "../utils/time/timeHelpers";
 
 /*
  * Create a Google Calendar event object from lobby.clubwpt.com tournament data.
@@ -9,10 +10,9 @@ export const tournamentToCalendarEvent = (
   tournament: Tournament,
   timeZone: Timezone
 ): CalendarEvent => {
-  // const currentYear = new Date().getFullYear();
-
-  const startDateTime = new Date(tournament.start);
-  // startDateTime.setFullYear(currentYear);
+  const startDateTime = parseTournamentTime(tournament.start);
+  const currentYear = new Date().getFullYear();
+  startDateTime.setFullYear(currentYear);
   const endDateTime = new Date(startDateTime.getTime() + 60 * 60 * 1000);
 
   const event: CalendarEvent = {
@@ -29,4 +29,16 @@ export const tournamentToCalendarEvent = (
   };
 
   return event;
+};
+
+export const tournamentsToCalendarEvents = (
+  tournaments: Tournaments
+): CalendarEvents => {
+  const calendarEvents: CalendarEvents = {
+    calendarEvents: tournaments.tournaments.map((tournament) => {
+      return tournamentToCalendarEvent(tournament, tournaments.timeZone);
+    }),
+    timestamp: tournaments.timestamp,
+  };
+  return calendarEvents;
 };

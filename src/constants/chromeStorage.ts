@@ -5,6 +5,8 @@ import { MessageTypes } from "./messages";
  * map message warnings to keys in a chrome config object
  */
 export const StorageMap = {
+  /* event messages */
+  [MessageTypes.TIMEZONE_CHANGE]: LOCAL_STORAGE_KEYS.tournaments,
   /* chrome.sync storage messages */
   [MessageTypes.GET_CALENDAR]: SYNC_STORAGE_KEYS.calendar,
   [MessageTypes.GET_FILTERS]: SYNC_STORAGE_KEYS.filters,

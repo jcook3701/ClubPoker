@@ -3,12 +3,17 @@ import { registerContentListeners } from "../listeners";
 import { sendMessage } from "../services/messageService";
 import { MessageTypes } from "../constants/messages";
 import { clubwptDomUpdater } from "./dom/TournamentsDataUpdater/TournamentDataUpdater";
-import { tournamentToCalendarEvent } from "../services/googleCalendarService";
+import { tournamentsToCalendarEvents } from "../services/googleCalendarService";
 import { applyTournamentFilters } from "../utils/filter/filterHelpers";
 
 console.log("lobby.clubwpt.com Content Script Started:");
-
-sendMessage(MessageTypes.PAGE_RELOADED, undefined);
+(async () => {
+  try {
+    await sendMessage(MessageTypes.PAGE_RELOADED);
+  } catch (err) {
+    console.warn("PAGE_RELOADED message failed:", err);
+  }
+})();
 
 observeTournamentData(async (data) => {
   const saved = await sendMessage(MessageTypes.GET_TOURNAMENTS);
@@ -19,29 +24,30 @@ observeTournamentData(async (data) => {
   }
 
   const adjusted = await clubwptDomUpdater(data);
+
   if (adjusted) {
     const getFiltersResponse = await sendMessage(MessageTypes.GET_FILTERS);
     const filtersState = getFiltersResponse.filters;
 
+    // TODO: Reverse order of filtered tournaments for display purposes
     const filteredTournaments = applyTournamentFilters(adjusted, filtersState);
 
+    const calendarEvents = tournamentsToCalendarEvents(filteredTournaments);
+
     console.log(
-      "FilteredTournaments: ",
+      "adjusted: ",
+      adjusted,
+      "Filterd: ",
       filteredTournaments,
-      " filtersState: ",
-      filtersState
-    );
-    const calendarEvents = filteredTournaments.tournaments.map((tournament) =>
-      tournamentToCalendarEvent(tournament, adjusted.timeZone)
+      "CalEvents: ",
+      calendarEvents
     );
 
     // TODO: Check if Calendar has been set and add that to calendarData.
 
     await sendMessage(MessageTypes.SAVE_CALENDAR_EVENTS, {
-      calendarData: { calendarEvents: calendarEvents },
+      calendarData: calendarEvents,
     });
-
-    // TODO: Save both filtered tournaments and calendar events
   }
 });
 

@@ -5,10 +5,9 @@ import React, {
   useEffect,
   ReactNode,
 } from "react";
-import { Calendar, CalendarEvent } from "../types/calendar";
+import { Calendar, CalendarEvent, CalendarEvents } from "../types/calendar";
 import { sendMessage } from "../services/messageService";
 import { MessageTypes } from "../constants/messages";
-import { createEvent, fetchCalendarEvents } from "../api/googleCalendarApi";
 
 interface CalendarContextValue {
   calendars: Calendar[];
@@ -20,7 +19,7 @@ interface CalendarContextValue {
   setEvents: (events: CalendarEvent[]) => void;
   eventsLoading: boolean;
   eventsError: string | null;
-  handleCreateEvent: () => void;
+  handleCreateEvents: () => void;
 }
 
 const CalendarContext = createContext<CalendarContextValue | undefined>(
@@ -38,6 +37,7 @@ export const CalendarProvider: React.FC<{ children: ReactNode }> = ({
   const [calendarError, setCalendarError] = useState<string | null>(null);
 
   const [events, setEvents] = useState<CalendarEvent[]>([]);
+  const [eventsRefresh, setEventsRefresh] = useState(false);
   const [eventsLoading, setEventLoading] = useState(false);
   const [eventsError, setEventError] = useState<string | null>(null);
 
@@ -109,27 +109,33 @@ export const CalendarProvider: React.FC<{ children: ReactNode }> = ({
         else setEventError(String(err));
       } finally {
         setEventLoading(false);
+        setEventsRefresh(false);
       }
     };
 
     loadSelectedCalendarEvents();
-  }, [selectedCalendar]);
+  }, [selectedCalendar, eventsRefresh]);
 
-  const handleCreateEvent = async () => {
+  const handleCreateEvents = async () => {
     if (!selectedCalendar) return;
 
-    const newEvent: CalendarEvent = {
-      summary: "New Event",
-      description: "Created from Club WPT extension",
-      start: { dateTime: new Date().toISOString() },
-      end: { dateTime: new Date(Date.now() + 60 * 60 * 1000).toISOString() },
+    const newEvents: CalendarEvents = {
+      calendar: selectedCalendar,
+      calendarEvents: events,
+      timestamp: new Date(),
     };
 
     try {
       setEventLoading(true);
-      await createEvent(selectedCalendar.id, newEvent);
-      const evs = await fetchCalendarEvents(selectedCalendar.id);
-      setEvents(evs ?? []);
+      if (newEvents.calendar) {
+        await sendMessage(MessageTypes.SAVE_CALENDAR, {
+          calendar: newEvents.calendar,
+        });
+      }
+      await sendMessage(MessageTypes.CREATE_EVENT, {
+        calendarData: newEvents,
+      });
+      setEventsRefresh(true);
     } catch (err: unknown) {
       console.error(err);
       if (err instanceof Error) setEventError(err.message);
@@ -151,7 +157,7 @@ export const CalendarProvider: React.FC<{ children: ReactNode }> = ({
         setEvents,
         eventsLoading,
         eventsError,
-        handleCreateEvent,
+        handleCreateEvents,
       }}
     >
       {children}

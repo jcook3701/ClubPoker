@@ -3,6 +3,7 @@ import Timezone from "./Timezone";
 export interface Tournaments {
   timeZone: Timezone;
   tournaments: Tournament[];
+  timestamp: Date;
 }
 
 export interface Tournament {

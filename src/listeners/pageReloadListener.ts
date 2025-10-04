@@ -12,6 +12,7 @@ const pageReloadListener = (): void => {
 
   onMessage(messageType, async () => {
     await removeLocalStorageItem(LOCAL_STORAGE_KEYS.tournaments);
+    await removeLocalStorageItem(LOCAL_STORAGE_KEYS.calendarEvents);
 
     const response: ResponseMap[typeof messageType] = {
       success: true,

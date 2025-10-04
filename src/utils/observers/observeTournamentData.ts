@@ -65,6 +65,7 @@ const observeTournamentData = (callback: (data: Tournaments) => void): void => {
           const tournamentsData: Tournaments = {
             timeZone: timezone,
             tournaments: domTournaments,
+            timestamp: new Date(),
           };
 
           if (tournamentsData.tournaments.length > 0) {

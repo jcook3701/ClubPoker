@@ -7,7 +7,7 @@ import getViewMode from "../../../utils/scrapers/getViewMode";
 import {
   convertFromTzAbbrToUser,
   convertTournamentTimes,
-} from "../../../utils/time/timeZoneHelpers";
+} from "../../../utils/time/timeHelpers";
 
 /*
  * Updates rows/cols when lobby.clubwpt.com is in row mode
@@ -54,7 +54,7 @@ const updateTournamentStartTimes = (tournamentData: Tournaments): void => {
 };
 
 /*
- * Updates lobby.clubwpt.com OFFICIAL TIME section
+ * TODO: Updates lobby.clubwpt.com OFFICIAL TIME section
  */
 const updateOfficalTime = (timezone: Timezone): void => {
   const officialTimeElement = document.querySelector(
@@ -75,7 +75,7 @@ const updateOfficalTime = (timezone: Timezone): void => {
 };
 
 /*
- * Updates all required DOM objects on lobby.clubwpt.com
+ * Updates all required DOM objects on lobby.clubwpt.com and returns
  */
 export const clubwptDomUpdater = async (
   tournamentData: Tournaments
@@ -87,6 +87,7 @@ export const clubwptDomUpdater = async (
     return;
   }
 
+  // TODO: Also handle updates even if timezone doesn't change.
   if (tournamentData.timeZone != timezone) {
     // Adjust start times for the new timezone
     const adjusted = convertTournamentTimes(tournamentData, timezone);

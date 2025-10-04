@@ -24,6 +24,7 @@ const fetchCalendarEventsListener = (): void => {
     const resolvedEvents: CalendarEvents = {
       calendar: calendar,
       calendarEvents: events ?? [],
+      timestamp: new Date(),
     };
     // console.log("Resolved Events: ", resolvedEvents);
     const response: ResponseMap[typeof messageType] = {
