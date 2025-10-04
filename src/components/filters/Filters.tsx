@@ -7,8 +7,11 @@ import styles from "./Filters.module.scss";
 import { sendMessage } from "../../services/messageService";
 import { MessageTypes } from "../../constants/messages";
 import SaveButton from "../buttons/SaveButton";
+import { useGoogleCalendar } from "../../context/GoogleCalendarContext";
 
 const Filters: React.FC = () => {
+  const { setEventsRefresh } = useGoogleCalendar();
+
   const [filterState, setFilterState] = useState<FiltersState>({});
 
   useEffect(() => {
@@ -43,6 +46,7 @@ const Filters: React.FC = () => {
 
   const handleClick = async () => {
     sendMessage(MessageTypes.SAVE_FILTERS, { filters: filterState });
+    setEventsRefresh(true);
   };
 
   return (

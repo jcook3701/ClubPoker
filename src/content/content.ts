@@ -34,15 +34,6 @@ observeTournamentData(async (data) => {
 
     const calendarEvents = tournamentsToCalendarEvents(filteredTournaments);
 
-    console.log(
-      "adjusted: ",
-      adjusted,
-      "Filterd: ",
-      filteredTournaments,
-      "CalEvents: ",
-      calendarEvents
-    );
-
     // TODO: Check if Calendar has been set and add that to calendarData.
 
     await sendMessage(MessageTypes.SAVE_CALENDAR_EVENTS, {

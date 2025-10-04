@@ -15,12 +15,12 @@ export interface CalendarEvent {
   description?: string;
   location?: string;
   start: {
-    dateTime: string; // ISO 8601
+    dateTime?: string; // ISO 8601
     date?: string;
     timeZone?: string;
   };
   end: {
-    dateTime: string;
+    dateTime?: string;
     date?: string;
     timeZone?: string;
   };

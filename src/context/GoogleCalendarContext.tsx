@@ -8,6 +8,7 @@ import React, {
 import { Calendar, CalendarEvent, CalendarEvents } from "../types/calendar";
 import { sendMessage } from "../services/messageService";
 import { MessageTypes } from "../constants/messages";
+import { normalizeDateTime } from "../utils/time/timeHelpers";
 
 interface CalendarContextValue {
   calendars: Calendar[];
@@ -17,6 +18,7 @@ interface CalendarContextValue {
   calendarError: string | null;
   events: CalendarEvent[];
   setEvents: (events: CalendarEvent[]) => void;
+  setEventsRefresh: (refresh: boolean) => void;
   eventsLoading: boolean;
   eventsError: string | null;
   handleCreateEvents: () => void;
@@ -94,7 +96,9 @@ export const CalendarProvider: React.FC<{ children: ReactNode }> = ({
 
         // Create a stable key for duplicate detection
         const eventKey = (e: CalendarEvent): string =>
-          `${e.summary}-${e.start.dateTime}-${e.end.dateTime}`;
+          `${e.summary}-${normalizeDateTime(
+            e.start?.dateTime
+          )}-${normalizeDateTime(e.end?.dateTime)}`;
 
         const existingKeys = new Set(googleCalendarEvents.map(eventKey));
 
@@ -131,11 +135,13 @@ export const CalendarProvider: React.FC<{ children: ReactNode }> = ({
         await sendMessage(MessageTypes.SAVE_CALENDAR, {
           calendar: newEvents.calendar,
         });
+        if (newEvents.calendarEvents.length > 0) {
+          await sendMessage(MessageTypes.CREATE_EVENT, {
+            calendarData: newEvents,
+          });
+        }
+        setEventsRefresh(true);
       }
-      await sendMessage(MessageTypes.CREATE_EVENT, {
-        calendarData: newEvents,
-      });
-      setEventsRefresh(true);
     } catch (err: unknown) {
       console.error(err);
       if (err instanceof Error) setEventError(err.message);
@@ -155,6 +161,7 @@ export const CalendarProvider: React.FC<{ children: ReactNode }> = ({
         calendarError,
         events,
         setEvents,
+        setEventsRefresh,
         eventsLoading,
         eventsError,
         handleCreateEvents,

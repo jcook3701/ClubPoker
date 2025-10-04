@@ -21,6 +21,9 @@ export const parseCalendarTime = (dateTime: string): Date =>
 export const parseTournamentTime = (dateTime: string): Date =>
   parse(dateTime, tournamentTimeFormat, new Date());
 
+export const normalizeDateTime = (dateTime?: string): string =>
+  dateTime ? new Date(dateTime).toISOString() : "";
+
 /*
  * TODO: Convert WPT Offical time of format "h:mm a z" to user specified timezone.
  */
