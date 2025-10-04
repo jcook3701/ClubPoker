@@ -57,19 +57,14 @@ const observeTournamentData = (callback: (data: Tournaments) => void): void => {
     const run = (): void => {
       getLocalStorageItem<Tournaments>(LOCAL_STORAGE_KEYS.tournaments).then(
         (storageTournaments) => {
-          const domTournaments: Tournament[] = getTournamentsFromDom();
           const timezone = storageTournaments
             ? storageTournaments?.timeZone
             : DEFAULT_TIMEZONE;
 
-          const tournamentsData: Tournaments = {
-            timeZone: timezone,
-            tournaments: domTournaments,
-            timestamp: new Date(),
-          };
+          const domTournaments: Tournaments = getTournamentsFromDom(timezone);
 
-          if (tournamentsData.tournaments.length > 0) {
-            callback(tournamentsData);
+          if (domTournaments.tournaments.length > 0) {
+            callback(domTournaments);
           }
         }
       );

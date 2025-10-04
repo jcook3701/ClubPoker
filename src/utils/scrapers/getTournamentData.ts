@@ -1,17 +1,25 @@
-import { Tournament } from "../../types/tournament";
+import {
+  DomColItem,
+  DomRowItem,
+  DomTournamentGrid,
+  DomViewMode,
+} from "../../constants/tournaments";
+import Timezone from "../../types/Timezone";
+import { Tournament, Tournaments } from "../../types/tournament";
+import { toUtcIso } from "../time/timeHelpers";
 import getViewMode from "./getViewMode";
 
 /*
  * Exports tournament data when in lobby.clubwpt.com is in row mode.
  */
-const rowExport = (rows: Element[]): Tournament[] => {
+const rowExport = (sourceTimeZone: Timezone, rows: Element[]): Tournament[] => {
   return rows
     .map((row) => {
-      const cols = Array.from(row.querySelectorAll("ion-col.col"));
+      const cols = Array.from(row.querySelectorAll(DomRowItem));
       if (cols.length < 8) return null; // skip invalid cols
 
       return {
-        start: cols[1].textContent?.trim() || "",
+        start: toUtcIso(sourceTimeZone, cols[1].textContent?.trim()),
         game: cols[2].textContent?.trim() || "",
         buyin: cols[3].textContent?.trim() || "",
         name: cols[4].textContent?.trim() || "",
@@ -26,14 +34,14 @@ const rowExport = (rows: Element[]): Tournament[] => {
 /*
  * Exports tournament data when in lobby.clubwpt.com is in col mode.
  */
-const colExport = (cols: Element[]): Tournament[] => {
+const colExport = (sourceTimeZone: Timezone, cols: Element[]): Tournament[] => {
   return cols
     .map((col) => {
-      const row = Array.from(col.querySelectorAll("span.tiles-text"));
+      const row = Array.from(col.querySelectorAll(DomColItem));
       if (row.length < 7) return null; // skip invalid rows
 
       return {
-        start: row[0].textContent?.trim() || "",
+        start: toUtcIso(sourceTimeZone, row[0].textContent?.trim()),
         game: row[1].textContent?.trim() || "",
         buyin: row[2].textContent?.trim() || "",
         name: row[3].textContent?.trim() || "",
@@ -50,23 +58,31 @@ const colExport = (cols: Element[]): Tournament[] => {
  */
 export const getSelectorModeFromDom = (): string => {
   const viewMode = getViewMode();
-  const rowView = "ion-row.grid-rows.row";
-  const colView = "ion-col.nested-col.col";
-  return viewMode.isRow ? rowView : colView;
+  return viewMode.isRow ? DomViewMode.rowView : DomViewMode.colView;
 };
 
 /*
  * Collects tournament data from the loby.clubwpt.com dom.
  */
-const getTournamentsFromDom = (): Tournament[] => {
+const getTournamentsFromDom = (sourceTimeZone: Timezone): Tournaments => {
   const viewMode = getViewMode();
   const selector = getSelectorModeFromDom();
-  const container = document.querySelector("tournaments-grid");
+  const container = document.querySelector(DomTournamentGrid);
   const data = container
     ? Array.from(container.querySelectorAll(selector))
     : [];
 
-  return viewMode.isRow ? rowExport(data) : colExport(data);
+  const scrapedTournaments = viewMode.isRow
+    ? rowExport(sourceTimeZone, data)
+    : colExport(sourceTimeZone, data);
+
+  const tournamentsData: Tournaments = {
+    timeZone: sourceTimeZone,
+    tournaments: scrapedTournaments,
+    domViewMode: viewMode,
+    timestamp: new Date(),
+  };
+  return tournamentsData;
 };
 
 export default getTournamentsFromDom;

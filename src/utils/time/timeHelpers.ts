@@ -7,7 +7,6 @@ import { DateTime } from "luxon";
 /*
  * Time Formats
  */
-
 const offficalTimeFormat = "h: mm a ZZZZ";
 const calendarTimeFormat = "MMM d, yyyy h:mm a";
 const tournamentTimeFormat = "MMM d h:mm a";
@@ -21,8 +20,65 @@ export const parseCalendarTime = (dateTime: string): Date =>
 export const parseTournamentTime = (dateTime: string): Date =>
   parse(dateTime, tournamentTimeFormat, new Date());
 
+/*
+ * Time Formaters use by GUI
+ */
+export const formatCalendarTime = (date: string | undefined): string =>
+  date ? format(parseISO(date), calendarTimeFormat) : "";
+
+export const formatTournamentTime = (date: string | undefined): string =>
+  date ? format(parseISO(date), tournamentTimeFormat) : "";
+
+/*
+ * Used to normalize fix dateTime from google API
+ */
 export const normalizeDateTime = (dateTime?: string): string =>
   dateTime ? new Date(dateTime).toISOString() : "";
+
+/**
+ * Convert a local datetime string in a known timezone into a UTC ISO string.
+ * @param sourceTimeZone
+ * @param dataTime
+ * @returns string formated as UTC ISO date
+ */
+export const toUtcIso = (
+  sourceTimeZone: Timezone,
+  dateTime?: string
+): string => {
+  if (!dateTime) return "";
+
+  // Parse the string into a Date object (no timezone info yet)
+  const parsed = parse(dateTime, tournamentTimeFormat, new Date());
+
+  // Ensure current year is set (otherwise parse() may default to 2001)
+  parsed.setFullYear(new Date().getFullYear());
+
+  // Convert the parsed "wall clock" time in the given timezone → UTC Date
+  const utcDate = fromZonedTime(parsed, sourceTimeZone.value);
+
+  // Return in ISO 8601 UTC form
+  return utcDate.toISOString(); // always ends with "Z"
+};
+
+/*
+ * Convert startimes within tournaments object to new timezone
+ * @param dateTime
+ * @param endTimeZone
+ * @returns string formated as UTC ISO date
+ */
+export const convertTournamentTimes = (
+  tournamentData: Tournaments,
+  newTimeZone: Timezone
+): Tournaments => {
+  return {
+    ...tournamentData,
+    timeZone: newTimeZone,
+    tournaments: tournamentData.tournaments.map((t) => ({
+      ...t,
+      start: toZonedTime(t.start, newTimeZone.value).toISOString(),
+    })),
+  };
+};
 
 /*
  * TODO: Convert WPT Offical time of format "h:mm a z" to user specified timezone.
@@ -46,47 +102,4 @@ export const convertFromTzAbbrToUser = (
   const formated = zoned.toFormat(offficalTimeFormat);
   console.log("zoned: ", formated);
   return formated;
-};
-
-/*
- * Convert WPT tournament start times of format "MMM d h:mm a" to user specified timezone.
- */
-export const convertToTimeZone = (
-  dateTime: string,
-  startTimeZone: Timezone,
-  endTimeZone: Timezone
-): string => {
-  const parsed = parse(dateTime, tournamentTimeFormat, new Date());
-  const currentYear = new Date().getFullYear();
-  parsed.setFullYear(currentYear);
-  const utcDate = fromZonedTime(parsed, startTimeZone.value);
-  const zoned = toZonedTime(utcDate, endTimeZone.value);
-  return format(zoned, tournamentTimeFormat);
-};
-
-/*
- * Convert startimes within tournaments object to new timezone
- */
-export const convertTournamentTimes = (
-  tournamentData: Tournaments,
-  newTimeZone: Timezone
-): Tournaments => {
-  return {
-    ...tournamentData,
-    timeZone: newTimeZone,
-    tournaments: tournamentData.tournaments.map((t) => ({
-      ...t,
-      start: convertToTimeZone(t.start, tournamentData.timeZone, newTimeZone),
-    })),
-  };
-};
-
-/*
- * Date  formated for Month Day, Year Hour:Min AM/PM
- */
-export const formatDateHumanReadable = (date: string | undefined): string => {
-  if (date) {
-    return format(parseISO(date), calendarTimeFormat);
-  }
-  return "";
 };

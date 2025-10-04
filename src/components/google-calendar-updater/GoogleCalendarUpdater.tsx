@@ -13,7 +13,7 @@ import {
 
 import styles from "./GoogleCalendarUpdater.module.scss";
 import UpdateCalendarButton from "../buttons/UpdateCalendarButton";
-import { formatDateHumanReadable } from "../../utils/time/timeHelpers";
+import { formatCalendarTime } from "../../utils/time/timeHelpers";
 import CalendarBadge from "../badges/CalendarBadge";
 
 const GoogleCalendarUpdater: React.FC = () => {
@@ -90,8 +90,8 @@ const GoogleCalendarUpdater: React.FC = () => {
               secondary={
                 <>
                   {ev.start?.dateTime
-                    ? formatDateHumanReadable(ev.start.dateTime)
-                    : formatDateHumanReadable(ev.start?.date)}
+                    ? formatCalendarTime(ev.start.dateTime)
+                    : formatCalendarTime(ev.start?.date)}
                   <br />
                   {ev.description}
                 </>
