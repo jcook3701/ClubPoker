@@ -18,6 +18,17 @@ const MUI_APPBAR_STYLE = {
   },
 };
 
+const MUI_BADGE_STYLE = {
+  MuiBadge: {
+    styleOverrides: {
+      badge: ({ theme }: { theme: Theme }) => ({
+        backgroundColor: theme.palette.primary.main,
+        color: theme.palette.primary.contrastText, // text color inside the badge
+      }),
+    },
+  },
+};
+
 const MUI_BOX_STYLE = {
   MuiBox: {
     styleOverrides: {
@@ -111,6 +122,7 @@ const MUI_COMPONENTS_STYLES = {
   components: {
     ...MUI_AUTOCOMPLETE_STYLE,
     ...MUI_APPBAR_STYLE,
+    ...MUI_BADGE_STYLE,
     ...MUI_BOX_STYLE,
     ...MUI_BUTTON_STYLE,
     // ...MUI_ICON_STYLE,

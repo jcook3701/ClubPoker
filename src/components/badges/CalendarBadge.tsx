@@ -11,7 +11,7 @@ const CalendarBadge: React.FC<CalendarBadgeProps> = ({ events }) => {
   const eventCount = events.length;
 
   return (
-    <Badge badgeContent={eventCount} color="primary" overlap="circular">
+    <Badge badgeContent={eventCount} overlap="circular">
       <CalendarMonthIcon color="action" />
     </Badge>
   );
