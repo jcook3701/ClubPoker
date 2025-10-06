@@ -36,7 +36,11 @@ const Header: React.FC<HeaderProps> = ({
             alignItems: "center",
           }}
         >
-          <WptIconButton title="ClubWPT" link={CLUB_WPT_URL} />
+          <WptIconButton
+            sx={{ display: "flex", alignItems: "center", gap: 1, ml: -1 }}
+            title="ClubWPT"
+            link={CLUB_WPT_URL}
+          />
           <Typography variant="h6" noWrap>
             {title}
           </Typography>
