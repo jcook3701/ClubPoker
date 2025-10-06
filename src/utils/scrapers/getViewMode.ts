@@ -1,18 +1,24 @@
+import {
+  DomToggleGridIcon,
+  DomToggleListIcon,
+  DomToggleSwitch,
+  DomToggleView,
+} from "../../constants/tournaments";
 import ViewMode from "../../types/ViewMode";
 
 /*
  * Used to tell if lobby.clubwpt.com dom is in row or column mode.
  */
 const getViewMode = (): ViewMode => {
-  const toggle = document.querySelector("toggle-view");
+  const toggle = document.querySelector(DomToggleView);
   if (!toggle) {
     console.warn("No toggle-view found");
     return { isGrid: false, isRow: false };
   }
 
   // Find icons inside toggle
-  const listIcon = toggle.querySelector('ion-icon[name="list"]');
-  const gridIcon = toggle.querySelector('ion-icon[name="grid"]');
+  const listIcon = toggle.querySelector(DomToggleListIcon);
+  const gridIcon = toggle.querySelector(DomToggleGridIcon);
 
   if (!listIcon || !gridIcon) {
     console.warn("Icons not found inside toggle-view");
@@ -20,8 +26,8 @@ const getViewMode = (): ViewMode => {
   }
 
   // The active icon has the "toggle-hover" class
-  const isGrid = gridIcon.classList.contains("toggle-hover");
-  const isRow = listIcon.classList.contains("toggle-hover");
+  const isGrid = gridIcon.classList.contains(DomToggleSwitch);
+  const isRow = listIcon.classList.contains(DomToggleSwitch);
 
   return { isGrid, isRow };
 };

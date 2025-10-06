@@ -1,8 +1,12 @@
 import { LOCAL_STORAGE_KEYS } from "../../config/chrome";
+import { MessageTypes } from "../../constants/messages";
 import { DEFAULT_TIMEZONE } from "../../constants/timezone";
+import { DomToggleView, DomTournamentGrid } from "../../constants/tournaments";
+import { sendMessage } from "../../services/messageService";
 import { getLocalStorageItem } from "../../services/storageService";
-import { Tournaments, Tournament } from "../../types/tournament";
+import { Tournaments } from "../../types/tournament";
 import getTournamentsFromDom from "../scrapers/getTournamentData";
+import getViewMode from "../scrapers/getViewMode";
 
 /*
  * Utility: debounce function calls.
@@ -29,14 +33,14 @@ const debounce = <Args extends unknown[]>(
  * and disconnects once the grid is found.
  */
 const waitForTournamentGrid = (callback: (grid: Element) => void): void => {
-  const container = document.querySelector("tournaments-grid");
+  const container = document.querySelector(DomTournamentGrid);
   if (container) {
     callback(container);
     return;
   }
 
   const tempObserver = new MutationObserver(() => {
-    const container = document.querySelector("tournaments-grid");
+    const container = document.querySelector(DomTournamentGrid);
     if (container) {
       callback(container);
       tempObserver.disconnect(); // stop watching <body>
@@ -73,11 +77,36 @@ const observeTournamentData = (callback: (data: Tournaments) => void): void => {
     // Debounced runner
     const debouncedRun = debounce(run, 300);
 
-    // run once immediately
-    run();
+    const attachGridObserver = () => {
+      waitForTournamentGrid((container) => {
+        const observer = new MutationObserver(debouncedRun);
+        observer.observe(container, { childList: true, subtree: true });
+        debouncedRun(); // Run immediately once
+      });
+    };
 
-    const observer = new MutationObserver(debouncedRun);
-    observer.observe(container, { childList: true, subtree: true });
+    // Initial attach
+    attachGridObserver();
+
+    // Watch for view mode changes — reattach observer when toggled
+    const toggle = document.querySelector(DomToggleView);
+    if (toggle) {
+      const modeObserver = new MutationObserver(async () => {
+        const { isGrid, isRow } = getViewMode();
+        console.log(
+          "View mode changed:",
+          isGrid ? "Grid" : isRow ? "Row" : "None"
+        );
+        await sendMessage(MessageTypes.PAGE_RELOADED);
+        attachGridObserver();
+      });
+
+      modeObserver.observe(toggle, {
+        attributes: true,
+        subtree: true,
+        attributeFilter: ["class"],
+      });
+    }
   });
 };
 

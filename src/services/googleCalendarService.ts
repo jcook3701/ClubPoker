@@ -28,6 +28,13 @@ export const tournamentToCalendarEvent = (
       dateTime: endDateTime.toISOString(),
       timeZone: timeZone.value,
     },
+    reminders: {
+      // TODO: Maybe make this something the user can set.
+      useDefault: false,
+      overrides: [
+        { method: "popup", minutes: 10 }, // notification 10 min before
+      ],
+    },
   };
 
   return event;
