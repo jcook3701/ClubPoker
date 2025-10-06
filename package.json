@@ -1,11 +1,11 @@
 {
-  "name": "club-poker-chrome-extension",
+  "name": "ClubPoker",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
     "clean": "rm -rf dist",
     "build": "webpack --config webpack.config.js",
-    "zip": "npm run build && cd dist && zip -r ../club-poker-chrome-extension.zip .",
+    "zip": "npm run build && cd dist && zip -r ../ClubPoker.zip .",
     "watch": "webpack -w --config webpack.config.js",
     "storybook": "sb dev",
     "build-storybook": "sb build",

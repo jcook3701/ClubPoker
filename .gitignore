@@ -5,7 +5,7 @@
 *.tmp
 *.tmp.*
 
-club-poker-chrome-extension.zip
+ClubPoker.zip
 
 dist/
 node_modules/
