@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Autocomplete, TextField, Typography, Box } from "@mui/material";
 import styles from "./TimezoneSelect.module.scss";
 import Timezone from "../../types/Timezone";
-import { sendMessage, sendTabMessage } from "../../services/messageService";
+import { sendMessage } from "../../services/messageService";
 import { MessageTypes } from "../../constants/messages";
 import SaveButton from "../buttons/SaveButton";
 
@@ -50,18 +50,6 @@ const TimezoneSelect: React.FC = () => {
         timeZone: selectedTimezone,
       });
     }
-    // await setSyncStorageItem(SYNC_STORAGE_KEYS.timezone, selectedTimezone);
-
-    /*
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-      const tabId = tabs[0]?.id;
-      if (tabId !== undefined) {
-        sendTabMessage(tabId, MessageTypes.SAVE_TIMEZONE, {
-          timeZone: selectedTimezone,
-        });
-      }
-    });
-    */
   };
 
   return (

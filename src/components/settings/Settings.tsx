@@ -88,13 +88,7 @@ const Settings: React.FC<SettingsProps> = ({
         <Typography variant="subtitle1" noWrap>
           {"Settings:"}
         </Typography>
-        <BackArrowIconButton
-          sx={{
-            gap: 1,
-            pr: 2,
-          }}
-          onClick={handleBackClick}
-        />
+        <BackArrowIconButton onClick={handleBackClick} />
       </Toolbar>
 
       {settings ? (

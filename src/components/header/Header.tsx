@@ -51,7 +51,7 @@ const Header: React.FC<HeaderProps> = ({
             display: "flex",
             alignItems: "center",
             gap: 1,
-            pr: 2,
+            mr: -1,
           }}
         >
           <LiveHelpIconButton link={HELP_PAGE_URI} />

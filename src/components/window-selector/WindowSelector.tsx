@@ -43,7 +43,6 @@ const WindowSelector: React.FC<WindowSelectorProps> = ({
         fullWidth
         sx={{
           mt: 1, // adds spacing above the buttons
-          mb: 1, // adds spacing below the buttons
         }}
       >
         <ToggleButton value="timezone" aria-label="timezone">

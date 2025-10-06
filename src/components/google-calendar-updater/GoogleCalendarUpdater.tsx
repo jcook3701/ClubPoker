@@ -8,6 +8,7 @@ import {
   ListItem,
   ListItemText,
   TextField,
+  Toolbar,
   Typography,
 } from "@mui/material";
 
@@ -71,17 +72,12 @@ const GoogleCalendarUpdater: React.FC = () => {
         )}
         fullWidth
       />
-
-      <Typography
-        variant="subtitle2"
-        sx={{
-          lineHeight: 2.55,
-        }}
-        noWrap
-      >
-        {"Poker Tournaments:"}
+      <Toolbar>
+        <Typography variant="subtitle2" noWrap>
+          {"Poker Tournaments:"}
+        </Typography>
         <CalendarBadge events={events} />
-      </Typography>
+      </Toolbar>
       <List className={styles.events}>
         {events.map((ev, index) => (
           <ListItem

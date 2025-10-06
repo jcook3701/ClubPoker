@@ -1,4 +1,4 @@
-import { createTheme } from "@mui/material";
+import { createTheme, Theme } from "@mui/material";
 
 const MUI_AUTOCOMPLETE_STYLE = {
   MuiAutocomplete: {
@@ -8,7 +8,7 @@ const MUI_AUTOCOMPLETE_STYLE = {
   },
 };
 
-const MIU_APPBAR_STYLE = {
+const MUI_APPBAR_STYLE = {
   MuiAppBar: {
     styleOverrides: {
       root: {
@@ -18,15 +18,13 @@ const MIU_APPBAR_STYLE = {
   },
 };
 
-const MIU_TOOLBAR_STYLE = {
-  MuiToolbar: {
+const MUI_BOX_STYLE = {
+  MuiBox: {
     styleOverrides: {
       root: {
         display: "flex",
-        justifyContent: "space-between",
         alignItems: "center",
-        width: "100%",
-        px: 0,
+        height: "100%",
       },
     },
   },
@@ -41,6 +39,50 @@ const MUI_BUTTON_STYLE = {
         "&:hover": {
           backgroundColor: "#ff5252",
         },
+      },
+    },
+  },
+};
+
+const MUI_ICON_STYLE = {
+  MuiSvgIcon: {
+    styleOverrides: {
+      root: ({ theme }: { theme: Theme }) => ({
+        color: theme.palette.text.secondary, // dynamically correct for light/dark
+        transition: "color 0.2s ease-in-out",
+        "&:hover": {
+          color: theme.palette.text.primary,
+        },
+      }),
+    },
+  },
+};
+
+const MUI_ICON_BUTTON_STYLE = {
+  MuiIconButton: {
+    styleOverrides: {
+      root: ({ theme }: { theme: Theme }) => ({
+        color: theme.palette.text.secondary,
+        transition: "color 0.2s ease-in-out",
+        "&:hover": {
+          color: theme.palette.text.primary,
+        },
+      }),
+    },
+  },
+};
+
+const MUI_TOOLBAR_STYLE = {
+  MuiToolbar: {
+    styleOverrides: {
+      root: {
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        width: "100%",
+        minHeight: 0, // removes default toolbar height
+        paddingTop: 8,
+        paddingBottom: 8,
       },
     },
   },
@@ -67,11 +109,14 @@ const MUI_TYPOGRAPHY_STYLE = {
 
 const MUI_COMPONENTS_STYLES = {
   components: {
-    ...MIU_APPBAR_STYLE,
-    ...MIU_TOOLBAR_STYLE,
-    ...MUI_TYPOGRAPHY_STYLE,
-    ...MUI_BUTTON_STYLE,
     ...MUI_AUTOCOMPLETE_STYLE,
+    ...MUI_APPBAR_STYLE,
+    ...MUI_BOX_STYLE,
+    ...MUI_BUTTON_STYLE,
+    // ...MUI_ICON_STYLE,
+    ...MUI_ICON_BUTTON_STYLE,
+    ...MUI_TOOLBAR_STYLE,
+    ...MUI_TYPOGRAPHY_STYLE,
   },
 };
 

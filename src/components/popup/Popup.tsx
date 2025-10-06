@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box, ThemeProvider } from "@mui/material";
+import { Box, CssBaseline, ThemeProvider } from "@mui/material";
 import Header from "../header/Header";
 
 import WindowSelector from "../window-selector/WindowSelector";
@@ -31,19 +31,21 @@ const Popup: React.FC = () => {
 
   return (
     <ThemeProvider theme={settings?.theme ? DARK_THEME : LIGHT_THEME}>
+      {/* CssBaseline sets the <body> background and text color */}
+      <CssBaseline />
       <Box
-        sx={{
-          width: 300,
-          height: 400,
+        sx={(theme) => ({
+          width: 320,
+          height: 435,
           display: "flex",
           flexDirection: "column",
           borderRadius: 2, // theme-based spacing (8px * 2 = 16px)
           p: 2, // padding: theme.spacing(2) = 16px
-          bgcolor: "background.default",
-          color: "text.primary",
+          bgcolor: theme.palette.background.default,
+          color: theme.palette.text.primary,
           border: "2px solid",
-          borderColor: "primary.main",
-        }}
+          borderColor: theme.palette.secondary.main,
+        })}
       >
         <Header
           settingsSelected={settingsWindowSelected}
