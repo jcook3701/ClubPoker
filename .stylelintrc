@@ -1,0 +1,7 @@
+---
+"extends": "stylelint-config-standard"
+"rules":
+  "block-no-empty": true
+  "color-no-invalid-hex": true
+  "color-hex-length": "long"
+  "selector-class-pattern": "^[a-z][a-zA-Z0-9]+$"

@@ -1,34 +1,30 @@
 {
   "manifest_version": 3,
-  "name": "Tournament to Google Calendar",
+  "name": "club-wtp-chrome-extension",
+  "description": "This is a Chrome extension intended to interface with clubwpt.com.  Offers the ability to modify timezone for tournaments viewed on main site. And save specified tournaments to a users Google Calendar for easy reminders.",
   "version": "1.0",
-  "permissions": [
-    "identity",
-    "activeTab",
-    "scripting"
-  ],
+  "permissions": ["identity", "activeTab", "scripting", "storage"],
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnc18UA0sDRR3OqfTZbB9AG9kQy9vPVacmW+Rvx/Yk7oO6Tabumvc5EsyyBVKFCGS6zrOKcDQB6z9ImaQe31DvBGaNx31NaY8mALhQFJAY9RsXNt1IG1FWzO+8V2xDJFSZFgufchwx7k5nWeTZJRN7sZ6EluLdpDd8HATPG4yatwFmtrgwMUBFIq9f3zDK9DWZ/qDmayrHln7kyjqbNswgZuHDrqmTV12HLMEmCAbYr3ZWMPW/bAU4HjiXOo6Bb68kIynXnj8w+rpTsw52vgz0XIQYLtJBYb+xLiAVh14KMxV0+nQfJTc8p87QE1mzOxUeP0vSwHc+qVKbnlcovpWzwIDAQAB",
+  "oauth2": {
+    "client_id": "643848225094-6vo6fa1grd1he703fl6cmcha71l53m81.apps.googleusercontent.com",
+    "scopes": ["https://www.googleapis.com/auth/calendar"]
+  },
   "icons": {
     "16": "icons/icon16.png",
     "48": "icons/icon48.png",
     "128": "icons/icon128.png"
   },
-  "background": {
-    "service_worker": "src/background/background.ts"
-  },
   "action": {
     "default_icon": "icons/icon48.png",
-    "default_popup": "src/popup/Popup.tsx"
+    "default_popup": "js/popup.html"
   },
   "content_scripts": [
     {
-      "matches": ["https://lobby.clubwpt.com/*"],
-      "js": ["src/content/content.ts"]
+      "matches": ["https://clubwpt.com/*", "https://*.clubwpt.com/*"],
+      "js": ["js/content.js"]
     }
   ],
-  "oauth2": {
-    "client_id": "YOUR_CLIENT_ID.apps.googleusercontent.com",
-    "scopes": [
-      "https://www.googleapis.com/auth/calendar"
-    ]
+  "background": {
+    "service_worker": "js/background.js"
   }
 }

@@ -1,0 +1,66 @@
+import getTournamentsListener from "./getTournamentsListener";
+import getCalendarListener from "./getCalendarListener";
+import saveSettingsListener from "./saveSettingsListener";
+import saveTimezoneListener from "./saveTimezoneListener";
+import saveTournamentsListener from "./saveTournamentsListener";
+import pageReloadListener from "./pageReloadListener";
+import getCalendarEventsListener from "./getCalendarEventsListener";
+import saveCalendarListener from "./saveCalendarListener";
+import saveCalendarEventsListener from "./saveCalendarEventsListener";
+import getSettingsListener from "./getSettingsListener";
+import getFiltersListener from "./getFiltersListener";
+import getTimezoneListener from "./getTimezoneListener";
+import saveFiltersListener from "./saveFiltersListener";
+import timezoneChangeListener from "./timezoneChangeListener";
+import errorListener from "./errorListener";
+import warningListener from "./warningListener";
+import settingsChangeListener from "./settingsChangeListener";
+import createEventsListener from "./createEventListener";
+import listCalendarsListener from "./listCalendarsListener";
+import fetchCalendarEventsListener from "./fetchCalendarEventsListener";
+
+/*
+ * Listeners to register in the context script.
+ */
+export const registerContentListeners = (): void => {
+  console.log("register context Listeners");
+  /* event listeners */
+  timezoneChangeListener();
+  // settingsChangeListener(); TODO:
+};
+
+/*
+ * Listeners to register in the background script.
+ */
+export const registerBackgroundListeners = (): void => {
+  console.log("register background Listeners");
+  /* event listeners */
+  pageReloadListener();
+  errorListener();
+  warningListener();
+
+  /* chrome.sync storage listeners */
+  // getters
+  getCalendarListener();
+  getFiltersListener();
+  getSettingsListener();
+  getTimezoneListener();
+  // setters
+  saveCalendarListener();
+  saveFiltersListener();
+  saveSettingsListener();
+  saveTimezoneListener();
+
+  /* chrome.local storage listeners */
+  // getters
+  getCalendarEventsListener();
+  getTournamentsListener();
+  // setters
+  saveCalendarEventsListener();
+  saveTournamentsListener();
+
+  /* Google Calander API listeners */
+  listCalendarsListener();
+  fetchCalendarEventsListener();
+  createEventsListener();
+};

@@ -1,31 +1,43 @@
-const convertToTimezone = (dateTime: string, timeZone: string): string => {
-  const date = new Date(dateTime);
-  return new Intl.DateTimeFormat('en-US', {
-    timeZone,
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-    hour: 'numeric',
-    minute: 'numeric',
-    hour12: true,
-  }).format(date);
-};
+import observeTournamentData from "../utils/observers/observeTournamentData";
+import { registerContentListeners } from "../listeners";
+import { sendMessage } from "../services/messageService";
+import { MessageTypes } from "../constants/messages";
+import { clubwptDomUpdater } from "./dom/TournamentsDataUpdater/TournamentDataUpdater";
+import { tournamentsToCalendarEvents } from "../services/googleCalendarService";
+import { applyTournamentFilters } from "../utils/filter/filterHelpers";
 
-const extractTournamentData = (row: Element, timeZone: string): any => {
-  const columns = row.querySelectorAll('ion-col');
-  const start = columns[1]?.textContent?.trim() || '';
-  const game = columns[2]?.textContent?.trim() || '';
-  const buyin = columns[3]?.textContent?.trim() || '';
-  const name = columns[4]?.textContent?.trim() || '';
-  const startTime = convertToTimezone(start, timeZone);
+console.log("lobby.clubwpt.com Content Script Started:");
+(async () => {
+  try {
+    await sendMessage(MessageTypes.PAGE_RELOADED);
+  } catch (err) {
+    console.warn("PAGE_RELOADED message failed:", err);
+  }
+})();
 
-  return { start: startTime, game, buyin, name };
-};
+observeTournamentData(async (data) => {
+  const saved = await sendMessage(MessageTypes.GET_TOURNAMENTS);
+  const tournaments = saved.tournamentData;
 
-const scrapeTournaments = (timeZone: string): any[] => 
-  Array.from(document.querySelectorAll('.grid-rows.row'))
-    .map((row) => extractTournamentData(row, timeZone))
-    .filter((tournament) => tournament.start && tournament.game && tournament.buyin && tournament.name);
+  if (!tournaments) {
+    await sendMessage(MessageTypes.SAVE_TOURNAMENTS, { tournamentData: data });
+  }
 
-// Send scraped data to background script
-chrome.runtime.sendMessage({ action: 'scrapedTournaments', data: scrapeTournaments('America/New_York') });
+  const adjusted = await clubwptDomUpdater(data);
+
+  if (adjusted) {
+    const getFiltersResponse = await sendMessage(MessageTypes.GET_FILTERS);
+    const filtersState = getFiltersResponse.filters;
+
+    // TODO: Reverse order of filtered tournaments for display purposes
+    const filteredTournaments = applyTournamentFilters(adjusted, filtersState);
+
+    const calendarEvents = tournamentsToCalendarEvents(filteredTournaments);
+
+    await sendMessage(MessageTypes.SAVE_CALENDAR_EVENTS, {
+      calendarData: calendarEvents,
+    });
+  }
+});
+
+registerContentListeners();

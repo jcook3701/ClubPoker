@@ -1,0 +1,24 @@
+.settingsHeader {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* pushes last child to the right */
+  gap: 8px;
+}
+
+.settingsBody {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.icon {
+  margin-left: auto; /* forces this item to the far right */
+  font-size: 32px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.icon:hover {
+  transform: scale(1.2);
+  color: #1976d2; /* MUI blue highlight */
+}
