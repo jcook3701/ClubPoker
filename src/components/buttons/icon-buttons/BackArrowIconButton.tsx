@@ -1,5 +1,5 @@
 import React from "react";
-import { IconButton, SxProps, Theme, Tooltip } from "@mui/material";
+import { Box, IconButton, SxProps, Theme, Tooltip } from "@mui/material";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 
 type BackArrowIconButtonProps = {
@@ -12,11 +12,13 @@ const BackArrowIconButton: React.FC<BackArrowIconButtonProps> = ({
   sx,
 }) => {
   return (
-    <Tooltip title="back" placement="top-start" arrow>
-      <IconButton color="inherit" onClick={onClick} sx={sx}>
-        <ArrowBackIosNewIcon />
-      </IconButton>
-    </Tooltip>
+    <Box sx={sx}>
+      <Tooltip title="back" placement="top-start" arrow>
+        <IconButton color="inherit" onClick={onClick}>
+          <ArrowBackIosNewIcon />
+        </IconButton>
+      </Tooltip>
+    </Box>
   );
 };
 

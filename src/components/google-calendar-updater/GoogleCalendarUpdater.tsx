@@ -72,7 +72,13 @@ const GoogleCalendarUpdater: React.FC = () => {
         fullWidth
       />
 
-      <Typography variant="subtitle2" noWrap>
+      <Typography
+        variant="subtitle2"
+        sx={{
+          lineHeight: 2.55,
+        }}
+        noWrap
+      >
         {"Poker Tournaments:"}
         <CalendarBadge events={events} />
       </Typography>
@@ -80,10 +86,12 @@ const GoogleCalendarUpdater: React.FC = () => {
         {events.map((ev, index) => (
           <ListItem
             key={ev.id ?? ev.summary}
-            sx={{
+            sx={(theme) => ({
               backgroundColor:
-                index % 2 === 0 ? "background.paper" : "grey.100", // alternating>
-            }}
+                index % 2 === 0
+                  ? theme.palette.background.paper
+                  : theme.palette.action.hover, // alternating>
+            })}
           >
             <ListItemText
               primary={ev.summary}

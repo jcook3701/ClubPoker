@@ -29,17 +29,27 @@ const Header: React.FC<HeaderProps> = ({
 
   return (
     <AppBar position="sticky" color="default" elevation={0} enableColorOnDark>
-      <Toolbar
-        sx={{ display: "flex", justifyContent: "space-between", width: "100%" }}
-      >
-        <Box sx={{ display: "inherit" }}>
+      <Toolbar>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
           <WptIconButton title="ClubWPT" link={CLUB_WPT_URL} />
           <Typography variant="h6" noWrap>
             {title}
           </Typography>
         </Box>
 
-        <Box sx={{ display: "inherit" }}>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            gap: 1,
+            pr: 2,
+          }}
+        >
           <LiveHelpIconButton link={HELP_PAGE_URI} />
           <SettingsIconButton onClick={handleSettingsClick} />
           {moreVisible ? <MoreIconButton onClick={handleMoreClick} /> : <></>}

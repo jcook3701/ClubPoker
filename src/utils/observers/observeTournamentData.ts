@@ -6,7 +6,6 @@ import { sendMessage } from "../../services/messageService";
 import { getLocalStorageItem } from "../../services/storageService";
 import { Tournaments } from "../../types/tournament";
 import getTournamentsFromDom from "../scrapers/getTournamentData";
-import getViewMode from "../scrapers/getViewMode";
 
 /*
  * Utility: debounce function calls.
@@ -57,7 +56,7 @@ const waitForTournamentGrid = (callback: (grid: Element) => void): void => {
  * 3. Debounces observer callbacks to avoid rapid firing.
  */
 const observeTournamentData = (callback: (data: Tournaments) => void): void => {
-  waitForTournamentGrid((container) => {
+  waitForTournamentGrid(() => {
     const run = (): void => {
       getLocalStorageItem<Tournaments>(LOCAL_STORAGE_KEYS.tournaments).then(
         (storageTournaments) => {
@@ -92,11 +91,6 @@ const observeTournamentData = (callback: (data: Tournaments) => void): void => {
     const toggle = document.querySelector(DomToggleView);
     if (toggle) {
       const modeObserver = new MutationObserver(async () => {
-        const { isGrid, isRow } = getViewMode();
-        console.log(
-          "View mode changed:",
-          isGrid ? "Grid" : isRow ? "Row" : "None"
-        );
         await sendMessage(MessageTypes.PAGE_RELOADED);
         attachGridObserver();
       });

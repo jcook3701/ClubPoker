@@ -85,18 +85,16 @@ const Settings: React.FC<SettingsProps> = ({
   return (
     <Box className={styles.settingsHeader}>
       <Toolbar>
-        <Box
+        <Typography variant="subtitle1" noWrap>
+          {"Settings:"}
+        </Typography>
+        <BackArrowIconButton
           sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            width: "100%",
+            gap: 1,
+            pr: 2,
           }}
-        >
-          <Typography variant="subtitle1" noWrap>
-            {"Settings:"}
-          </Typography>
-          <BackArrowIconButton onClick={handleBackClick} />
-        </Box>
+          onClick={handleBackClick}
+        />
       </Toolbar>
 
       {settings ? (

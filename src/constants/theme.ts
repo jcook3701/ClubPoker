@@ -22,7 +22,11 @@ const MIU_TOOLBAR_STYLE = {
   MuiToolbar: {
     styleOverrides: {
       root: {
+        display: "flex",
         justifyContent: "space-between",
+        alignItems: "center",
+        width: "100%",
+        px: 0,
       },
     },
   },
