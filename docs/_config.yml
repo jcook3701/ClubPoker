@@ -1,7 +1,8 @@
 
 title: ClubPoker
 description: ClubPoker code documentation
-theme: just-the-docs
+remote_theme: pmarsceill/just-the-docs
+
 google_analytics: G-C7PWLWSHB9
 
 plugins:
