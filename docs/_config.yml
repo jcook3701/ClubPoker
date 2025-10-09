@@ -24,6 +24,11 @@ aux_links:
   "ClubPoker on GitHub":
     - "//github.com/jcook3701/ClubPoker"
 
+carousel_images:
+  - /assets/images/club-poker-screenshots/large-format/club-poker-calendar-page.jpg
+  - /assets/images/club-poker-screenshots/large-format/club-poker-filters-page.jpg
+  - /assets/images/club-poker-screenshots/large-format/club-poker-timezone-page.jpg
+
 # Makes Aux links open in a new tab. Default is false
 aux_links_new_tab: false
 
