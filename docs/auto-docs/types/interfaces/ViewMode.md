@@ -1,13 +1,15 @@
 ---
 title: ViewMode
+nav_order: 15
+parent: types
 ---
-[**ClubPoker**](../../README.md)
+[**ClubPoker**](../../..)
 
 ***
 
 # Interface: ViewMode
 
-Defined in: [types/ViewMode.ts:1](https://github.com/jcook3701/ClubPoker/blob/dcb8d48db34f662502d0fb9788282480a8689eed/src/types/ViewMode.ts#L1)
+Defined in: [types/ViewMode.ts:1](https://github.com/jcook3701/ClubPoker/blob/12cb2bc63eafa0b05c75059627365b9d3f9284a5/src/types/ViewMode.ts#L1)
 
 ## Properties
 
@@ -15,7 +17,7 @@ Defined in: [types/ViewMode.ts:1](https://github.com/jcook3701/ClubPoker/blob/dc
 
 > **isGrid**: `boolean`
 
-Defined in: [types/ViewMode.ts:2](https://github.com/jcook3701/ClubPoker/blob/dcb8d48db34f662502d0fb9788282480a8689eed/src/types/ViewMode.ts#L2)
+Defined in: [types/ViewMode.ts:2](https://github.com/jcook3701/ClubPoker/blob/12cb2bc63eafa0b05c75059627365b9d3f9284a5/src/types/ViewMode.ts#L2)
 
 ***
 
@@ -23,4 +25,4 @@ Defined in: [types/ViewMode.ts:2](https://github.com/jcook3701/ClubPoker/blob/dc
 
 > **isRow**: `boolean`
 
-Defined in: [types/ViewMode.ts:3](https://github.com/jcook3701/ClubPoker/blob/dcb8d48db34f662502d0fb9788282480a8689eed/src/types/ViewMode.ts#L3)
+Defined in: [types/ViewMode.ts:3](https://github.com/jcook3701/ClubPoker/blob/12cb2bc63eafa0b05c75059627365b9d3f9284a5/src/types/ViewMode.ts#L3)

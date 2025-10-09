@@ -1,7 +1,9 @@
 ---
 title: FiltersState
+nav_order: 6
+parent: types
 ---
-[**ClubPoker**](../../README.md)
+[**ClubPoker**](../../..)
 
 ***
 
@@ -9,4 +11,4 @@ title: FiltersState
 
 > **FiltersState** = `Record`\<`string`, [`FilterState`](FilterState.md)\>
 
-Defined in: [types/filter.ts:6](https://github.com/jcook3701/ClubPoker/blob/dcb8d48db34f662502d0fb9788282480a8689eed/src/types/filter.ts#L6)
+Defined in: [types/filter.ts:6](https://github.com/jcook3701/ClubPoker/blob/12cb2bc63eafa0b05c75059627365b9d3f9284a5/src/types/filter.ts#L6)

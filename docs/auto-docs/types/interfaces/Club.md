@@ -1,13 +1,15 @@
 ---
 title: Club
+nav_order: 8
+parent: types
 ---
-[**ClubPoker**](../../README.md)
+[**ClubPoker**](../../..)
 
 ***
 
 # Interface: Club
 
-Defined in: [types/settings.ts:29](https://github.com/jcook3701/ClubPoker/blob/dcb8d48db34f662502d0fb9788282480a8689eed/src/types/settings.ts#L29)
+Defined in: [types/settings.ts:29](https://github.com/jcook3701/ClubPoker/blob/12cb2bc63eafa0b05c75059627365b9d3f9284a5/src/types/settings.ts#L29)
 
 ## Properties
 
@@ -15,7 +17,7 @@ Defined in: [types/settings.ts:29](https://github.com/jcook3701/ClubPoker/blob/d
 
 > **label**: `string`
 
-Defined in: [types/settings.ts:31](https://github.com/jcook3701/ClubPoker/blob/dcb8d48db34f662502d0fb9788282480a8689eed/src/types/settings.ts#L31)
+Defined in: [types/settings.ts:31](https://github.com/jcook3701/ClubPoker/blob/12cb2bc63eafa0b05c75059627365b9d3f9284a5/src/types/settings.ts#L31)
 
 ***
 
@@ -23,4 +25,4 @@ Defined in: [types/settings.ts:31](https://github.com/jcook3701/ClubPoker/blob/d
 
 > **value**: `string`
 
-Defined in: [types/settings.ts:30](https://github.com/jcook3701/ClubPoker/blob/dcb8d48db34f662502d0fb9788282480a8689eed/src/types/settings.ts#L30)
+Defined in: [types/settings.ts:30](https://github.com/jcook3701/ClubPoker/blob/12cb2bc63eafa0b05c75059627365b9d3f9284a5/src/types/settings.ts#L30)

@@ -1,7 +1,9 @@
 ---
 title: formatWarningMessage
+nav_order: 6
+parent: types
 ---
-[**ClubPoker**](../../README.md)
+[**ClubPoker**](../../..)
 
 ***
 
@@ -9,7 +11,7 @@ title: formatWarningMessage
 
 > **formatWarningMessage**(`warning`): `string`
 
-Defined in: [types/warnings.ts:25](https://github.com/jcook3701/ClubPoker/blob/dcb8d48db34f662502d0fb9788282480a8689eed/src/types/warnings.ts#L25)
+Defined in: [types/warnings.ts:25](https://github.com/jcook3701/ClubPoker/blob/12cb2bc63eafa0b05c75059627365b9d3f9284a5/src/types/warnings.ts#L25)
 
 ## Parameters
 

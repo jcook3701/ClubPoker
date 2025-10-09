@@ -1,7 +1,9 @@
 ---
-title: README
+title: api
+nav_order: 3
+parent: auto-docs
 ---
-[**ClubPoker**](../README.md)
+[**ClubPoker**](../..)
 
 ***
 

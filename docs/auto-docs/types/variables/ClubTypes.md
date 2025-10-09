@@ -1,7 +1,9 @@
 ---
 title: ClubTypes
+nav_order: 5
+parent: types
 ---
-[**ClubPoker**](../../README.md)
+[**ClubPoker**](../../..)
 
 ***
 
@@ -9,7 +11,7 @@ title: ClubTypes
 
 > `const` **ClubTypes**: `object`
 
-Defined in: [types/settings.ts:20](https://github.com/jcook3701/ClubPoker/blob/dcb8d48db34f662502d0fb9788282480a8689eed/src/types/settings.ts#L20)
+Defined in: [types/settings.ts:20](https://github.com/jcook3701/ClubPoker/blob/12cb2bc63eafa0b05c75059627365b9d3f9284a5/src/types/settings.ts#L20)
 
 ## Type Declaration
 
