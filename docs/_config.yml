@@ -2,7 +2,7 @@
 title: ClubPoker
 description: ClubPoker code documentation
 remote_theme: pmarsceill/just-the-docs
-google_analytics: G-C7PWLWSHB9
+ga_tracking: "G-C7PWLWSHB9"
 
 plugins:
   - jekyll-seo-tag

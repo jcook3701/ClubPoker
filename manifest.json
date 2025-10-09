@@ -3,7 +3,7 @@
   "name": "ClubPoker",
   "description": "This is a Chrome extension for clubwpt.com.  Offers the ability to modify page timezone and save tournaments to Google Calendar.",
   "version": "1.0",
-  "permissions": ["identity", "activeTab", "scripting", "storage"],
+  "permissions": ["identity", "storage"],
   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnc18UA0sDRR3OqfTZbB9AG9kQy9vPVacmW+Rvx/Yk7oO6Tabumvc5EsyyBVKFCGS6zrOKcDQB6z9ImaQe31DvBGaNx31NaY8mALhQFJAY9RsXNt1IG1FWzO+8V2xDJFSZFgufchwx7k5nWeTZJRN7sZ6EluLdpDd8HATPG4yatwFmtrgwMUBFIq9f3zDK9DWZ/qDmayrHln7kyjqbNswgZuHDrqmTV12HLMEmCAbYr3ZWMPW/bAU4HjiXOo6Bb68kIynXnj8w+rpTsw52vgz0XIQYLtJBYb+xLiAVh14KMxV0+nQfJTc8p87QE1mzOxUeP0vSwHc+qVKbnlcovpWzwIDAQAB",
   "oauth2": {
     "client_id": "643848225094-6vo6fa1grd1he703fl6cmcha71l53m81.apps.googleusercontent.com",
