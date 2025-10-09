@@ -1,3 +1,6 @@
+---
+title: googleCalendarService
+---
 [**ClubPoker**](../../README.md)
 
 ***
@@ -6,7 +9,7 @@
 
 > `const` **googleCalendarService**: `object`
 
-Defined in: [services/googleCalendarService.ts:64](https://github.com/jcook3701/ClubPoker/blob/2a58122796b9af788ff085b79c7f9364706df585/src/services/googleCalendarService.ts#L64)
+Defined in: [services/googleCalendarService.ts:64](https://github.com/jcook3701/ClubPoker/blob/dcb8d48db34f662502d0fb9788282480a8689eed/src/services/googleCalendarService.ts#L64)
 
 ## Type Declaration
 

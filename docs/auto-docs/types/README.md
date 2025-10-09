@@ -1,3 +1,6 @@
+---
+title: README
+---
 [**ClubPoker**](../README.md)
 
 ***

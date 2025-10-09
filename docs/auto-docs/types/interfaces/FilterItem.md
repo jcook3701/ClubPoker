@@ -1,10 +1,13 @@
+---
+title: FilterItem
+---
 [**ClubPoker**](../../README.md)
 
 ***
 
 # Interface: FilterItem
 
-Defined in: [types/filter.ts:27](https://github.com/jcook3701/ClubPoker/blob/2a58122796b9af788ff085b79c7f9364706df585/src/types/filter.ts#L27)
+Defined in: [types/filter.ts:27](https://github.com/jcook3701/ClubPoker/blob/dcb8d48db34f662502d0fb9788282480a8689eed/src/types/filter.ts#L27)
 
 ## Properties
 
@@ -12,7 +15,7 @@ Defined in: [types/filter.ts:27](https://github.com/jcook3701/ClubPoker/blob/2a5
 
 > `optional` **defaultChecked**: `boolean`
 
-Defined in: [types/filter.ts:30](https://github.com/jcook3701/ClubPoker/blob/2a58122796b9af788ff085b79c7f9364706df585/src/types/filter.ts#L30)
+Defined in: [types/filter.ts:30](https://github.com/jcook3701/ClubPoker/blob/dcb8d48db34f662502d0fb9788282480a8689eed/src/types/filter.ts#L30)
 
 ***
 
@@ -20,7 +23,7 @@ Defined in: [types/filter.ts:30](https://github.com/jcook3701/ClubPoker/blob/2a5
 
 > **id**: `string`
 
-Defined in: [types/filter.ts:28](https://github.com/jcook3701/ClubPoker/blob/2a58122796b9af788ff085b79c7f9364706df585/src/types/filter.ts#L28)
+Defined in: [types/filter.ts:28](https://github.com/jcook3701/ClubPoker/blob/dcb8d48db34f662502d0fb9788282480a8689eed/src/types/filter.ts#L28)
 
 ***
 
@@ -28,4 +31,4 @@ Defined in: [types/filter.ts:28](https://github.com/jcook3701/ClubPoker/blob/2a5
 
 > **label**: `string`
 
-Defined in: [types/filter.ts:29](https://github.com/jcook3701/ClubPoker/blob/2a58122796b9af788ff085b79c7f9364706df585/src/types/filter.ts#L29)
+Defined in: [types/filter.ts:29](https://github.com/jcook3701/ClubPoker/blob/dcb8d48db34f662502d0fb9788282480a8689eed/src/types/filter.ts#L29)

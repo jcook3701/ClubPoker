@@ -1,3 +1,9 @@
+---
+layout: default
+title: ClubPoker Documentation
+nav_order: 1
+description: "Welcome to the ClubPoker documentation"
+---
 
 # ClubPoker Chrome Extension
 
