@@ -47,9 +47,6 @@ $ npm run build-storybook
 3. Click the "Scrape Tournaments" button.
 4. The tournament information will be scraped and added to your Google Calendar.
 
-## The full TypeDoc generated documentation is available here:
-[View Auto-Docs](auto-docs/)
-
 ## Permissions
 
 - `identity`: Required for OAuth2 authentication with Google Calendar.
