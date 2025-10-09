@@ -1,0 +1,64 @@
+<div class="image-carousel">
+  <button class="prev" onclick="plusSlides(-1)">&#10094;</button>
+  <div class="carousel-images">
+    {% assign slides = site.carousel_images %} {% for image in slides %} {% if
+    image.src %}
+    <img
+      class="slide"
+      src="{{ image.src }}"
+      alt="{{ image.caption }}"
+      style="display: {% if forloop.first %}block{% else %}none{% endif %};"
+    />
+    {% else %}
+    <img
+      class="slide"
+      src="{{ image }}"
+      style="display: {% if forloop.first %}block{% else %}none{% endif %};"
+    />
+    {% endif %} {% endfor %}
+  </div>
+  <button class="next" onclick="plusSlides(1)">&#10095;</button>
+</div>
+
+<script>
+  let slideIndex = 0;
+  function plusSlides(n) {
+    const slides = document.querySelectorAll(".slide");
+    slides[slideIndex].style.display = "none";
+    slideIndex = (slideIndex + n + slides.length) % slides.length;
+    slides[slideIndex].style.display = "block";
+  }
+</script>
+
+<style>
+  .image-carousel {
+    position: relative;
+    max-width: 500px;
+    margin: 1rem auto;
+  }
+
+  .image-carousel img {
+    width: 100%;
+    border-radius: var(--border-radius);
+  }
+
+  .image-carousel button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: var(--color-bg-accent);
+    color: var(--color-text-primary);
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+
+  .image-carousel .prev {
+    left: 0;
+  }
+
+  .image-carousel .next {
+    right: 0;
+  }
+</style>

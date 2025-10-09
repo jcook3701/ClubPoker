@@ -1,5 +1,8 @@
 # ClubPoker Chrome Extension
 
+{% include image-carousel.html %}
+
+## Overview
 This is a Chrome extension intended to interface with clubwpt.com.  It offers the ability to modify timezone for tournaments viewed on [lobby.clubwpt.com](https://lobby.clubwpt.com/) site. And save specified tournaments to a users Google Calendar for easy reminders.  
 
 Unofficial helper tool for  ClubWPT's website. Not affiliated with WPT in any way. This Chrome extension scrapes tournament information from the ClubWPT lobby website modifies live tournament times for user specified timezone and allows the ability to add tournaments to a specified Google Calendar. No longer will you miss the large daily tournaments.  
