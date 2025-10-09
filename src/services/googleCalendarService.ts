@@ -1,6 +1,10 @@
-import { CalendarEvent, CalendarEvents } from "../types/calendar";
-import Timezone from "../types/Timezone";
-import { Tournament, Tournaments } from "../types/tournament";
+import {
+  CalendarEvent,
+  CalendarEvents,
+  Timezone,
+  Tournament,
+  Tournaments,
+} from "@types";
 
 /*
  * Create a Google Calendar event object from lobby.clubwpt.com
@@ -56,3 +60,10 @@ export const tournamentsToCalendarEvents = (
   };
   return calendarEvents;
 };
+
+const googleCalendarService = {
+  tournamentToCalendarEvent,
+  tournamentsToCalendarEvents,
+};
+
+export default googleCalendarService;

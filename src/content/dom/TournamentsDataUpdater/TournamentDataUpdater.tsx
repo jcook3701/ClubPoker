@@ -5,8 +5,7 @@ import {
   DomTournamentGrid,
 } from "../../../constants/tournaments";
 import { sendMessage } from "../../../services/messageService";
-import Timezone from "../../../types/Timezone";
-import { Tournament, Tournaments } from "../../../types/tournament";
+import { Timezone, Tournament, Tournaments } from "@types";
 import { getSelectorModeFromDom } from "../../../utils/scrapers/getTournamentData";
 import getViewMode from "../../../utils/scrapers/getViewMode";
 import {

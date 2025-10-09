@@ -83,6 +83,9 @@ module.exports = {
   ],
   resolve: {
     extensions: [".tsx", ".ts", ".js"],
+    alias: {
+      "@types": path.resolve(__dirname, "src/types"),
+    },
   },
   output: {
     path: path.join(__dirname, "dist/js"),

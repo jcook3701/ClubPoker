@@ -63,3 +63,11 @@ export const onMessage = <T extends keyof MessageMap>(
   // Return unsubscribe so you can remove listener later if needed
   return () => chrome.runtime.onMessage.removeListener(listener);
 };
+
+const messageService = {
+  sendMessage,
+  sendTabMessage,
+  onMessage,
+};
+
+export default messageService;

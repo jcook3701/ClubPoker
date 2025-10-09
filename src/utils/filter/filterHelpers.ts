@@ -1,6 +1,5 @@
 import { WptFilterMap } from "../../constants/filters";
-import { FiltersState } from "../../types/filter";
-import { Tournament, Tournaments } from "../../types/tournament";
+import { FiltersState, Tournament, Tournaments } from "@types";
 
 /*
  * Builds the default FiltersState for the very first run.

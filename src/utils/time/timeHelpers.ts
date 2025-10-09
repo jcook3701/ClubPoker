@@ -1,7 +1,6 @@
 import { parse, parseISO } from "date-fns";
 import { fromZonedTime, toZonedTime, toDate, format } from "date-fns-tz";
-import Timezone from "../../types/Timezone";
-import { Tournaments } from "../../types/tournament";
+import { Timezone, Tournaments } from "@types";
 import { DateTime } from "luxon";
 
 /*

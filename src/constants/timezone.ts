@@ -1,4 +1,4 @@
-import Timezone from "../types/Timezone";
+import { Timezone } from "@types";
 
 /*
  * lobby.clubwpt.com default timezone

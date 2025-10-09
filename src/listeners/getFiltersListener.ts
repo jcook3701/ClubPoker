@@ -4,7 +4,7 @@ import { ResponseMap } from "../constants/responses";
 import { WarningCodeMap } from "../constants/warnings";
 import { onMessage, sendMessage } from "../services/messageService";
 import { getSyncStorageItem } from "../services/storageService";
-import { FiltersState } from "../types/filter";
+import { FiltersState } from "@types";
 import { buildDefaultFilters } from "../utils/filter/filterHelpers";
 import { createWarning } from "../utils/messages/warnings";
 

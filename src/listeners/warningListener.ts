@@ -1,7 +1,7 @@
 import { MessageTypes } from "../constants/messages";
 import { ResponseMap } from "../constants/responses";
 import { onMessage } from "../services/messageService";
-import { formatWarningMessage } from "../types/warnings";
+import { formatWarningMessage } from "@types";
 
 /*
  * Handles warning messages

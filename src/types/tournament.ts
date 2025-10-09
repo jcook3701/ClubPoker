@@ -1,5 +1,4 @@
-import Timezone from "./Timezone";
-import ViewMode from "./ViewMode";
+import { Timezone, ViewMode } from "@types";
 
 export interface Tournaments {
   timeZone: Timezone;

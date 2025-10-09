@@ -3,7 +3,7 @@ import { MessageTypes } from "../constants/messages";
 import { ResponseMap } from "../constants/responses";
 import { onMessage } from "../services/messageService";
 import { getSyncStorageItem } from "../services/storageService";
-import { Calendar } from "../types/calendar";
+import { Calendar } from "@types";
 
 /*
  * Returns Calendar object from chrome.sync storage.

@@ -6,7 +6,7 @@ import { CalendarProvider } from "../../context/GoogleCalendarContext";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { sendMessage } from "../../services/messageService";
 import { MessageTypes } from "../../constants/messages";
-import { AppSettings } from "../../types/settings";
+import { AppSettings } from "@types";
 import { DARK_THEME, LIGHT_THEME } from "../../constants/theme";
 
 // Create a new div for mounting React

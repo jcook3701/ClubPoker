@@ -1,4 +1,4 @@
-import { Filter, FilterState } from "../types/filter";
+import { Filter, FilterState } from "@types";
 import styles from "../components/filters/Filters.module.scss";
 import { FILTER_KEYS } from "../config/chrome";
 

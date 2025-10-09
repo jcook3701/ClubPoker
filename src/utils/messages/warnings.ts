@@ -1,5 +1,5 @@
 import { MessageTypes } from "../../constants/messages";
-import { WarningCode, WarningMessage } from "../../types/warnings";
+import { WarningCode, WarningMessage } from "@types";
 
 /**
  * Returns a properly formatted WarningMessage object.

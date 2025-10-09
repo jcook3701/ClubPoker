@@ -5,7 +5,7 @@ import { DEFAULT_SETTINGS } from "../constants/settings";
 import { WarningCodeMap } from "../constants/warnings";
 import { onMessage, sendMessage } from "../services/messageService";
 import { getSyncStorageItem } from "../services/storageService";
-import { AppSettings } from "../types/settings";
+import { AppSettings } from "@types";
 import { createWarning } from "../utils/messages/warnings";
 
 /*

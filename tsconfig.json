@@ -1,5 +1,11 @@
 {
   "compilerOptions": {
+    "baseUrl": "src",
+    "paths": {
+      "@types": ["types"],
+      "@services": ["services"],
+      "@api": ["api"]
+    },
     "target": "ES6",
     "module": "esnext",
     "lib": ["dom", "es6", "es2022"],

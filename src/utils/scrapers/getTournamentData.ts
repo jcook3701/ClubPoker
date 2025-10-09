@@ -4,8 +4,7 @@ import {
   DomTournamentGrid,
   DomViewMode,
 } from "../../constants/tournaments";
-import Timezone from "../../types/Timezone";
-import { Tournament, Tournaments } from "../../types/tournament";
+import { Timezone, Tournament, Tournaments } from "@types";
 import { toUtcIso } from "../time/timeHelpers";
 import getViewMode from "./getViewMode";
 

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Box, Typography } from "@mui/material";
 import Filter from "./Filter/Filter";
 import { WptFilterMap } from "../../constants/filters";
-import { FiltersState } from "../../types/filter";
+import { FiltersState } from "@types";
 import styles from "./Filters.module.scss";
 import { sendMessage } from "../../services/messageService";
 import { MessageTypes } from "../../constants/messages";

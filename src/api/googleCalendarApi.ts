@@ -1,4 +1,4 @@
-import { Calendar, CalendarEvent } from "../types/calendar";
+import { Calendar, CalendarEvent } from "@types";
 import { SYNC_STORAGE_KEYS } from "../config/chrome";
 
 /**
@@ -99,3 +99,13 @@ export const fetchCalendarEvents = async (
   const data = await res.json();
   return data.items as CalendarEvent[];
 };
+
+const googleCalendarApi = {
+  getRedirectUri,
+  getToken,
+  createEvent,
+  listCalendars,
+  fetchCalendarEvents,
+};
+
+export default googleCalendarApi;

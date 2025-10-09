@@ -4,7 +4,7 @@ import { DEFAULT_TIMEZONE } from "../../constants/timezone";
 import { DomToggleView, DomTournamentGrid } from "../../constants/tournaments";
 import { sendMessage } from "../../services/messageService";
 import { getLocalStorageItem } from "../../services/storageService";
-import { Tournaments } from "../../types/tournament";
+import { Tournaments } from "@types";
 import getTournamentsFromDom from "../scrapers/getTournamentData";
 
 /*
