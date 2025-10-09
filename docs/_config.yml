@@ -14,8 +14,9 @@ kramdown:
   auto_ids: true
 
 logo: /assets/images/icon128.png
-repo_url: "https://github.com/jcook3701/ClubPoker"
 repo_name: ClubPoker
+baseurl: "/ClubPoker"
+repo_url: "https://github.com/jcook3701/ClubPoker"
 nav_enabled: true
 search_enabled: true
 
