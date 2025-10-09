@@ -5,14 +5,14 @@
     image.src %}
     <img
       class="slide"
-      src="{{ image.src }}"
+      src="{{ image.src | relative_url }}"
       alt="{{ image.caption }}"
       style="display: {% if forloop.first %}block{% else %}none{% endif %};"
     />
     {% else %}
     <img
       class="slide"
-      src="{{ image }}"
+      src="{{ image | relative_url }}"
       style="display: {% if forloop.first %}block{% else %}none{% endif %};"
     />
     {% endif %} {% endfor %}
