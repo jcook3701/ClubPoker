@@ -5,6 +5,8 @@ nav_order: 1
 description: "Welcome to the ClubPoker documentation"
 ---
 
+{% include image-carousel.html %}
+
 {% include_relative README.md %}
 
 # ☕ Support Me
