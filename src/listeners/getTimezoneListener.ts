@@ -5,7 +5,7 @@ import { DEFAULT_TIMEZONE } from "../constants/timezone";
 import { WarningCodeMap } from "../constants/warnings";
 import { onMessage, sendMessage } from "../services/messageService";
 import { getSyncStorageItem } from "../services/storageService";
-import Timezone from "../types/Timezone";
+import { Timezone } from "@types";
 import { createWarning } from "../utils/messages/warnings";
 
 /*

@@ -4,7 +4,7 @@ import Header from "../header/Header";
 
 import WindowSelector from "../window-selector/WindowSelector";
 import Settings from "../settings/Settings";
-import type { AppSettings } from "../../types/settings";
+import type { AppSettings } from "@types";
 
 type PopupProps = {
   settings?: AppSettings;

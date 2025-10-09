@@ -4,7 +4,7 @@ import { ResponseMap } from "../constants/responses";
 import { WarningCodeMap } from "../constants/warnings";
 import { onMessage, sendMessage } from "../services/messageService";
 import { getLocalStorageItem } from "../services/storageService";
-import { CalendarEvents } from "../types/calendar";
+import { CalendarEvents } from "@types";
 import { createWarning } from "../utils/messages/warnings";
 
 /*

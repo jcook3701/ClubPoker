@@ -1,3 +1,4 @@
+
 # ClubPoker Chrome Extension
 
 This is a Chrome extension intended to interface with clubwpt.com.  Offers the ability to modify timezone for tournaments viewed on main site. And save specified tournaments to a users Google Calendar for easy reminders.  
@@ -39,6 +40,9 @@ $ npm run build-storybook
 2. Click on the extension icon to open the popup.
 3. Click the "Scrape Tournaments" button.
 4. The tournament information will be scraped and added to your Google Calendar.
+
+## The full TypeDoc generated documentation is available here:
+[View Auto-Docs](auto-docs/)
 
 ## Permissions
 

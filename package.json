@@ -12,7 +12,8 @@
     "lint-fix": "eslint --fix 'src/**/*.{js,jsx,ts,tsx,json}'&& stylelint 'src/**/*.{css,scss}'",
     "lint-check": "eslint 'src/**/*.{js,jsx,ts,tsx,json}'&& stylelint 'src/**/*.{css,scss}'",
     "pretty": "prettier --write \"./**/*.{js,jsx,mjs,cjs,ts,tsx,json}\"",
-    "pretty-check": "prettier --check \"./**/*.{js,jsx,mjs,cjs,ts,tsx,json}\""
+    "pretty-check": "prettier --check \"./**/*.{js,jsx,mjs,cjs,ts,tsx,json}\"",
+    "docs": "typedoc && ts-node scripts/inject-front-matter.ts"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -37,6 +38,7 @@
     "@storybook/react": "^8.4.7",
     "@storybook/react-webpack5": "^8.4.7",
     "@types/chrome": "^0.0.292",
+    "@types/node": "^24.7.0",
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",
     "@types/react-select": "^5.0.0",
@@ -60,7 +62,9 @@
     "stylelint-config-standard": "^36.0.1",
     "ts-loader": "^9.5.1",
     "ts-node": "^10.9.2",
-    "typescript": "^5.7.3",
+    "typedoc": "^0.28.13",
+    "typedoc-plugin-markdown": "^4.9.0",
+    "typescript": "^5.9.3",
     "webpack": "^5.97.1",
     "webpack-cli": "^6.0.1"
   }

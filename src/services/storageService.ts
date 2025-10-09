@@ -152,3 +152,20 @@ export async function removeSessionStorageItem(key: string): Promise<void> {
     }
   });
 }
+
+const storageService = {
+  /* sync Storage */
+  setSyncStorageItem,
+  getSyncStorageItem,
+  removeSyncStorageItem,
+  /* local storage */
+  setLocalStorageItem,
+  getLocalStorageItem,
+  removeLocalStorageItem,
+  /* session storage */
+  setSessionStorageItem,
+  getSessionStorageItem,
+  removeSessionStorageItem,
+};
+
+export default storageService;

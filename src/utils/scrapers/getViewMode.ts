@@ -4,7 +4,7 @@ import {
   DomToggleSwitch,
   DomToggleView,
 } from "../../constants/tournaments";
-import ViewMode from "../../types/ViewMode";
+import { ViewMode } from "@types";
 
 /*
  * Used to tell if lobby.clubwpt.com dom is in row or column mode.

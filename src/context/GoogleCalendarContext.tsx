@@ -5,7 +5,7 @@ import React, {
   useEffect,
   ReactNode,
 } from "react";
-import { Calendar, CalendarEvent, CalendarEvents } from "../types/calendar";
+import { Calendar, CalendarEvent, CalendarEvents } from "@types";
 import { sendMessage } from "../services/messageService";
 import { MessageTypes } from "../constants/messages";
 import { normalizeDateTime } from "../utils/time/timeHelpers";

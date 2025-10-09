@@ -1,10 +1,13 @@
-import { Calendar, CalendarEvents } from "../types/calendar";
-import { ErrorMessage } from "../types/errors";
-import { FiltersState } from "../types/filter";
-import { AppSettings } from "../types/settings";
-import Timezone from "../types/Timezone";
-import { Tournaments } from "../types/tournament";
-import { WarningMessage } from "../types/warnings";
+import {
+  AppSettings,
+  Calendar,
+  CalendarEvents,
+  ErrorMessage,
+  FiltersState,
+  Timezone,
+  Tournaments,
+  WarningMessage,
+} from "@types";
 
 /*
  * Central list of message type names

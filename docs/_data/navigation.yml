@@ -1,0 +1,13 @@
+- title: ClubPoker Docs
+  url: /
+
+- title: Auto Docs
+  children:
+    - title: API
+      url: /auto-docs/api/
+
+    - title: Types
+      url: /auto-docs/types/
+
+    - title: Services
+      url: /auto-docs/services/

@@ -5,7 +5,7 @@ import { WarningCodeMap } from "../constants/warnings";
 import { clubwptDomUpdater } from "../content/dom/TournamentsDataUpdater/TournamentDataUpdater";
 import { onMessage, sendMessage } from "../services/messageService";
 import { getLocalStorageItem } from "../services/storageService";
-import { Tournaments } from "../types/tournament";
+import { Tournaments } from "@types";
 import { createWarning } from "../utils/messages/warnings";
 
 /*

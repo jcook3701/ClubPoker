@@ -1,9 +1,12 @@
-import Timezone from "../types/Timezone";
+import {
+  AppSettings,
+  Calendar,
+  CalendarEvents,
+  FiltersState,
+  Timezone,
+  Tournaments,
+} from "@types";
 import { MessageTypes } from "./messages";
-import { Tournaments } from "../types/tournament";
-import { Calendar, CalendarEvents } from "../types/calendar";
-import { AppSettings } from "../types/settings";
-import { FiltersState } from "../types/filter";
 
 /* Map each request type → response payload shape */
 export type ResponseMap = {

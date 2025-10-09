@@ -2,7 +2,7 @@ import React from "react";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import styles from "./Filter.module.scss";
 import { Box, Checkbox, Typography } from "@mui/material";
-import { FilterState, FilterItem } from "../../../types/filter";
+import { FilterState, FilterItem } from "@types";
 
 type FilterProps = {
   title: string;

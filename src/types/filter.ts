@@ -1,14 +1,14 @@
-import { Tournament } from "./tournament";
-
-/*
- * Filter state of individual filter
- */
-export type FilterState = Record<string, boolean>;
+import { Tournament } from "@types";
 
 /*
  * Filter state of all filters
  */
 export type FiltersState = Record<string, FilterState>;
+
+/*
+ * Filter state of individual filter
+ */
+export type FilterState = Record<string, boolean>;
 
 /*
  *

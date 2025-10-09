@@ -1,4 +1,4 @@
-import { WarningCode } from "../types/warnings";
+import { WarningCode } from "@types";
 import { MessageTypes } from "./messages";
 
 /*

@@ -17,7 +17,7 @@ import {
   themeToBool,
   ClubTypeValues,
   Club,
-} from "../../types/settings";
+} from "@types";
 import SaveButton from "../buttons/SaveButton";
 import BackArrowIconButton from "../buttons/icon-buttons/BackArrowIconButton";
 

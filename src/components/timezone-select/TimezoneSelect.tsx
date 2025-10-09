@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Autocomplete, TextField, Typography, Box } from "@mui/material";
 import styles from "./TimezoneSelect.module.scss";
-import Timezone from "../../types/Timezone";
+import { Timezone } from "@types";
 import { sendMessage } from "../../services/messageService";
 import { MessageTypes } from "../../constants/messages";
 import SaveButton from "../buttons/SaveButton";
