@@ -2,7 +2,6 @@
 title: ClubPoker
 description: ClubPoker code documentation
 remote_theme: pmarsceill/just-the-docs
-
 google_analytics: G-C7PWLWSHB9
 
 plugins:
@@ -18,7 +17,15 @@ logo: /assets/images/icon128.png
 repo_url: "https://github.com/jcook3701/ClubPoker"
 repo_name: ClubPoker
 nav_enabled: true
-# search_enabled: true
+search_enabled: true
+
+# Aux links for the upper right navigation
+aux_links:
+  "ClubPoker on GitHub":
+    - "//github.com/jcook3701/ClubPoker"
+
+# Makes Aux links open in a new tab. Default is false
+aux_links_new_tab: false
 
 # Exclude files/folders from Jekyll processing
 exclude:
