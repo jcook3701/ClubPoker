@@ -1,6 +1,6 @@
 # ClubPoker Chrome Extension
 
-[![License](https://img.shields.io/github/license/{{ site.github_username }}{{ site.baseurl }})](LICENSE.md)
+[![License](https://img.shields.io/github/license/jcook3701/ClubPoker)](LICENSE.md)
 
 ## Overview
 This is a Chrome extension intended to interface with clubwpt.com.  It offers the ability to modify timezone for tournaments viewed on [lobby.clubwpt.com](https://lobby.clubwpt.com/) site. And save specified tournaments to a users Google Calendar for easy reminders.  
