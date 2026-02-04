@@ -1,7 +1,9 @@
 {
   "name": "ClubPoker",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "index.js",
+  "license": "AGPL-3.0-or-later",
+  "author": "Jared Cook",
   "scripts": {
     "clean": "rm -rf dist",
     "build": "webpack --config webpack.config.js",

@@ -1,8 +1,108 @@
+# ClubPoker Documentation
+---
 
 title: ClubPoker
+author: "Jared Cook"
+version: "0.1.0"
+license: "GPL-3.0-or-later"
+copyright: "Copyright (c) 2025-2026, Jared Cook"
+timezone: "America/Los_Angeles"
 description: ClubPoker code documentation
 remote_theme: pmarsceill/just-the-docs
 ga_tracking: "G-C7PWLWSHB9"
+
+repo_url: "https://github.com/jcook3701/ClubPoker"
+repo_blob: "https://github.com/jcook3701/ClubPoker/blob/main"
+github_io_url: "https://jcook3701.github.io/ClubPoker"
+repository: "jcook3701/ClubPoker"
+
+# Specifies the site's subpath for correct URL generation
+baseurl: "/ClubPoker"
+
+carousel_images:
+  - /assets/images/club-poker-screenshots/large-format/club-poker-calendar-page.jpg
+  - /assets/images/club-poker-screenshots/large-format/club-poker-filters-page.jpg
+  - /assets/images/club-poker-screenshots/large-format/club-poker-timezone-page.jpg
+
+# Set a path/url to a logo that will be displayed instead of the title
+logo: /assets/images/icon128.png
+
+# Enable or disable the site search
+search_enabled: true
+
+# For copy button on code
+enable_copy_code_button: true
+
+# By default, consuming the theme as a gem leaves mermaid disabled; it is opt-in
+mermaid:
+  # Version of mermaid library
+  # Pick an available version from https://cdn.jsdelivr.net/npm/mermaid/
+  version: "9.1.6"
+  # Put any additional configuration, such as setting the theme, in _includes/mermaid_config.js
+  # See also docs/ui-components/code
+  # To load mermaid from a local library, also use the `path` key to specify the location of the library; e.g.
+  # for (v10+):
+  # path: "/assets/js/mermaid.esm.min.mjs"
+  # for (<v10):
+  # path: "/assets/js/mermaid.min.js"
+  # Note: copy both `mermaid.esm.min.mjs` (v10+) or `mermaid.min.js` (<v10) and the associated `.map` file from the specified version of `mermaid/dist` to `/assets/js/`.
+
+# Enable or disable heading anchors
+heading_anchors: true
+
+# Aux links for the upper right navigation
+aux_links:
+  "ClubPoker on GitHub":
+    - "//github.com/jcook3701/ClubPoker"
+
+# Makes Aux links open in a new tab. Default is false
+aux_links_new_tab: false
+
+# Enable or disable the side/mobile menu globally
+# Nav menu can also be selectively enabled or disabled using page variables or the minimal layout
+nav_enabled: true
+
+# External navigation links
+nav_external_links:
+  - title: ClubPoker on GitHub
+    url: https://github.com/jcook3701/ClubPoker
+
+# Back to top link
+back_to_top: true
+back_to_top_text: "Back to top"
+
+footer_content: 'Copyright &copy; 2017-2020 jcook3701. Distributed by an <a href="https://github.com/jcook3701/ClubPoker/blob/master/LICENSE">MIT license.</a> <a href=""></a>'
+
+# Footer last edited timestamp
+last_edit_timestamp: true # show or hide edit time - page must have `last_modified_date` defined in the frontmatter
+last_edit_time_format: "%b %e %Y at %I:%M %p" # uses ruby's time format: https://ruby-doc.org/stdlib-2.7.0/libdoc/time/rdoc/Time.html
+
+# Footer "Edit this page on GitHub" link text
+gh_edit_link: true # show or hide edit this page link
+gh_edit_link_text: "Edit this page on GitHub"
+gh_edit_repository: "https://github.com/jcook3701/ClubPoker" # the github URL for your repo
+gh_edit_branch: "master" # the branch that your docs is served from
+gh_edit_source: docs # the source that your files originate from
+gh_edit_view_mode: "tree" # "tree" or "edit" if you want the user to jump into the editor immediately
+
+# Color scheme currently only supports "dark", "light"/nil (default), or a custom scheme that you define
+
+callouts_level: quiet # or loud
+callouts:
+  highlight:
+    color: yellow
+  important:
+    title: Important
+    color: blue
+  new:
+    title: New
+    color: green
+  note:
+    title: Note
+    color: purple
+  warning:
+    title: Warning
+    color: red
 
 plugins:
   - jekyll-seo-tag
@@ -12,26 +112,6 @@ plugins:
 
 kramdown:
   auto_ids: true
-
-logo: /assets/images/icon128.png
-repo_name: ClubPoker
-baseurl: "/ClubPoker"
-repo_url: "https://github.com/jcook3701/ClubPoker"
-nav_enabled: true
-search_enabled: true
-
-# Aux links for the upper right navigation
-aux_links:
-  "ClubPoker on GitHub":
-    - "//github.com/jcook3701/ClubPoker"
-
-carousel_images:
-  - /assets/images/club-poker-screenshots/large-format/club-poker-calendar-page.jpg
-  - /assets/images/club-poker-screenshots/large-format/club-poker-filters-page.jpg
-  - /assets/images/club-poker-screenshots/large-format/club-poker-timezone-page.jpg
-
-# Makes Aux links open in a new tab. Default is false
-aux_links_new_tab: false
 
 # Exclude files/folders from Jekyll processing
 exclude:

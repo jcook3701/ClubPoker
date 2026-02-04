@@ -1,11 +1,83 @@
+# .gitignore for ClubPoker Chrome Extension
+#
+# SPDX-FileCopyrightText: Copyright (c) 2025-2026, Jared Cook
+# SPDX-License-Identifier: GPL-3.0-or-later
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <www.gnu.org>.
 
+# =========================================
+# Typescript project ignores #
+# =========================================
+ClubPoker.zip
+dist/
+node_modules/
+# =========================================
+## Default Ignores #
+# =========================================
+#
+# =========================================
+# text editor ignores #
+# =========================================
+.vscode/
+# =========================================
+# Emacs Tmp Extensions #
+# =========================================
+*.tmp
+*.tmp.*
+*.rpmnew
+.#*
+# =========================================
+# Backup Extensions #
+# =========================================
 *.bak
 *.old
 *.save
-*.tmp
-*.tmp.*
-
-ClubPoker.zip
-
-dist/
-node_modules/
+# =========================================
+# Compiled source Extensions #
+# =========================================
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+# =========================================
+# Package Extensions #
+# =========================================
+# it's better to unpack these files and commit the raw source
+# git has its own built in compression methods
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+# =========================================
+# Logs and databases Extensions #
+# =========================================
+*.log
+*.sql
+*.sqlite
+# =========================================
+# OS generated files #
+# =========================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
