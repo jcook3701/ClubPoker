@@ -1,9 +1,19 @@
 # ClubPoker Chrome Extension
 
+[![License](https://img.shields.io/github/license/{{ site.github_username }}{{ site.baseurl }})](LICENSE.md)
+
 ## Overview
 This is a Chrome extension intended to interface with clubwpt.com.  It offers the ability to modify timezone for tournaments viewed on [lobby.clubwpt.com](https://lobby.clubwpt.com/) site. And save specified tournaments to a users Google Calendar for easy reminders.  
 
 Unofficial helper tool for  ClubWPT's website. Not affiliated with WPT in any way. This Chrome extension scrapes tournament information from the ClubWPT lobby website modifies live tournament times for user specified timezone and allows the ability to add tournaments to a specified Google Calendar. No longer will you miss the large daily tournaments.  
+
+***
+
+**CI/CD Check List:**
+
+* ![lint-check](https://github.com/jcook3701/ClubPoker/actions/workflows/lint.yml/badge.svg)
+
+***
 
 ## Chrome Store Installation
 Navigate to the Chrome Web Store and [download](https://chromewebstore.google.com/detail/clubpoker/bnnhlonpnkdahlgdihflafccalglcgej) for quick installation into Google Chrome.  
@@ -92,3 +102,12 @@ $ npm run storybook
 ### Helpful Links:
 [Icons](https://mui.com/material-ui/material-icons/?query=ques)  
 [Poker Icons](https://www.freepik.com/icons/poker)  
+
+## License
+
+{{ site.copyright }}  
+
+This project is licensed under the **{{ site.license }} License**.  
+See the [LICENSE]({{ site.repo_blob }}/LICENSE.md) file for the full license text.  
+
+SPDX-License-Identifier: {{ site.license }}
