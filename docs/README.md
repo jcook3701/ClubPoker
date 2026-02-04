@@ -5,6 +5,9 @@ This is a Chrome extension intended to interface with clubwpt.com.  It offers th
 
 Unofficial helper tool for  ClubWPT's website. Not affiliated with WPT in any way. This Chrome extension scrapes tournament information from the ClubWPT lobby website modifies live tournament times for user specified timezone and allows the ability to add tournaments to a specified Google Calendar. No longer will you miss the large daily tournaments.  
 
+## Chrome Store Installation
+Navigate to the Chrome Web Store and [download](https://chromewebstore.google.com/detail/clubpoker/bnnhlonpnkdahlgdihflafccalglcgej) for quick installation into Google Chrome.  
+
 ## Source Code Installation
 
 1. Open Google Chrome and navigate to `chrome://extensions/`.  
