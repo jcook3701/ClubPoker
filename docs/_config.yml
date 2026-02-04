@@ -2,13 +2,22 @@
 ---
 
 title: ClubPoker
+author: "Jared Cook"
+version: "0.1.0"
+license: "GPL-3.0-or-later"
+copyright: "Copyright (c) 2025-2026, Jared Cook"
+timezone: "America/Los_Angeles"
 description: ClubPoker code documentation
 remote_theme: pmarsceill/just-the-docs
 ga_tracking: "G-C7PWLWSHB9"
 
-repo_name: ClubPoker
-baseurl: "/ClubPoker"
 repo_url: "https://github.com/jcook3701/ClubPoker"
+repo_blob: "https://github.com/jcook3701/ClubPoker/blob/main"
+github_io_url: "https://jcook3701.github.io/ClubPoker"
+repository: "jcook3701/ClubPoker"
+
+# Specifies the site's subpath for correct URL generation
+baseurl: "/ClubPoker"
 
 carousel_images:
   - /assets/images/club-poker-screenshots/large-format/club-poker-calendar-page.jpg
