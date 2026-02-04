@@ -105,9 +105,9 @@ $ npm run storybook
 
 ## License
 
-{{ site.copyright }}  
+Copyright (c) 2025-2026, Jared Cook
 
-This project is licensed under the **{{ site.license }} License**.  
-See the [LICENSE]({{ site.repo_blob }}/LICENSE.md) file for the full license text.  
+This project is licensed under the **GPL-3.0-or-later License**.  
+See the [LICENSE](/ClubPoker/LICENSE.md) file for the full license text.  
 
-SPDX-License-Identifier: {{ site.license }}
+SPDX-License-Identifier: GPL-3.0-or-later
