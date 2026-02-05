@@ -93,9 +93,9 @@ Documentation is able to be update automatically via typedoc and scripts/inject-
 
 ### Permissions
 
-* `identity`: Required for OAuth2 authentication with Google Calendar.
-* `activeTab`: Required to execute the content script on the active tab.
-* `scripting`: Required to inject the content script.
+* **`identity`**: Required for OAuth2 authentication with Google Calendar.
+* **`activeTab`**: Required to execute the content script on the active tab.
+* **`scripting`**: Required to inject the content script.
 
 ## Design
 
