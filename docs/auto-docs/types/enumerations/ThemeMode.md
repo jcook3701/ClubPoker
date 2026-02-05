@@ -1,15 +1,6 @@
----
-title: ThemeMode
-nav_order: 5
-parent: types
----
-[**ClubPoker**](../../..)
-
-***
-
 # Enumeration: ThemeMode
 
-Defined in: [types/settings.ts:12](https://github.com/jcook3701/ClubPoker/blob/12cb2bc63eafa0b05c75059627365b9d3f9284a5/src/types/settings.ts#L12)
+Defined in: [types/settings.ts:32](https://github.com/jcook3701/ClubPoker/blob/4c5cbe98f5a9cdd2499f92e91b30048583a495e3/src/types/settings.ts#L32)
 
 ## Enumeration Members
 
@@ -17,7 +8,7 @@ Defined in: [types/settings.ts:12](https://github.com/jcook3701/ClubPoker/blob/1
 
 > **darkMode**: `1`
 
-Defined in: [types/settings.ts:14](https://github.com/jcook3701/ClubPoker/blob/12cb2bc63eafa0b05c75059627365b9d3f9284a5/src/types/settings.ts#L14)
+Defined in: [types/settings.ts:34](https://github.com/jcook3701/ClubPoker/blob/4c5cbe98f5a9cdd2499f92e91b30048583a495e3/src/types/settings.ts#L34)
 
 ***
 
@@ -25,4 +16,4 @@ Defined in: [types/settings.ts:14](https://github.com/jcook3701/ClubPoker/blob/1
 
 > **lightMode**: `0`
 
-Defined in: [types/settings.ts:13](https://github.com/jcook3701/ClubPoker/blob/12cb2bc63eafa0b05c75059627365b9d3f9284a5/src/types/settings.ts#L13)
+Defined in: [types/settings.ts:33](https://github.com/jcook3701/ClubPoker/blob/4c5cbe98f5a9cdd2499f92e91b30048583a495e3/src/types/settings.ts#L33)

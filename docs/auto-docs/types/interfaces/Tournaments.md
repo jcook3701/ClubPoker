@@ -1,15 +1,6 @@
----
-title: Tournaments
-nav_order: 14
-parent: types
----
-[**ClubPoker**](../../..)
-
-***
-
 # Interface: Tournaments
 
-Defined in: [types/tournament.ts:3](https://github.com/jcook3701/ClubPoker/blob/12cb2bc63eafa0b05c75059627365b9d3f9284a5/src/types/tournament.ts#L3)
+Defined in: [types/tournament.ts:23](https://github.com/jcook3701/ClubPoker/blob/4c5cbe98f5a9cdd2499f92e91b30048583a495e3/src/types/tournament.ts#L23)
 
 ## Properties
 
@@ -17,7 +8,7 @@ Defined in: [types/tournament.ts:3](https://github.com/jcook3701/ClubPoker/blob/
 
 > **domViewMode**: [`ViewMode`](ViewMode.md)
 
-Defined in: [types/tournament.ts:6](https://github.com/jcook3701/ClubPoker/blob/12cb2bc63eafa0b05c75059627365b9d3f9284a5/src/types/tournament.ts#L6)
+Defined in: [types/tournament.ts:26](https://github.com/jcook3701/ClubPoker/blob/4c5cbe98f5a9cdd2499f92e91b30048583a495e3/src/types/tournament.ts#L26)
 
 ***
 
@@ -25,7 +16,7 @@ Defined in: [types/tournament.ts:6](https://github.com/jcook3701/ClubPoker/blob/
 
 > **timestamp**: `Date`
 
-Defined in: [types/tournament.ts:7](https://github.com/jcook3701/ClubPoker/blob/12cb2bc63eafa0b05c75059627365b9d3f9284a5/src/types/tournament.ts#L7)
+Defined in: [types/tournament.ts:27](https://github.com/jcook3701/ClubPoker/blob/4c5cbe98f5a9cdd2499f92e91b30048583a495e3/src/types/tournament.ts#L27)
 
 ***
 
@@ -33,7 +24,7 @@ Defined in: [types/tournament.ts:7](https://github.com/jcook3701/ClubPoker/blob/
 
 > **timeZone**: [`Timezone`](Timezone.md)
 
-Defined in: [types/tournament.ts:4](https://github.com/jcook3701/ClubPoker/blob/12cb2bc63eafa0b05c75059627365b9d3f9284a5/src/types/tournament.ts#L4)
+Defined in: [types/tournament.ts:24](https://github.com/jcook3701/ClubPoker/blob/4c5cbe98f5a9cdd2499f92e91b30048583a495e3/src/types/tournament.ts#L24)
 
 ***
 
@@ -41,4 +32,4 @@ Defined in: [types/tournament.ts:4](https://github.com/jcook3701/ClubPoker/blob/
 
 > **tournaments**: [`Tournament`](Tournament.md)[]
 
-Defined in: [types/tournament.ts:5](https://github.com/jcook3701/ClubPoker/blob/12cb2bc63eafa0b05c75059627365b9d3f9284a5/src/types/tournament.ts#L5)
+Defined in: [types/tournament.ts:25](https://github.com/jcook3701/ClubPoker/blob/4c5cbe98f5a9cdd2499f92e91b30048583a495e3/src/types/tournament.ts#L25)

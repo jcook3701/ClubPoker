@@ -18,16 +18,29 @@
  * along with this program.  If not, see <www.gnu.org>.
  */
 
-import React from "react";
-import { Meta, StoryFn } from "@storybook/react/types-6-0";
+import type { Meta, StoryObj } from "@storybook/react";
 import Header from "./Header";
 
-export default {
+const meta = {
   title: "Components/Header",
   component: Header,
-} as Meta;
+  // Industry Standard: Provide global defaults for the component's props
+  args: {
+    title: "ClubWPT Poker",
+    settingsSelected: false,
+    setSettingsSelected: (value: boolean) =>
+      console.log("Toggle settings:", value),
+  },
+} satisfies Meta<typeof Header>;
 
-// const Template: StoryFn = (args) => <Header {...args} />;
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-// export const Default = Template.bind({});
-// Default.args = {};
+// This satisfies the "The file should have at least one story export" error
+export const Default: Story = {};
+
+export const SettingsOpen: Story = {
+  args: {
+    settingsSelected: true,
+  },
+};

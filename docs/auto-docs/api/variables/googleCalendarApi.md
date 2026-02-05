@@ -1,17 +1,8 @@
----
-title: googleCalendarApi
-nav_order: 4
-parent: api
----
-[**ClubPoker**](../../..)
-
-***
-
 # Variable: googleCalendarApi
 
 > `const` **googleCalendarApi**: `object`
 
-Defined in: [api/googleCalendarApi.ts:103](https://github.com/jcook3701/ClubPoker/blob/12cb2bc63eafa0b05c75059627365b9d3f9284a5/src/api/googleCalendarApi.ts#L103)
+Defined in: [api/googleCalendarApi.ts:123](https://github.com/jcook3701/ClubPoker/blob/4c5cbe98f5a9cdd2499f92e91b30048583a495e3/src/api/googleCalendarApi.ts#L123)
 
 ## Type Declaration
 
@@ -37,7 +28,7 @@ Creates an event in the selected calendar.
 
 ### fetchCalendarEvents()
 
-> **fetchCalendarEvents**: (`calendarId`) => `Promise`\<`null` \| [`CalendarEvent`](../../types/interfaces/CalendarEvent.md)[]\>
+> **fetchCalendarEvents**: (`calendarId`) => `Promise`\<[`CalendarEvent`](../../types/interfaces/CalendarEvent.md)[] \| `null`\>
 
 Fetches events from a specific calendar.
 
@@ -49,7 +40,7 @@ Fetches events from a specific calendar.
 
 #### Returns
 
-`Promise`\<`null` \| [`CalendarEvent`](../../types/interfaces/CalendarEvent.md)[]\>
+`Promise`\<[`CalendarEvent`](../../types/interfaces/CalendarEvent.md)[] \| `null`\>
 
 ### getRedirectUri()
 
@@ -63,13 +54,13 @@ Returns the full redirect URI based on extension ID + "oauth2" path.
 
 ### getToken()
 
-> **getToken**: () => `Promise`\<`null` \| `string`\>
+> **getToken**: () => `Promise`\<`string` \| `null`\>
 
 Retrieves a valid Google Calendar OAuth token for the extension.
 
 #### Returns
 
-`Promise`\<`null` \| `string`\>
+`Promise`\<`string` \| `null`\>
 
 ### listCalendars()
 

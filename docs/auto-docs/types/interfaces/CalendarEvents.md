@@ -1,15 +1,6 @@
----
-title: CalendarEvents
-nav_order: 7
-parent: types
----
-[**ClubPoker**](../../..)
-
-***
-
 # Interface: CalendarEvents
 
-Defined in: [types/calendar.ts:1](https://github.com/jcook3701/ClubPoker/blob/12cb2bc63eafa0b05c75059627365b9d3f9284a5/src/types/calendar.ts#L1)
+Defined in: [types/calendar.ts:21](https://github.com/jcook3701/ClubPoker/blob/4c5cbe98f5a9cdd2499f92e91b30048583a495e3/src/types/calendar.ts#L21)
 
 ## Properties
 
@@ -17,7 +8,7 @@ Defined in: [types/calendar.ts:1](https://github.com/jcook3701/ClubPoker/blob/12
 
 > `optional` **calendar**: [`Calendar`](Calendar.md)
 
-Defined in: [types/calendar.ts:2](https://github.com/jcook3701/ClubPoker/blob/12cb2bc63eafa0b05c75059627365b9d3f9284a5/src/types/calendar.ts#L2)
+Defined in: [types/calendar.ts:22](https://github.com/jcook3701/ClubPoker/blob/4c5cbe98f5a9cdd2499f92e91b30048583a495e3/src/types/calendar.ts#L22)
 
 ***
 
@@ -25,7 +16,7 @@ Defined in: [types/calendar.ts:2](https://github.com/jcook3701/ClubPoker/blob/12
 
 > **calendarEvents**: [`CalendarEvent`](CalendarEvent.md)[]
 
-Defined in: [types/calendar.ts:3](https://github.com/jcook3701/ClubPoker/blob/12cb2bc63eafa0b05c75059627365b9d3f9284a5/src/types/calendar.ts#L3)
+Defined in: [types/calendar.ts:23](https://github.com/jcook3701/ClubPoker/blob/4c5cbe98f5a9cdd2499f92e91b30048583a495e3/src/types/calendar.ts#L23)
 
 ***
 
@@ -33,4 +24,4 @@ Defined in: [types/calendar.ts:3](https://github.com/jcook3701/ClubPoker/blob/12
 
 > **timestamp**: `Date`
 
-Defined in: [types/calendar.ts:4](https://github.com/jcook3701/ClubPoker/blob/12cb2bc63eafa0b05c75059627365b9d3f9284a5/src/types/calendar.ts#L4)
+Defined in: [types/calendar.ts:24](https://github.com/jcook3701/ClubPoker/blob/4c5cbe98f5a9cdd2499f92e91b30048583a495e3/src/types/calendar.ts#L24)

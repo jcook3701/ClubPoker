@@ -34,7 +34,7 @@ import saveFiltersListener from "./saveFiltersListener";
 import timezoneChangeListener from "./timezoneChangeListener";
 import errorListener from "./errorListener";
 import warningListener from "./warningListener";
-import settingsChangeListener from "./settingsChangeListener";
+import _settingsChangeListener from "./settingsChangeListener";
 import createEventsListener from "./createEventListener";
 import listCalendarsListener from "./listCalendarsListener";
 import fetchCalendarEventsListener from "./fetchCalendarEventsListener";
@@ -79,7 +79,7 @@ export const registerBackgroundListeners = (): void => {
   saveCalendarEventsListener();
   saveTournamentsListener();
 
-  /* Google Calander API listeners */
+  /* Google Calendar API listeners */
   listCalendarsListener();
   fetchCalendarEventsListener();
   createEventsListener();
