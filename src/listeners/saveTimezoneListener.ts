@@ -28,7 +28,7 @@ import { createWarning } from "../utils/messages/warnings";
 
 /*
  * Saves Timezone object to chrome.sync storage and sends message
- * that timezone change has occured.
+ * that timezone change has occurred.
  */
 const saveTimezoneListener = (): void => {
   const messageType = MessageTypes.SAVE_TIMEZONE;

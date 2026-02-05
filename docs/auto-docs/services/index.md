@@ -1,12 +1,3 @@
----
-title: services
-nav_order: 3
-parent: auto-docs
----
-[**ClubPoker**](../..)
-
-***
-
 # services
 
 ## Variables

@@ -35,7 +35,7 @@ export enum ThemeMode {
 }
 
 /*
- * Map of avaliable poker clubs that this application serves
+ * Map of available poker clubs that this application serves
  */
 export const ClubTypes = {
   clubWpt: "Club_WPT",

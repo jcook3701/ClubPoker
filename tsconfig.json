@@ -3,13 +3,16 @@
     "baseUrl": "src",
     "paths": {
       "@types": ["types"],
+      "@types/*": ["types/*"],
       "@services": ["services"],
-      "@api": ["api"]
+      "@services/*": ["services/*"],
+      "@api": ["api"],
+      "@api/*": ["api/*"]
     },
-    "target": "ES6",
+    "target": "ES2022",
     "module": "esnext",
-    "lib": ["dom", "es6", "es2022"],
-    "moduleResolution": "node",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "moduleResolution": "bundler",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
@@ -21,6 +24,12 @@
     "typeRoots": ["./node_modules/@types", "./src/types"],
     "outDir": "./dist"
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/types/*.d.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/types/*.d.ts",
+    ".storybook/**/*.ts",
+    ".storybook/**/*.tsx"
+  ],
+  "exclude": ["node_modules", "dist", "storybook-static"]
 }

@@ -73,15 +73,17 @@ const updateTournamentStartTimes = (tournamentData: Tournaments): void => {
   const container = document.querySelector(DomTournamentGrid);
   if (!container) return;
   const elements = Array.from(container.querySelectorAll(selector));
-  viewMode.isRow
-    ? rowModifier(elements, tournamentData.tournaments)
-    : colModifier(elements, tournamentData.tournaments);
+  if (viewMode.isRow) {
+    rowModifier(elements, tournamentData.tournaments);
+  } else {
+    colModifier(elements, tournamentData.tournaments);
+  }
 };
 
 /*
  * TODO: Updates lobby.clubwpt.com OFFICIAL TIME section
  */
-const updateOfficalTime = (timezone: Timezone): void => {
+const _updateOfficialTime = (timezone: Timezone): void => {
   const officialTimeElement = document.querySelector(
     "ion-header.time-header p span.heading span:last-child"
   ) as HTMLElement | null;

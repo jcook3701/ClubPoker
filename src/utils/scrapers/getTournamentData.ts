@@ -73,7 +73,7 @@ const colExport = (sourceTimeZone: Timezone, cols: Element[]): Tournament[] => {
 };
 
 /*
- * Collects current selector mode from the loby.clubwpt.com dom.
+ * Collects current selector mode from the lobby.clubwpt.com dom.
  */
 export const getSelectorModeFromDom = (): string => {
   const viewMode = getViewMode();
@@ -81,7 +81,7 @@ export const getSelectorModeFromDom = (): string => {
 };
 
 /*
- * Collects tournament data from the loby.clubwpt.com dom.
+ * Collects tournament data from the lobby.clubwpt.com dom.
  */
 const getTournamentsFromDom = (sourceTimeZone: Timezone): Tournaments => {
   const viewMode = getViewMode();

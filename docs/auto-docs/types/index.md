@@ -1,12 +1,3 @@
----
-title: types
-nav_order: 3
-parent: auto-docs
----
-[**ClubPoker**](../..)
-
-***
-
 # types
 
 ## Enumerations
@@ -36,11 +27,16 @@ parent: auto-docs
 - [ClubType](type-aliases/ClubType.md)
 - [FiltersState](type-aliases/FiltersState.md)
 - [FilterState](type-aliases/FilterState.md)
+- [Message](type-aliases/Message.md)
+- [MessageMap](type-aliases/MessageMap.md)
+- [MessageTypes](type-aliases/MessageTypes.md)
+- [ResponseMap](type-aliases/ResponseMap.md)
 
 ## Variables
 
 - [ClubTypes](variables/ClubTypes.md)
 - [ClubTypeValues](variables/ClubTypeValues.md)
+- [MessageTypes](variables/MessageTypes.md)
 
 ## Functions
 

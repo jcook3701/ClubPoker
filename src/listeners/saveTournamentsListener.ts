@@ -26,11 +26,11 @@ import { onMessage } from "../services/messageService";
 import { setLocalStorageItem } from "../services/storageService";
 
 /*
- * Saves Tournmants object payload to chrome.local storage.
+ * Saves Tournaments object payload to chrome.local storage.
  */
 const saveTournamentsListener = (): void => {
   const messageType = MessageTypes.SAVE_TOURNAMENTS;
-  const warningCode = WarningCodeMap.SAVE_TOURNAMENTS;
+  const _warningCode = WarningCodeMap.SAVE_TOURNAMENTS;
   const storageKey = StorageMap.SAVE_TOURNAMENTS;
   onMessage(messageType, async (payload) => {
     const newTournaments = payload.tournamentData;

@@ -1,15 +1,6 @@
----
-title: AppSettings
-nav_order: 4
-parent: types
----
-[**ClubPoker**](../../..)
-
-***
-
 # Interface: AppSettings
 
-Defined in: [types/settings.ts:4](https://github.com/jcook3701/ClubPoker/blob/12cb2bc63eafa0b05c75059627365b9d3f9284a5/src/types/settings.ts#L4)
+Defined in: [types/settings.ts:24](https://github.com/jcook3701/ClubPoker/blob/4c5cbe98f5a9cdd2499f92e91b30048583a495e3/src/types/settings.ts#L24)
 
 ## Properties
 
@@ -17,7 +8,7 @@ Defined in: [types/settings.ts:4](https://github.com/jcook3701/ClubPoker/blob/12
 
 > `optional` **club**: [`Club`](Club.md)
 
-Defined in: [types/settings.ts:6](https://github.com/jcook3701/ClubPoker/blob/12cb2bc63eafa0b05c75059627365b9d3f9284a5/src/types/settings.ts#L6)
+Defined in: [types/settings.ts:26](https://github.com/jcook3701/ClubPoker/blob/4c5cbe98f5a9cdd2499f92e91b30048583a495e3/src/types/settings.ts#L26)
 
 ***
 
@@ -25,4 +16,4 @@ Defined in: [types/settings.ts:6](https://github.com/jcook3701/ClubPoker/blob/12
 
 > `optional` **theme**: [`ThemeMode`](../enumerations/ThemeMode.md)
 
-Defined in: [types/settings.ts:5](https://github.com/jcook3701/ClubPoker/blob/12cb2bc63eafa0b05c75059627365b9d3f9284a5/src/types/settings.ts#L5)
+Defined in: [types/settings.ts:25](https://github.com/jcook3701/ClubPoker/blob/4c5cbe98f5a9cdd2499f92e91b30048583a495e3/src/types/settings.ts#L25)

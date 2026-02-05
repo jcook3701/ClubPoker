@@ -1,15 +1,6 @@
----
-title: Calendar
-nav_order: 5
-parent: types
----
-[**ClubPoker**](../../..)
-
-***
-
 # Interface: Calendar
 
-Defined in: [types/calendar.ts:7](https://github.com/jcook3701/ClubPoker/blob/12cb2bc63eafa0b05c75059627365b9d3f9284a5/src/types/calendar.ts#L7)
+Defined in: [types/calendar.ts:27](https://github.com/jcook3701/ClubPoker/blob/4c5cbe98f5a9cdd2499f92e91b30048583a495e3/src/types/calendar.ts#L27)
 
 ## Properties
 
@@ -17,7 +8,7 @@ Defined in: [types/calendar.ts:7](https://github.com/jcook3701/ClubPoker/blob/12
 
 > **id**: `string`
 
-Defined in: [types/calendar.ts:8](https://github.com/jcook3701/ClubPoker/blob/12cb2bc63eafa0b05c75059627365b9d3f9284a5/src/types/calendar.ts#L8)
+Defined in: [types/calendar.ts:28](https://github.com/jcook3701/ClubPoker/blob/4c5cbe98f5a9cdd2499f92e91b30048583a495e3/src/types/calendar.ts#L28)
 
 ***
 
@@ -25,4 +16,4 @@ Defined in: [types/calendar.ts:8](https://github.com/jcook3701/ClubPoker/blob/12
 
 > **summary**: `string`
 
-Defined in: [types/calendar.ts:9](https://github.com/jcook3701/ClubPoker/blob/12cb2bc63eafa0b05c75059627365b9d3f9284a5/src/types/calendar.ts#L9)
+Defined in: [types/calendar.ts:29](https://github.com/jcook3701/ClubPoker/blob/4c5cbe98f5a9cdd2499f92e91b30048583a495e3/src/types/calendar.ts#L29)
