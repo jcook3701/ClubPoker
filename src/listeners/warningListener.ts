@@ -25,7 +25,7 @@ import { formatWarningMessage } from "@types";
 
 /*
  * Handles warning messages
- * Intended to simplify message debuging.
+ * Intended to simplify message debugging.
  */
 const warningListener = (): void => {
   const messageType = MessageTypes.WARNING;

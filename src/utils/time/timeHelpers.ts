@@ -19,14 +19,14 @@
  */
 
 import { parse, parseISO } from "date-fns";
-import { fromZonedTime, toZonedTime, toDate, format } from "date-fns-tz";
+import { fromZonedTime, toZonedTime, format } from "date-fns-tz";
 import { Timezone, Tournaments } from "@types";
 import { DateTime } from "luxon";
 
 /*
  * Time Formats
  */
-const offficalTimeFormat = "h: mm a ZZZZ";
+const officialTimeFormat = "h: mm a ZZZZ";
 const calendarTimeFormat = "MMM d, yyyy h:mm a";
 const tournamentTimeFormat = "MMM d h:mm a";
 
@@ -40,7 +40,7 @@ export const parseTournamentTime = (dateTime: string): Date =>
   parse(dateTime, tournamentTimeFormat, new Date());
 
 /*
- * Time Formaters use by GUI
+ * Time Formatters use by GUI
  */
 export const formatCalendarTime = (date: string | undefined): string =>
   date ? format(parseISO(date), calendarTimeFormat) : "";
@@ -58,7 +58,7 @@ export const normalizeDateTime = (dateTime?: string): string =>
  * Convert a local datetime string in a known timezone into a UTC ISO string.
  * @param sourceTimeZone
  * @param dataTime
- * @returns string formated as UTC ISO date
+ * @returns string formatted as UTC ISO date
  */
 export const toUtcIso = (
   sourceTimeZone: Timezone,
@@ -80,10 +80,10 @@ export const toUtcIso = (
 };
 
 /*
- * Convert startimes within tournaments object to new timezone
+ * Convert start times within tournaments object to new timezone
  * @param dateTime
  * @param endTimeZone
- * @returns string formated as UTC ISO date
+ * @returns string formatted as UTC ISO date
  */
 export const convertTournamentTimes = (
   tournamentData: Tournaments,
@@ -100,7 +100,7 @@ export const convertTournamentTimes = (
 };
 
 /*
- * TODO: Convert WPT Offical time of format "h:mm a z" to user specified timezone.
+ * TODO: Convert WPT Official time of format "h:mm a z" to user specified timezone.
  */
 export const convertFromTzAbbrToUser = (
   dateTime: string, // e.g., "6:09 AM EST"
@@ -118,7 +118,7 @@ export const convertFromTzAbbrToUser = (
   console.log("parsed: ", parsed);
   const zoned = parsed.setZone(timezone.value);
   console.log("zoned: ", zoned);
-  const formated = zoned.toFormat(offficalTimeFormat);
-  console.log("zoned: ", formated);
-  return formated;
+  const formatted = zoned.toFormat(officialTimeFormat);
+  console.log("zoned: ", formatted);
+  return formatted;
 };

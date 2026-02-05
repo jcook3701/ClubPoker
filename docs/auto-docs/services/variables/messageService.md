@@ -1,17 +1,8 @@
----
-title: messageService
-nav_order: 5
-parent: services
----
-[**ClubPoker**](../../..)
-
-***
-
 # Variable: messageService
 
 > `const` **messageService**: `object`
 
-Defined in: [services/messageService.ts:67](https://github.com/jcook3701/ClubPoker/blob/12cb2bc63eafa0b05c75059627365b9d3f9284a5/src/services/messageService.ts#L67)
+Defined in: [services/messageService.ts:87](https://github.com/jcook3701/ClubPoker/blob/4c5cbe98f5a9cdd2499f92e91b30048583a495e3/src/services/messageService.ts#L87)
 
 ## Type Declaration
 
@@ -23,7 +14,7 @@ Defined in: [services/messageService.ts:67](https://github.com/jcook3701/ClubPok
 
 ##### T
 
-`T` *extends* keyof `MessageMap`
+`T` *extends* keyof [`MessageMap`](../../types/type-aliases/MessageMap.md)
 
 #### Parameters
 
@@ -33,7 +24,7 @@ Defined in: [services/messageService.ts:67](https://github.com/jcook3701/ClubPok
 
 ##### handler
 
-(`payload`, `sender`) => `void` \| `ResponseMap`\[`T`\] \| `Promise`\<`ResponseMap`\[`T`\]\>
+(`payload`, `sender`) => `void` \| [`ResponseMap`](../../types/type-aliases/ResponseMap.md)\[`T`\] \| `Promise`\<[`ResponseMap`](../../types/type-aliases/ResponseMap.md)\[`T`\]\>
 
 #### Returns
 
@@ -45,13 +36,13 @@ Defined in: [services/messageService.ts:67](https://github.com/jcook3701/ClubPok
 
 ### sendMessage()
 
-> **sendMessage**: \<`T`\>(`type`, `payload?`) => `Promise`\<`ResponseMap`\[`T`\]\>
+> **sendMessage**: \<`T`\>(`type`, `payload?`) => `Promise`\<[`ResponseMap`](../../types/type-aliases/ResponseMap.md)\[`T`\]\>
 
 #### Type Parameters
 
 ##### T
 
-`T` *extends* keyof `MessageMap`
+`T` *extends* keyof [`MessageMap`](../../types/type-aliases/MessageMap.md)
 
 #### Parameters
 
@@ -61,21 +52,21 @@ Defined in: [services/messageService.ts:67](https://github.com/jcook3701/ClubPok
 
 ##### payload?
 
-`MessageMap`\[`T`\]
+[`MessageMap`](../../types/type-aliases/MessageMap.md)\[`T`\]
 
 #### Returns
 
-`Promise`\<`ResponseMap`\[`T`\]\>
+`Promise`\<[`ResponseMap`](../../types/type-aliases/ResponseMap.md)\[`T`\]\>
 
 ### sendTabMessage()
 
-> **sendTabMessage**: \<`T`\>(`tabId`, `type`, `payload`) => `Promise`\<`ResponseMap`\[`T`\]\>
+> **sendTabMessage**: \<`T`\>(`tabId`, `type`, `payload`) => `Promise`\<[`ResponseMap`](../../types/type-aliases/ResponseMap.md)\[`T`\]\>
 
 #### Type Parameters
 
 ##### T
 
-`T` *extends* keyof `MessageMap`
+`T` *extends* keyof [`MessageMap`](../../types/type-aliases/MessageMap.md)
 
 #### Parameters
 
@@ -89,8 +80,8 @@ Defined in: [services/messageService.ts:67](https://github.com/jcook3701/ClubPok
 
 ##### payload
 
-`MessageMap`\[`T`\]
+[`MessageMap`](../../types/type-aliases/MessageMap.md)\[`T`\]
 
 #### Returns
 
-`Promise`\<`ResponseMap`\[`T`\]\>
+`Promise`\<[`ResponseMap`](../../types/type-aliases/ResponseMap.md)\[`T`\]\>

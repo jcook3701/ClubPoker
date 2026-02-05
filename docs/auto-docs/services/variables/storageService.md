@@ -1,23 +1,14 @@
----
-title: storageService
-nav_order: 6
-parent: services
----
-[**ClubPoker**](../../..)
-
-***
-
 # Variable: storageService
 
 > `const` **storageService**: `object`
 
-Defined in: [services/storageService.ts:156](https://github.com/jcook3701/ClubPoker/blob/12cb2bc63eafa0b05c75059627365b9d3f9284a5/src/services/storageService.ts#L156)
+Defined in: [services/storageService.ts:176](https://github.com/jcook3701/ClubPoker/blob/4c5cbe98f5a9cdd2499f92e91b30048583a495e3/src/services/storageService.ts#L176)
 
 ## Type Declaration
 
 ### getLocalStorageItem()
 
-> **getLocalStorageItem**: \<`T`\>(`key`) => `Promise`\<`null` \| `T`\>
+> **getLocalStorageItem**: \<`T`\>(`key`) => `Promise`\<`T` \| `null`\>
 
 #### Type Parameters
 
@@ -33,11 +24,11 @@ Defined in: [services/storageService.ts:156](https://github.com/jcook3701/ClubPo
 
 #### Returns
 
-`Promise`\<`null` \| `T`\>
+`Promise`\<`T` \| `null`\>
 
 ### getSessionStorageItem()
 
-> **getSessionStorageItem**: \<`T`\>(`key`) => `Promise`\<`null` \| `T`\>
+> **getSessionStorageItem**: \<`T`\>(`key`) => `Promise`\<`T` \| `null`\>
 
 #### Type Parameters
 
@@ -53,11 +44,11 @@ Defined in: [services/storageService.ts:156](https://github.com/jcook3701/ClubPo
 
 #### Returns
 
-`Promise`\<`null` \| `T`\>
+`Promise`\<`T` \| `null`\>
 
 ### getSyncStorageItem()
 
-> **getSyncStorageItem**: \<`T`\>(`key`) => `Promise`\<`null` \| `T`\>
+> **getSyncStorageItem**: \<`T`\>(`key`) => `Promise`\<`T` \| `null`\>
 
 #### Type Parameters
 
@@ -73,7 +64,7 @@ Defined in: [services/storageService.ts:156](https://github.com/jcook3701/ClubPo
 
 #### Returns
 
-`Promise`\<`null` \| `T`\>
+`Promise`\<`T` \| `null`\>
 
 ### removeLocalStorageItem()
 

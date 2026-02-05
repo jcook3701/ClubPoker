@@ -12,7 +12,9 @@ Unofficial helper tool for  ClubWPT's website. Not affiliated with WPT in any wa
 
 **CI/CD Check List:**
 
-* ![lint-check](https://github.com/jcook3701/ClubPoker/actions/workflows/ci.yml/badge.svg)
+* ![lint-check](https://github.com/jcook3701/ClubPoker/actions/workflows/lint-check.yml/badge.svg)
+* ![format-check](https://github.com/jcook3701/ClubPoker/actions/workflows/format-check.yml/badge.svg)
+* ![spellcheck](https://github.com/jcook3701/ClubPoker/actions/workflows/spellcheck.yml/badge.svg)
 
 ***
 

@@ -1,4 +1,4 @@
-# .prettierignore for ClubPoker Chrome Extension
+# .eslintignore for ClubPoker Chrome Extension
 #
 # SPDX-FileCopyrightText: Copyright (c) 2025-2026, Jared Cook
 # SPDX-License-Identifier: GPL-3.0-or-later
@@ -17,9 +17,9 @@
 # along with this program.  If not, see <www.gnu.org>.
 
 # =========================================
-# Prettier project ignores #
+# Eslint project ignores #
 # =========================================
-node_modules
-dist
-build
-*.min.js
+node_modules/
+dist/
+storybook-static/
+*.zip

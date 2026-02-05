@@ -6,8 +6,12 @@
   ],
   "plugin": ["typedoc-plugin-markdown"],
   "out": "docs/auto-docs",
+  "cleanOutputDir": true,
   "excludePrivate": true,
   "excludeProtected": true,
   "hideBreadcrumbs": true,
-  "readme": "none"
+  "hidePageHeader": true,
+  "readme": "none",
+  "entryFileName": "index.md",
+  "outputFileStrategy": "members"
 }

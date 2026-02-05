@@ -28,7 +28,7 @@ const MUI_AUTOCOMPLETE_STYLE = {
   },
 };
 
-const MUI_APPBAR_STYLE = {
+const MUI_APP_BAR_STYLE = {
   MuiAppBar: {
     styleOverrides: {
       root: {
@@ -75,7 +75,7 @@ const MUI_BUTTON_STYLE = {
   },
 };
 
-const MUI_ICON_STYLE = {
+const _MUI_ICON_STYLE = {
   MuiSvgIcon: {
     styleOverrides: {
       root: ({ theme }: { theme: Theme }) => ({
@@ -141,11 +141,11 @@ const MUI_TYPOGRAPHY_STYLE = {
 const MUI_COMPONENTS_STYLES = {
   components: {
     ...MUI_AUTOCOMPLETE_STYLE,
-    ...MUI_APPBAR_STYLE,
+    ...MUI_APP_BAR_STYLE,
     ...MUI_BADGE_STYLE,
     ...MUI_BOX_STYLE,
     ...MUI_BUTTON_STYLE,
-    // ...MUI_ICON_STYLE,
+    // ..._MUI_ICON_STYLE,
     ...MUI_ICON_BUTTON_STYLE,
     ...MUI_TOOLBAR_STYLE,
     ...MUI_TYPOGRAPHY_STYLE,

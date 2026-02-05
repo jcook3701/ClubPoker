@@ -53,7 +53,7 @@ export const MessageTypes = {
   GET_TOURNAMENTS: "GET_TOURNAMENTS",
   SAVE_CALENDAR_EVENTS: "SAVE_CALENDAR_EVENTS",
   SAVE_TOURNAMENTS: "SAVE_TOURNAMENTS",
-  /* Google Calander API messages */
+  /* Google Calendar API messages */
   LIST_CALENDARS: "LIST_CALENDARS",
   FETCH_CALENDAR_EVENTS: "FETCH_CALENDAR_EVENTS",
   CREATE_EVENT: "CREATE_EVENT",
@@ -85,7 +85,7 @@ export type MessageMap = {
   [MessageTypes.GET_TOURNAMENTS]: undefined;
   [MessageTypes.SAVE_CALENDAR_EVENTS]: { calendarData: CalendarEvents };
   [MessageTypes.SAVE_TOURNAMENTS]: { tournamentData: Tournaments };
-  /* Google Calander API messages */
+  /* Google Calendar API messages */
   [MessageTypes.LIST_CALENDARS]: undefined;
   [MessageTypes.FETCH_CALENDAR_EVENTS]: { calendar: Calendar };
   [MessageTypes.CREATE_EVENT]: { calendarData: CalendarEvents };

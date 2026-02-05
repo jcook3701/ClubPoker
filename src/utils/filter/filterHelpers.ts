@@ -43,7 +43,7 @@ export const buildDefaultFilters = (): FiltersState => {
 };
 
 /*
- * This returns a list of filtered tournenets
+ * This returns a list of filtered tournaments
  */
 export const applyTournamentFilters = (
   data: Tournaments,

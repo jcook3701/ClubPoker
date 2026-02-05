@@ -1,15 +1,6 @@
----
-title: ErrorCode
-nav_order: 4
-parent: types
----
-[**ClubPoker**](../../..)
-
-***
-
 # Enumeration: ErrorCode
 
-Defined in: [types/errors.ts:6](https://github.com/jcook3701/ClubPoker/blob/12cb2bc63eafa0b05c75059627365b9d3f9284a5/src/types/errors.ts#L6)
+Defined in: [types/errors.ts:26](https://github.com/jcook3701/ClubPoker/blob/4c5cbe98f5a9cdd2499f92e91b30048583a495e3/src/types/errors.ts#L26)
 
 ## Enumeration Members
 
@@ -17,7 +8,7 @@ Defined in: [types/errors.ts:6](https://github.com/jcook3701/ClubPoker/blob/12cb
 
 > **emptyLocalStorage**: `1`
 
-Defined in: [types/errors.ts:8](https://github.com/jcook3701/ClubPoker/blob/12cb2bc63eafa0b05c75059627365b9d3f9284a5/src/types/errors.ts#L8)
+Defined in: [types/errors.ts:28](https://github.com/jcook3701/ClubPoker/blob/4c5cbe98f5a9cdd2499f92e91b30048583a495e3/src/types/errors.ts#L28)
 
 ***
 
@@ -25,7 +16,7 @@ Defined in: [types/errors.ts:8](https://github.com/jcook3701/ClubPoker/blob/12cb
 
 > **emptySyncStorage**: `0`
 
-Defined in: [types/errors.ts:7](https://github.com/jcook3701/ClubPoker/blob/12cb2bc63eafa0b05c75059627365b9d3f9284a5/src/types/errors.ts#L7)
+Defined in: [types/errors.ts:27](https://github.com/jcook3701/ClubPoker/blob/4c5cbe98f5a9cdd2499f92e91b30048583a495e3/src/types/errors.ts#L27)
 
 ***
 
@@ -33,4 +24,4 @@ Defined in: [types/errors.ts:7](https://github.com/jcook3701/ClubPoker/blob/12cb
 
 > **missingPayload**: `2`
 
-Defined in: [types/errors.ts:9](https://github.com/jcook3701/ClubPoker/blob/12cb2bc63eafa0b05c75059627365b9d3f9284a5/src/types/errors.ts#L9)
+Defined in: [types/errors.ts:29](https://github.com/jcook3701/ClubPoker/blob/4c5cbe98f5a9cdd2499f92e91b30048583a495e3/src/types/errors.ts#L29)

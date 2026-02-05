@@ -1,15 +1,6 @@
----
-title: Tournament
-nav_order: 13
-parent: types
----
-[**ClubPoker**](../../..)
-
-***
-
 # Interface: Tournament
 
-Defined in: [types/tournament.ts:10](https://github.com/jcook3701/ClubPoker/blob/12cb2bc63eafa0b05c75059627365b9d3f9284a5/src/types/tournament.ts#L10)
+Defined in: [types/tournament.ts:30](https://github.com/jcook3701/ClubPoker/blob/4c5cbe98f5a9cdd2499f92e91b30048583a495e3/src/types/tournament.ts#L30)
 
 ## Properties
 
@@ -17,7 +8,7 @@ Defined in: [types/tournament.ts:10](https://github.com/jcook3701/ClubPoker/blob
 
 > **buyin**: `string`
 
-Defined in: [types/tournament.ts:13](https://github.com/jcook3701/ClubPoker/blob/12cb2bc63eafa0b05c75059627365b9d3f9284a5/src/types/tournament.ts#L13)
+Defined in: [types/tournament.ts:33](https://github.com/jcook3701/ClubPoker/blob/4c5cbe98f5a9cdd2499f92e91b30048583a495e3/src/types/tournament.ts#L33)
 
 ***
 
@@ -25,7 +16,7 @@ Defined in: [types/tournament.ts:13](https://github.com/jcook3701/ClubPoker/blob
 
 > **enrolled**: `number`
 
-Defined in: [types/tournament.ts:17](https://github.com/jcook3701/ClubPoker/blob/12cb2bc63eafa0b05c75059627365b9d3f9284a5/src/types/tournament.ts#L17)
+Defined in: [types/tournament.ts:37](https://github.com/jcook3701/ClubPoker/blob/4c5cbe98f5a9cdd2499f92e91b30048583a495e3/src/types/tournament.ts#L37)
 
 ***
 
@@ -33,7 +24,7 @@ Defined in: [types/tournament.ts:17](https://github.com/jcook3701/ClubPoker/blob
 
 > **game**: `string`
 
-Defined in: [types/tournament.ts:12](https://github.com/jcook3701/ClubPoker/blob/12cb2bc63eafa0b05c75059627365b9d3f9284a5/src/types/tournament.ts#L12)
+Defined in: [types/tournament.ts:32](https://github.com/jcook3701/ClubPoker/blob/4c5cbe98f5a9cdd2499f92e91b30048583a495e3/src/types/tournament.ts#L32)
 
 ***
 
@@ -41,7 +32,7 @@ Defined in: [types/tournament.ts:12](https://github.com/jcook3701/ClubPoker/blob
 
 > **id**: `string`
 
-Defined in: [types/tournament.ts:15](https://github.com/jcook3701/ClubPoker/blob/12cb2bc63eafa0b05c75059627365b9d3f9284a5/src/types/tournament.ts#L15)
+Defined in: [types/tournament.ts:35](https://github.com/jcook3701/ClubPoker/blob/4c5cbe98f5a9cdd2499f92e91b30048583a495e3/src/types/tournament.ts#L35)
 
 ***
 
@@ -49,7 +40,7 @@ Defined in: [types/tournament.ts:15](https://github.com/jcook3701/ClubPoker/blob
 
 > **name**: `string`
 
-Defined in: [types/tournament.ts:14](https://github.com/jcook3701/ClubPoker/blob/12cb2bc63eafa0b05c75059627365b9d3f9284a5/src/types/tournament.ts#L14)
+Defined in: [types/tournament.ts:34](https://github.com/jcook3701/ClubPoker/blob/4c5cbe98f5a9cdd2499f92e91b30048583a495e3/src/types/tournament.ts#L34)
 
 ***
 
@@ -57,7 +48,7 @@ Defined in: [types/tournament.ts:14](https://github.com/jcook3701/ClubPoker/blob
 
 > **start**: `string`
 
-Defined in: [types/tournament.ts:11](https://github.com/jcook3701/ClubPoker/blob/12cb2bc63eafa0b05c75059627365b9d3f9284a5/src/types/tournament.ts#L11)
+Defined in: [types/tournament.ts:31](https://github.com/jcook3701/ClubPoker/blob/4c5cbe98f5a9cdd2499f92e91b30048583a495e3/src/types/tournament.ts#L31)
 
 ***
 
@@ -65,4 +56,4 @@ Defined in: [types/tournament.ts:11](https://github.com/jcook3701/ClubPoker/blob
 
 > **status**: `string`
 
-Defined in: [types/tournament.ts:16](https://github.com/jcook3701/ClubPoker/blob/12cb2bc63eafa0b05c75059627365b9d3f9284a5/src/types/tournament.ts#L16)
+Defined in: [types/tournament.ts:36](https://github.com/jcook3701/ClubPoker/blob/4c5cbe98f5a9cdd2499f92e91b30048583a495e3/src/types/tournament.ts#L36)
