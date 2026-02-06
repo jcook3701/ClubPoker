@@ -23,10 +23,10 @@ import {
   DomRowItem,
   DomTournamentGrid,
   DomViewMode,
-} from "../../constants/tournaments";
+} from "@/constants/tournaments";
 import { Timezone, Tournament, Tournaments } from "@types";
-import { toUtcIso } from "../time/timeHelpers";
-import getViewMode from "./getViewMode";
+import { toUtcIso } from "@/utils/time/timeHelpers";
+import getViewMode from "@/utils/scrapers/getViewMode";
 
 /*
  * Exports tournament data when in lobby.clubwpt.com is in row mode.

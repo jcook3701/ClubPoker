@@ -21,7 +21,7 @@
 import React from "react";
 import { Badge } from "@mui/material";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import { CalendarEvent } from "../../types/calendar";
+import { CalendarEvent } from "@/types/calendar";
 
 type CalendarBadgeProps = {
   events: CalendarEvent[];

@@ -18,14 +18,14 @@
  * along with this program.  If not, see <www.gnu.org>.
  */
 
-import { LOCAL_STORAGE_KEYS } from "../../config/chrome";
-import { MessageTypes } from "../../constants/messages";
-import { DEFAULT_TIMEZONE } from "../../constants/timezone";
-import { DomToggleView, DomTournamentGrid } from "../../constants/tournaments";
-import { sendMessage } from "../../services/messageService";
-import { getLocalStorageItem } from "../../services/storageService";
+import { LOCAL_STORAGE_KEYS } from "@/config/chrome";
+import { MessageTypes } from "@/constants/messages";
+import { DEFAULT_TIMEZONE } from "@/constants/timezone";
+import { DomToggleView, DomTournamentGrid } from "@/constants/tournaments";
+import { sendMessage } from "@/services/messageService";
+import { getLocalStorageItem } from "@/services/storageService";
 import { Tournaments } from "@types";
-import getTournamentsFromDom from "../scrapers/getTournamentData";
+import getTournamentsFromDom from "@/utils/scrapers/getTournamentData";
 
 /*
  * Utility: debounce function calls.

@@ -19,7 +19,7 @@
  */
 
 import { LOCAL_STORAGE_KEYS, SYNC_STORAGE_KEYS } from "../config/chrome";
-import { MessageTypes } from "./messages";
+import { MessageTypes } from "@/constants/messages";
 
 /*
  * map message warnings to keys in a chrome config object

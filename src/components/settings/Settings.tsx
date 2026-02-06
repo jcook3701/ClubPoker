@@ -20,9 +20,9 @@
 
 import React from "react";
 import styles from "./Settings.module.scss";
-import LightDarkModeSwitch from "../switches/light-dark-mode-switch/LightDarkModeSwitch";
-import { sendMessage } from "../../services/messageService";
-import { MessageTypes } from "../../constants/messages";
+import LightDarkModeSwitch from "@/components/switches/light-dark-mode-switch/LightDarkModeSwitch";
+import { sendMessage } from "@/services/messageService";
+import { MessageTypes } from "@/constants/messages";
 import {
   Autocomplete,
   TextField,

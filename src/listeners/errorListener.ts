@@ -18,10 +18,10 @@
  * along with this program.  If not, see <www.gnu.org>.
  */
 
-import { MessageTypes } from "../constants/messages";
-import { ResponseMap } from "../constants/responses";
-import { onMessage } from "../services/messageService";
-import { formatErrorMessage } from "../types/errors";
+import { MessageTypes } from "@/constants/messages";
+import { ResponseMap } from "@/constants/responses";
+import { onMessage } from "@/services/messageService";
+import { formatErrorMessage } from "@/types/errors";
 
 /*
  * Handles Error Messages

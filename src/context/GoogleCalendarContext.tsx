@@ -26,9 +26,9 @@ import React, {
   ReactNode,
 } from "react";
 import { Calendar, CalendarEvent, CalendarEvents } from "@types";
-import { sendMessage } from "../services/messageService";
-import { MessageTypes } from "../constants/messages";
-import { normalizeDateTime } from "../utils/time/timeHelpers";
+import { sendMessage } from "@/services/messageService";
+import { MessageTypes } from "@/constants/messages";
+import { normalizeDateTime } from "@/utils/time/timeHelpers";
 
 interface CalendarContextValue {
   calendars: Calendar[];

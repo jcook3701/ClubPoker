@@ -18,7 +18,7 @@
  * along with this program.  If not, see <www.gnu.org>.
  */
 
-import { WptFilterMap } from "../../constants/filters";
+import { WptFilterMap } from "@/constants/filters";
 import { FiltersState, Tournament, Tournaments } from "@types";
 
 /*

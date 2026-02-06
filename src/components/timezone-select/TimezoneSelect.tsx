@@ -22,9 +22,9 @@ import React, { useEffect, useState } from "react";
 import { Autocomplete, TextField, Typography, Box } from "@mui/material";
 import styles from "./TimezoneSelect.module.scss";
 import { Timezone } from "@types";
-import { sendMessage } from "../../services/messageService";
-import { MessageTypes } from "../../constants/messages";
-import SaveButton from "../buttons/SaveButton";
+import { sendMessage } from "@/services/messageService";
+import { MessageTypes } from "@/constants/messages";
+import SaveButton from "@/components/buttons/SaveButton";
 
 // Dynamically generate timezone options
 const timezones = Intl.supportedValuesOf("timeZone");

@@ -18,8 +18,8 @@
  * along with this program.  If not, see <www.gnu.org>.
  */
 
-import { Message, MessageMap } from "../constants/messages";
-import { ResponseMap } from "../constants/responses";
+import { Message, MessageMap } from "@/constants/messages";
+import { ResponseMap } from "@/constants/responses";
 
 /*
  * Strongly-typed chrome.runtime.sendMessage wrapper

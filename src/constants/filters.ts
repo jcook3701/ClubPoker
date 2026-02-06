@@ -19,8 +19,8 @@
  */
 
 import { Filter, FilterState } from "@types";
-import styles from "../components/filters/Filters.module.scss";
-import { FILTER_KEYS } from "../config/chrome";
+import styles from "@/components/filters/Filters.module.scss";
+import { FILTER_KEYS } from "@/config/chrome";
 
 /*
  * Buy-In Filter Constants
