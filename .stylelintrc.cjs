@@ -1,5 +1,5 @@
 /*!
- * background.ts for the ClubPoker Chrome Extension
+ * .stylelintrc.cjs for ClubPoker Chrome Extension
  *
  * SPDX-FileCopyrightText: Copyright (c) 2025-2026, Jared Cook
  * SPDX-License-Identifier: GPL-3.0-or-later
@@ -18,8 +18,12 @@
  * along with this program.  If not, see <www.gnu.org>.
  */
 
-import { registerBackgroundListeners } from "../listeners";
-
-console.log("lobby.clubwpt.com Background Script Started:");
-
-registerBackgroundListeners();
+module.exports = {
+  extends: ["stylelint-config-standard"],
+  rules: {
+    "block-no-empty": true,
+    "color-no-invalid-hex": true,
+    "color-hex-length": "long",
+    "selector-class-pattern": "^[a-z][a-zA-Z0-9]+$",
+  },
+};

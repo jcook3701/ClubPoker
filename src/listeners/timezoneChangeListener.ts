@@ -22,7 +22,7 @@ import { StorageMap } from "../constants/chromeStorage";
 import { MessageTypes } from "../constants/messages";
 import { ResponseMap } from "../constants/responses";
 import { WarningCodeMap } from "../constants/warnings";
-import { clubwptDomUpdater } from "../content/dom/TournamentsDataUpdater/TournamentDataUpdater";
+import { clubwptDomUpdater } from "../content/dom/TournamentDataUpdater";
 import { onMessage, sendMessage } from "../services/messageService";
 import { getLocalStorageItem } from "../services/storageService";
 import { Tournaments } from "@types";

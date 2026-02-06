@@ -1,5 +1,5 @@
 /*!
- * commitlint.config.js for ClubPoker Chrome Extension
+ * commitlint.config.cjs for ClubPoker Chrome Extension
  *
  * SPDX-FileCopyrightText: Copyright (c) 2025-2026, Jared Cook
  * SPDX-License-Identifier: GPL-3.0-or-later

@@ -19,6 +19,7 @@
  */
 
 import type { Meta, StoryObj } from "@storybook/react";
+import { fn } from "@storybook/test";
 import WindowSelector from "./WindowSelector";
 
 const meta = {
@@ -34,6 +35,7 @@ const meta = {
   },
   args: {
     selectedWindow: "timezone",
+    onChange: fn(),
   },
 } satisfies Meta<typeof WindowSelector>;
 

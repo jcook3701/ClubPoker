@@ -1,5 +1,5 @@
 /*!
- * AppIcon.tsx for ClubPoker Chrome Extension
+ * background.ts for the ClubPoker Chrome Extension
  *
  * SPDX-FileCopyrightText: Copyright (c) 2025-2026, Jared Cook
  * SPDX-License-Identifier: GPL-3.0-or-later
@@ -18,33 +18,9 @@
  * along with this program.  If not, see <www.gnu.org>.
  */
 
-import React from "react";
-import icon16 from "@/assets/icons/icon16.png";
-import icon48 from "@/assets/icons/icon48.png";
-import icon128 from "@/assets/icons/icon128.png";
-import { Avatar } from "@mui/material";
+import { registerBackgroundListeners } from "@/listeners";
 
-interface AppIconProps {
-  src: "icon16.png" | "icon48.png" | "icon128.png";
-  alt: string;
-  size?: number;
-}
-
-const AppIcon: React.FC<AppIconProps> = ({ src, alt, size }) => {
-  const icons = {
-    "icon16.png": icon16,
-    "icon48.png": icon48,
-    "icon128.png": icon128,
-  };
-
-  return (
-    <Avatar
-      src={icons[src]}
-      alt={alt}
-      sx={{ width: size ?? 32, height: size ?? 32 }}
-      variant="square" // or "circular"
-    />
-  );
-};
-
-export default AppIcon;
+export default defineBackground(() => {
+  console.log("lobby.clubwpt.com Background Script Started:");
+  registerBackgroundListeners();
+});
