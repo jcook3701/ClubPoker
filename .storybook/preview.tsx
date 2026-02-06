@@ -19,26 +19,25 @@
  */
 
 import type { Preview } from "@storybook/react";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
+import { Box } from "@mui/material";
 
-// Create a basic theme for Storybook to use
-const theme = createTheme({
-  palette: {
-    mode: "light",
-  },
-});
+// Import your real themes and provider
+import { DARK_THEME, LIGHT_THEME } from "../src/constants/theme";
+import { CalendarProvider } from "../src/context/GoogleCalendarContext";
 
 const preview: Preview = {
   parameters: {
-    // Modern Storybook 10 background syntax
+    // Match your extension's popup dimensions in the preview
+    layout: "centered",
     backgrounds: {
-      default: "light",
-      values: [
-        { name: "light", value: "#ffffff" },
-        { name: "dark", value: "#333333" },
-        { name: "poker-green", value: "#0a5c0a" }, // Helpful for testing card contrast!
-      ],
+      default: "poker-green",
+      options: {
+        light: { name: "Light", value: "#ffffff" },
+        dark: { name: "Dark", value: "#121212" },
+        "poker-green": { name: "Poker Green", value: "#0a5c0a" },
+      },
     },
     controls: {
       matchers: {
@@ -48,14 +47,46 @@ const preview: Preview = {
     },
   },
 
-  // The Decorator wraps every story in your MUI Theme
   decorators: [
-    (Story) => (
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Story />
-      </ThemeProvider>
-    ),
+    (Story, context) => {
+      /* 
+         1. ThemeProvider: Use DARK_THEME as default since that's your app's vibe.
+         2. CalendarProvider: Essential for useGoogleCalendar() to work in stories.
+         3. Box: Provides the 320px width so you see exactly how it looks in the popup.
+      */
+      const bgValue = context.globals.backgrounds?.value;
+
+      // 2. LOGIC: If it's the dark or green background, use DARK_THEME.
+      // Otherwise (default/white), use LIGHT_THEME.
+      const isDarkBackground = bgValue === "#121212" || bgValue === "#0a5c0a";
+      const currentTheme = isDarkBackground ? DARK_THEME : LIGHT_THEME;
+      
+      // 3. FORCE RE-RENDER when switching to prevent "stuck" UI
+      const themeKey = isDarkBackground ? "dark" : "light";
+      return (
+        <ThemeProvider theme={currentTheme} key={themeKey}>
+          <CssBaseline />
+          <CalendarProvider>
+            <Box
+              sx={{
+                width: 320,
+                minHeight: 435,
+                p: 1,
+                bgcolor: "background.default",
+                color: "text.primary",
+                boxSizing: "border-box",
+                overflow: "hidden",
+                display: "flex",
+                flexDirection: "column",
+                border:  !isDarkBackground ? "1px solid #e0e0e0" : "none",
+              }}
+            >
+              <Story />
+            </Box>
+          </CalendarProvider>
+        </ThemeProvider>
+      );
+    },
   ],
 };
 

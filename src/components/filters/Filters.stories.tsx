@@ -1,5 +1,5 @@
 /*!
- * WindowSelector.stories.tsx for ClubPoker Chrome Extension
+ * Filters.stories.tsx for ClubPoker Chrome Extension
  *
  * SPDX-FileCopyrightText: Copyright (c) 2025-2026, Jared Cook
  * SPDX-License-Identifier: GPL-3.0-or-later
@@ -19,43 +19,27 @@
  */
 
 import type { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
-import WindowSelector from "./WindowSelector";
+import Filters from "./Filters";
+import { CalendarProvider } from "@/context/GoogleCalendarContext"; // Import your real provider
+import { Box } from "@mui/material";
 
 const meta = {
-  title: "Components/WindowSelector",
-  component: WindowSelector,
+  title: "Components/Pages/Filters",
+  component: Filters,
   tags: ["autodocs", "vitest"],
-  argTypes: {
-    selectedWindow: {
-      control: "inline-radio",
-      options: ["timezone", "filter", "calendar"],
-      description: "The currently active tab/window",
-    },
-    onChange: { action: "window-changed" }, // Automatically logs the change in the Actions tab
-  },
-  args: {
-    selectedWindow: "timezone",
-    onChange: fn(),
-  },
-} satisfies Meta<typeof WindowSelector>;
+  decorators: [
+    (Story) => (
+      // 1. Wrap in your Provider so setEventsRefresh doesn't fail
+      <CalendarProvider>
+        <Box sx={{ width: 320, p: 2, bgcolor: "background.default" }}>
+          <Story />
+        </Box>
+      </CalendarProvider>
+    ),
+  ],
+} satisfies Meta<typeof Filters>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// 1. The default view (Timezone)
-export const Timezone: Story = {};
-
-// 2. The Filter view
-export const FilterView: Story = {
-  args: {
-    selectedWindow: "filter",
-  },
-};
-
-// 3. The Calendar view
-export const CalendarView: Story = {
-  args: {
-    selectedWindow: "calendar",
-  },
-};
+export const Default: Story = {};

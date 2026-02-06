@@ -1,5 +1,5 @@
 /*!
- * WindowSelector.stories.tsx for ClubPoker Chrome Extension
+ * Filter.stories.tsx for ClubPoker Chrome Extension
  *
  * SPDX-FileCopyrightText: Copyright (c) 2025-2026, Jared Cook
  * SPDX-License-Identifier: GPL-3.0-or-later
@@ -20,42 +20,42 @@
 
 import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
-import WindowSelector from "./WindowSelector";
+import Filter from "./Filter";
 
 const meta = {
-  title: "Components/WindowSelector",
-  component: WindowSelector,
+  title: "Components/Inputs/Filter",
+  component: Filter,
   tags: ["autodocs", "vitest"],
-  argTypes: {
-    selectedWindow: {
-      control: "inline-radio",
-      options: ["timezone", "filter", "calendar"],
-      description: "The currently active tab/window",
-    },
-    onChange: { action: "window-changed" }, // Automatically logs the change in the Actions tab
-  },
   args: {
-    selectedWindow: "timezone",
+    title: "Game Types",
+    filters: [
+      { id: "nlh", label: "No Limit Hold'em", defaultChecked: true },
+      { id: "plo", label: "Pot Limit Omaha", defaultChecked: false },
+      { id: "tourney", label: "Tournaments", defaultChecked: true },
+    ],
+    checkedState: { nlh: true, tourney: true },
+    // Use the Vitest-powered spy to fix the 'onChange' lint warning
     onChange: fn(),
   },
-} satisfies Meta<typeof WindowSelector>;
+} satisfies Meta<typeof Filter>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// 1. The default view (Timezone)
-export const Timezone: Story = {};
+// 1. Standard View
+export const Default: Story = {};
 
-// 2. The Filter view
-export const FilterView: Story = {
+// 2. All Checked
+export const AllChecked: Story = {
   args: {
-    selectedWindow: "filter",
+    title: "All Selected",
+    checkedState: { nlh: true, plo: true, tourney: true },
   },
 };
 
-// 3. The Calendar view
-export const CalendarView: Story = {
+// 3. Custom Class (Testing Scss Module integration)
+export const CustomClass: Story = {
   args: {
-    selectedWindow: "calendar",
+    className: "custom-filter-border",
   },
 };

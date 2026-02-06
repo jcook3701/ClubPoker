@@ -1,5 +1,5 @@
 /*!
- * WindowSelector.stories.tsx for ClubPoker Chrome Extension
+ * WptIconButton.stories.tsx for ClubPoker Chrome Extension
  *
  * SPDX-FileCopyrightText: Copyright (c) 2025-2026, Jared Cook
  * SPDX-License-Identifier: GPL-3.0-or-later
@@ -19,43 +19,37 @@
  */
 
 import type { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
-import WindowSelector from "./WindowSelector";
+import { Box } from "@mui/material";
+import WptIconButton from "./WptIconButton";
 
 const meta = {
-  title: "Components/WindowSelector",
-  component: WindowSelector,
+  title: "Components/Buttons/Icons/Wpt",
+  component: WptIconButton,
   tags: ["autodocs", "vitest"],
-  argTypes: {
-    selectedWindow: {
-      control: "inline-radio",
-      options: ["timezone", "filter", "calendar"],
-      description: "The currently active tab/window",
-    },
-    onChange: { action: "window-changed" }, // Automatically logs the change in the Actions tab
-  },
+  decorators: [
+    (Story) => (
+      <Box sx={{ p: 4, display: "flex", justifyContent: "center" }}>
+        <Story />
+      </Box>
+    ),
+  ],
   args: {
-    selectedWindow: "timezone",
-    onChange: fn(),
+    title: "ClubWPT",
+    link: "https://www.clubwpt.com",
   },
-} satisfies Meta<typeof WindowSelector>;
+} satisfies Meta<typeof WptIconButton>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// 1. The default view (Timezone)
-export const Timezone: Story = {};
+export const Default: Story = {};
 
-// 2. The Filter view
-export const FilterView: Story = {
+export const CustomStyle: Story = {
   args: {
-    selectedWindow: "filter",
-  },
-};
-
-// 3. The Calendar view
-export const CalendarView: Story = {
-  args: {
-    selectedWindow: "calendar",
+    sx: {
+      border: "1px solid",
+      borderColor: "divider",
+      borderRadius: "50%",
+    },
   },
 };

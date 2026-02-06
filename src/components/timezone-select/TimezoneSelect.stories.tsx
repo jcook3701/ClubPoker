@@ -18,15 +18,28 @@
  * along with this program.  If not, see <www.gnu.org>.
  */
 
-import { Meta, StoryFn } from "@storybook/react-webpack5";
+import type { Meta, StoryObj } from "@storybook/react";
+import { userEvent, within } from "@storybook/test";
 import TimezoneSelect from "./TimezoneSelect";
 
-export default {
-  title: "Components/TimezoneSelect",
+const meta = {
+  title: "Components/Inputs/TimezoneSelect",
   component: TimezoneSelect,
-} as Meta;
+  tags: ["autodocs", "vitest"],
+  parameters: {
+    // Add a bit of width so the Autocomplete doesn't look squashed
+    layout: "centered",
+  },
+} satisfies Meta<typeof TimezoneSelect>;
 
-const Template: StoryFn = (args) => <TimezoneSelect {...args} />;
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-export const Default = Template.bind({});
-Default.args = {};
+export const Default: Story = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    // You can test the Autocomplete interaction here
+    const input = canvas.getByLabelText(/Timezone/i);
+    await userEvent.type(input, "New York");
+  },
+};

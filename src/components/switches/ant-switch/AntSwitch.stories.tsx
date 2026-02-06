@@ -1,5 +1,5 @@
 /*!
- * WindowSelector.stories.tsx for ClubPoker Chrome Extension
+ * AntSwitch.stories.tsx for ClubPoker Chrome Extension
  *
  * SPDX-FileCopyrightText: Copyright (c) 2025-2026, Jared Cook
  * SPDX-License-Identifier: GPL-3.0-or-later
@@ -19,43 +19,45 @@
  */
 
 import type { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
-import WindowSelector from "./WindowSelector";
+import AntSwitch from "./AntSwitch";
+import { Stack, Typography } from "@mui/material";
 
 const meta = {
-  title: "Components/WindowSelector",
-  component: WindowSelector,
+  title: "Components/Switches/AntSwitch",
+  component: AntSwitch,
   tags: ["autodocs", "vitest"],
-  argTypes: {
-    selectedWindow: {
-      control: "inline-radio",
-      options: ["timezone", "filter", "calendar"],
-      description: "The currently active tab/window",
-    },
-    onChange: { action: "window-changed" }, // Automatically logs the change in the Actions tab
-  },
   args: {
-    selectedWindow: "timezone",
-    onChange: fn(),
+    checked: false,
   },
-} satisfies Meta<typeof WindowSelector>;
+} satisfies Meta<typeof AntSwitch>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// 1. The default view (Timezone)
-export const Timezone: Story = {};
-
-// 2. The Filter view
-export const FilterView: Story = {
+// 1. Basic Off state
+export const Off: Story = {
   args: {
-    selectedWindow: "filter",
+    checked: false,
   },
 };
 
-// 3. The Calendar view
-export const CalendarView: Story = {
+// 2. Basic On state
+export const On: Story = {
   args: {
-    selectedWindow: "calendar",
+    checked: true,
+  },
+};
+
+// 3. The "Stack" layout from your code comments
+export const WithLabels: Story = {
+  render: (args) => (
+    <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
+      <Typography>Off</Typography>
+      <AntSwitch {...args} />
+      <Typography>On</Typography>
+    </Stack>
+  ),
+  args: {
+    checked: true,
   },
 };

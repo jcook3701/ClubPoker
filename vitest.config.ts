@@ -1,5 +1,5 @@
 /*!
- * LightDarkModeSwitch.stories.tsx for ClubPoker Chrome Extension
+ * vitest.config.ts for ClubPoker Chrome Extension
  *
  * SPDX-FileCopyrightText: Copyright (c) 2025-2026, Jared Cook
  * SPDX-License-Identifier: GPL-3.0-or-later
@@ -18,32 +18,22 @@
  * along with this program.  If not, see <www.gnu.org>.
  */
 
-import { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
-import LightDarkModeSwitch from "./LightDarkModeSwitch";
+import { defineConfig, mergeConfig } from "vitest/config";
+import { storybookTest } from "@storybook/addon-vitest/plugin"; // <--- Use the plugin here
+import path from "path";
 
-const meta = {
-  title: "Components/Switches/LightDarkModeSwitch",
-  component: LightDarkModeSwitch,
-  tags: ["autodocs", "vitest"],
-  args: {
-    onChange: fn(),
-    checked: false,
+export default defineConfig({
+  plugins: [
+    storybookTest({
+      configDir: path.resolve(__dirname, ".storybook"),
+    }),
+  ],
+  test: {
+    browser: {
+      enabled: true,
+      name: "chromium",
+      provider: "playwright",
+    },
+    setupFiles: [".storybook/vitest.setup.ts"],
   },
-} satisfies Meta<typeof LightDarkModeSwitch>;
-
-export default meta;
-type Story = StoryObj<typeof meta>;
-
-export const LightMode: Story = {
-  args: {
-    checked: false,
-  },
-};
-
-// 2. Dark Mode
-export const DarkMode: Story = {
-  args: {
-    checked: true,
-  },
-};
+});

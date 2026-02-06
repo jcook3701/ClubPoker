@@ -1,5 +1,5 @@
 /*!
- * WindowSelector.stories.tsx for ClubPoker Chrome Extension
+ * AndroidSwitch.stories.tsx for ClubPoker Chrome Extension
  *
  * SPDX-FileCopyrightText: Copyright (c) 2025-2026, Jared Cook
  * SPDX-License-Identifier: GPL-3.0-or-later
@@ -19,43 +19,30 @@
  */
 
 import type { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
-import WindowSelector from "./WindowSelector";
+import AndroidSwitch from "./AndroidSwitch";
 
 const meta = {
-  title: "Components/WindowSelector",
-  component: WindowSelector,
+  title: "Components/Switches/AndroidSwitch",
+  component: AndroidSwitch,
   tags: ["autodocs", "vitest"],
-  argTypes: {
-    selectedWindow: {
-      control: "inline-radio",
-      options: ["timezone", "filter", "calendar"],
-      description: "The currently active tab/window",
-    },
-    onChange: { action: "window-changed" }, // Automatically logs the change in the Actions tab
-  },
   args: {
-    selectedWindow: "timezone",
-    onChange: fn(),
+    checked: false,
   },
-} satisfies Meta<typeof WindowSelector>;
+} satisfies Meta<typeof AndroidSwitch>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// 1. The default view (Timezone)
-export const Timezone: Story = {};
-
-// 2. The Filter view
-export const FilterView: Story = {
+// 1. Off state
+export const Off: Story = {
   args: {
-    selectedWindow: "filter",
+    checked: false,
   },
 };
 
-// 3. The Calendar view
-export const CalendarView: Story = {
+// 2. On state
+export const On: Story = {
   args: {
-    selectedWindow: "calendar",
+    checked: true,
   },
 };

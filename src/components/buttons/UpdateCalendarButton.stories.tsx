@@ -1,5 +1,5 @@
 /*!
- * WindowSelector.stories.tsx for ClubPoker Chrome Extension
+ * UpdateCalendarButton.stories.tsx for ClubPoker Chrome Extension
  *
  * SPDX-FileCopyrightText: Copyright (c) 2025-2026, Jared Cook
  * SPDX-License-Identifier: GPL-3.0-or-later
@@ -20,42 +20,36 @@
 
 import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
-import WindowSelector from "./WindowSelector";
+import { Box } from "@mui/material";
+import UpdateCalendarButton from "./UpdateCalendarButton";
 
 const meta = {
-  title: "Components/WindowSelector",
-  component: WindowSelector,
+  title: "Components/Buttons/Action/UpdateCalendar",
+  component: UpdateCalendarButton,
   tags: ["autodocs", "vitest"],
-  argTypes: {
-    selectedWindow: {
-      control: "inline-radio",
-      options: ["timezone", "filter", "calendar"],
-      description: "The currently active tab/window",
-    },
-    onChange: { action: "window-changed" }, // Automatically logs the change in the Actions tab
-  },
+  decorators: [
+    (Story) => (
+      <Box sx={{ p: 4, display: "flex", justifyContent: "center" }}>
+        <Story />
+      </Box>
+    ),
+  ],
   args: {
-    selectedWindow: "timezone",
-    onChange: fn(),
+    // This 'fn' is now your Vitest-powered spy
+    onClick: fn(),
   },
-} satisfies Meta<typeof WindowSelector>;
+} satisfies Meta<typeof UpdateCalendarButton>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// 1. The default view (Timezone)
-export const Timezone: Story = {};
+export const Default: Story = {};
 
-// 2. The Filter view
-export const FilterView: Story = {
-  args: {
-    selectedWindow: "filter",
-  },
-};
-
-// 3. The Calendar view
-export const CalendarView: Story = {
-  args: {
-    selectedWindow: "calendar",
-  },
+// Helpful to see how it looks if it were placed in a dense layout
+export const Small: Story = {
+  render: (args) => (
+    <Box sx={{ width: 150 }}>
+      <UpdateCalendarButton {...args} />
+    </Box>
+  ),
 };

@@ -1,5 +1,5 @@
 /*!
- * WindowSelector.stories.tsx for ClubPoker Chrome Extension
+ * SaveButton.stories.tsx for ClubPoker Chrome Extension
  *
  * SPDX-FileCopyrightText: Copyright (c) 2025-2026, Jared Cook
  * SPDX-License-Identifier: GPL-3.0-or-later
@@ -20,42 +20,40 @@
 
 import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
-import WindowSelector from "./WindowSelector";
+import { Box } from "@mui/material";
+import SaveButton from "./SaveButton";
 
 const meta = {
-  title: "Components/WindowSelector",
-  component: WindowSelector,
+  title: "Components/Buttons/Action/Save",
+  component: SaveButton,
   tags: ["autodocs", "vitest"],
-  argTypes: {
-    selectedWindow: {
-      control: "inline-radio",
-      options: ["timezone", "filter", "calendar"],
-      description: "The currently active tab/window",
-    },
-    onChange: { action: "window-changed" }, // Automatically logs the change in the Actions tab
-  },
+  decorators: [
+    (Story) => (
+      <Box sx={{ p: 4, display: "flex", justifyContent: "center" }}>
+        <Story />
+      </Box>
+    ),
+  ],
   args: {
-    selectedWindow: "timezone",
-    onChange: fn(),
+    // This 'fn' is now your Vitest-powered spy
+    onClick: fn(),
   },
-} satisfies Meta<typeof WindowSelector>;
+} satisfies Meta<typeof SaveButton>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// 1. The default view (Timezone)
-export const Timezone: Story = {};
+export const Default: Story = {};
 
-// 2. The Filter view
-export const FilterView: Story = {
+// Useful to see how MUI handles the 'contained' variant when disabled
+export const Disabled: Story = {
+  render: (args) => (
+    <div style={{ pointerEvents: "none", opacity: 0.7 }}>
+      <SaveButton {...args} />
+    </div>
+  ),
   args: {
-    selectedWindow: "filter",
-  },
-};
-
-// 3. The Calendar view
-export const CalendarView: Story = {
-  args: {
-    selectedWindow: "calendar",
+    // Note: If you add a 'disabled' prop to SaveButton.tsx,
+    // you can pass it here directly instead of this wrapper.
   },
 };

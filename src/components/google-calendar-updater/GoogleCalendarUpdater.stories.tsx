@@ -1,5 +1,5 @@
 /*!
- * WindowSelector.stories.tsx for ClubPoker Chrome Extension
+ * GoogleCalendarUpdater.stories.tsx for ClubPoker Chrome Extension
  *
  * SPDX-FileCopyrightText: Copyright (c) 2025-2026, Jared Cook
  * SPDX-License-Identifier: GPL-3.0-or-later
@@ -19,43 +19,24 @@
  */
 
 import type { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
-import WindowSelector from "./WindowSelector";
+import GoogleCalendarUpdater from "./GoogleCalendarUpdater";
 
 const meta = {
-  title: "Components/WindowSelector",
-  component: WindowSelector,
+  title: "Components/Pages/GoogleCalendarUpdater",
+  component: GoogleCalendarUpdater,
   tags: ["autodocs", "vitest"],
-  argTypes: {
-    selectedWindow: {
-      control: "inline-radio",
-      options: ["timezone", "filter", "calendar"],
-      description: "The currently active tab/window",
-    },
-    onChange: { action: "window-changed" }, // Automatically logs the change in the Actions tab
-  },
-  args: {
-    selectedWindow: "timezone",
-    onChange: fn(),
-  },
-} satisfies Meta<typeof WindowSelector>;
+  // No local decorators or render functions needed;
+  // handled by preview.tsx and mock messageService.
+} satisfies Meta<typeof GoogleCalendarUpdater>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// 1. The default view (Timezone)
-export const Timezone: Story = {};
+export const Default: Story = {};
 
-// 2. The Filter view
-export const FilterView: Story = {
-  args: {
-    selectedWindow: "filter",
-  },
-};
-
-// 3. The Calendar view
-export const CalendarView: Story = {
-  args: {
-    selectedWindow: "calendar",
-  },
+export const Loading: Story = {
+  // If you want to force a loading state, you can mock the
+  // message service to never resolve, but for a basic
+  // view, the Default story will now show your mock data!
+  args: {},
 };

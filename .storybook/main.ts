@@ -18,7 +18,7 @@
  * along with this program.  If not, see <www.gnu.org>.
  */
 
-import type { StorybookConfig } from "@storybook/react-webpack5";
+import type { StorybookConfig } from "@storybook/react-vite";
 import path from "path";
 import { fileURLToPath } from "url";
 
@@ -28,42 +28,49 @@ const __dirname = path.dirname(__filename);
 
 const config: StorybookConfig = {
   framework: {
-    name: "@storybook/react-webpack5",
+    name: "@storybook/react-vite",
     options: {},
   },
   stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
-
-  core: {
-    builder: {
-      name: "@storybook/builder-webpack5",
-      options: {
-        fsCache: true,
-        lazyCompilation: true,
+  addons: [
+    "@storybook/addon-links",
+    "@storybook/addon-vitest",
+    "@storybook/addon-essentials",
+  ],
+  async viteFinal(config) {
+    const { mergeConfig } = await import("vite");
+    return mergeConfig(config, {
+      esbuild: {
+        logOverride: { "this-is-undefined-in-esm": "silent" },
+        banner: 'import React from "react";', // Helps with some MUI edge cases
       },
-    },
-  },
-
-  addons: ["@storybook/addon-webpack5-compiler-swc"],
-  webpackFinal: async (config) => {
-    // 1. Ensure config.module and config.module.rules exist
-    if (config.module?.rules) {
-      config.module.rules.push({
-        test: /\.scss$/,
-        use: ["style-loader", "css-loader", "sass-loader"],
-      });
-    }
-
-    // 2. Pro-tip: Add your path aliases here so Storybook can find them too!
-    if (config.resolve) {
-      config.resolve.alias = {
-        ...config.resolve.alias,
-        "@types": path.resolve(__dirname, "../src/types"),
-        "@api": path.resolve(__dirname, "../src/api"),
-        "@services": path.resolve(__dirname, "../src/services"),
-      };
-    }
-
-    return config;
+      // 2. Fix the Rollup resolution for MUI directives
+      build: {
+        rollupOptions: {
+          onwarn(warning, warn) {
+            if (warning.code === "MODULE_LEVEL_DIRECTIVE") return;
+            warn(warning);
+          },
+        },
+      },
+      resolve: {
+        alias: {
+          "@/services/messageService": path.resolve(
+            __dirname,
+            "../src/services/__mocks__/messageService.ts"
+          ),
+          "@/services/storageService": path.resolve(
+            __dirname,
+            "../src/services/__mocks__/storageService.ts"
+          ),
+          // One alias to rule them all (matches your tsconfig)
+          "@": path.resolve(__dirname, "../src"),
+          "@types": path.resolve(__dirname, "../src/types"),
+          "@api": path.resolve(__dirname, "../src/api"),
+          "@services": path.resolve(__dirname, "../src/services"),
+        },
+      },
+    });
   },
 };
 

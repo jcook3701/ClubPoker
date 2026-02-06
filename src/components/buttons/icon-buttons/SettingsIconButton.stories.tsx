@@ -1,5 +1,5 @@
 /*!
- * WindowSelector.stories.tsx for ClubPoker Chrome Extension
+ * SettingsIconButton.stories.tsx for ClubPoker Chrome Extension
  *
  * SPDX-FileCopyrightText: Copyright (c) 2025-2026, Jared Cook
  * SPDX-License-Identifier: GPL-3.0-or-later
@@ -20,42 +20,33 @@
 
 import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
-import WindowSelector from "./WindowSelector";
+import { Box } from "@mui/material";
+import SettingsIconButton from "./SettingsIconButton";
 
 const meta = {
-  title: "Components/WindowSelector",
-  component: WindowSelector,
+  title: "Components/Buttons/Icons/Settings",
+  component: SettingsIconButton,
   tags: ["autodocs", "vitest"],
-  argTypes: {
-    selectedWindow: {
-      control: "inline-radio",
-      options: ["timezone", "filter", "calendar"],
-      description: "The currently active tab/window",
-    },
-    onChange: { action: "window-changed" }, // Automatically logs the change in the Actions tab
-  },
+  decorators: [
+    (Story) => (
+      <Box sx={{ p: 4, display: "flex", justifyContent: "center" }}>
+        <Story />
+      </Box>
+    ),
+  ],
   args: {
-    selectedWindow: "timezone",
-    onChange: fn(),
+    onClick: fn(),
   },
-} satisfies Meta<typeof WindowSelector>;
+} satisfies Meta<typeof SettingsIconButton>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// 1. The default view (Timezone)
-export const Timezone: Story = {};
+export const Default: Story = {};
 
-// 2. The Filter view
-export const FilterView: Story = {
+// Example: See it spinning or in a focused state
+export const Active: Story = {
   args: {
-    selectedWindow: "filter",
-  },
-};
-
-// 3. The Calendar view
-export const CalendarView: Story = {
-  args: {
-    selectedWindow: "calendar",
+    // You could pass sx here to simulate a hover/active state if needed
   },
 };

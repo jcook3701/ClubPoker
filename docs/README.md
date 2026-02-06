@@ -84,6 +84,9 @@ Documentation is able to be update automatically via typedoc and scripts/inject-
 
 ### Storybook
 
+**NOTE:** project storybook has been upgrade to version 10 and project now requires ```npm install --legacy-peer-deps```.
+This will unfortunately be the case until @storybook/addon-essentials and @storybook/test are upgrade to version 10 as well.
+
 1. Build package components for use in storybook.  
     ``` shell
     $ npm run build-storybook  
