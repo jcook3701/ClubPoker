@@ -19,7 +19,7 @@
  */
 
 import { Calendar, CalendarEvent } from "@types";
-import { SYNC_STORAGE_KEYS } from "../config/chrome";
+import { SYNC_STORAGE_KEYS } from "@/config/chrome";
 
 /**
  * Returns the full redirect URI based on extension ID + "oauth2" path.

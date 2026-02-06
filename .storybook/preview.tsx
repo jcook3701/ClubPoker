@@ -60,7 +60,7 @@ const preview: Preview = {
       // Otherwise (default/white), use LIGHT_THEME.
       const isDarkBackground = bgValue === "#121212" || bgValue === "#0a5c0a";
       const currentTheme = isDarkBackground ? DARK_THEME : LIGHT_THEME;
-      
+
       // 3. FORCE RE-RENDER when switching to prevent "stuck" UI
       const themeKey = isDarkBackground ? "dark" : "light";
       return (
@@ -78,7 +78,7 @@ const preview: Preview = {
                 overflow: "hidden",
                 display: "flex",
                 flexDirection: "column",
-                border:  !isDarkBackground ? "1px solid #e0e0e0" : "none",
+                border: !isDarkBackground ? "1px solid #e0e0e0" : "none",
               }}
             >
               <Story />

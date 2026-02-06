@@ -19,6 +19,7 @@
  */
 
 import {
+  AppSettings,
   Tournament,
   Tournaments,
   CalendarEvent,
@@ -26,7 +27,9 @@ import {
   Calendar,
   Timezone,
   ViewMode,
-} from "@/types";
+} from "@types";
+
+import { ClubTypeValues, ThemeMode } from "@/constants/settings";
 
 export const MOCK_TIMEZONE: Timezone = {
   value: "America/New_York",
@@ -103,3 +106,23 @@ export const createMockCalendarEvents = (count = 3): CalendarEvents => ({
   ),
   timestamp: new Date(),
 });
+
+/**
+ * 6. App Settings Factory
+ */
+export const createMockSettings = (
+  overrides: Partial<AppSettings> = {}
+): AppSettings => {
+  // We move the array access INSIDE the function.
+  // This means Vite doesn't have to resolve this value until the story actually runs.
+  const defaultClub =
+    ClubTypeValues && ClubTypeValues.length > 0
+      ? ClubTypeValues[0]
+      : { value: "Club_WPT", label: "Club WPT" };
+
+  return {
+    theme: ThemeMode.darkMode,
+    club: defaultClub,
+    ...overrides,
+  };
+};

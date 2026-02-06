@@ -7,12 +7,9 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
-      "@types": ["src/types"],
-      "@types/*": ["src/types/*"],
-      "@services": ["src/services"],
-      "@services/*": ["src/services/*"],
-      "@api": ["src/api"],
-      "@api/*": ["src/api/*"]
+      "@types": ["src/types/index.ts"],
+      "@services": ["src/services/index.ts"],
+      "@api": ["src/api/index.ts"]
     },
     "jsx": "react-jsx",
     "strict": true,

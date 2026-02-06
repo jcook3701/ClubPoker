@@ -30,16 +30,16 @@ import {
   Box,
   Toolbar,
 } from "@mui/material";
+import { AppSettings, Club } from "@types";
+
 import {
   boolToTheme,
-  AppSettings,
   ThemeMode,
   themeToBool,
   ClubTypeValues,
-  Club,
-} from "@types";
-import SaveButton from "../buttons/SaveButton";
-import BackArrowIconButton from "../buttons/icon-buttons/BackArrowIconButton";
+} from "@/constants/settings";
+import SaveButton from "@/components/buttons/SaveButton";
+import BackArrowIconButton from "@/components/buttons/icon-buttons/BackArrowIconButton";
 
 type SettingsProps = {
   settings?: AppSettings;

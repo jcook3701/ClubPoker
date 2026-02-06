@@ -54,21 +54,43 @@ const config: StorybookConfig = {
         },
       },
       resolve: {
-        alias: {
-          "@/services/messageService": path.resolve(
-            __dirname,
-            "../src/services/__mocks__/messageService.ts"
-          ),
-          "@/services/storageService": path.resolve(
-            __dirname,
-            "../src/services/__mocks__/storageService.ts"
-          ),
-          // One alias to rule them all (matches your tsconfig)
-          "@": path.resolve(__dirname, "../src"),
-          "@types": path.resolve(__dirname, "../src/types"),
-          "@api": path.resolve(__dirname, "../src/api"),
-          "@services": path.resolve(__dirname, "../src/services"),
-        },
+        alias: [
+          {
+            find: "@/types/settings",
+            replacement: path.resolve(__dirname, "../src/types/settings.ts"),
+          },
+          // Mocks MUST be first
+          {
+            find: "@/services/messageService",
+            replacement: path.resolve(
+              __dirname,
+              "../src/services/__mocks__/messageService.ts"
+            ),
+          },
+          {
+            find: "@/services/storageService",
+            replacement: path.resolve(
+              __dirname,
+              "../src/services/__mocks__/storageService.ts"
+            ),
+          },
+          // Point everything else to the index files
+          {
+            find: "@types",
+            replacement: path.resolve(__dirname, "../src/types/index.ts"),
+          },
+          {
+            find: "@services",
+            replacement: path.resolve(__dirname, "../src/services/index.ts"),
+          },
+          {
+            find: "@api",
+            replacement: path.resolve(__dirname, "../src/api/index.ts"),
+          },
+
+          // General root alias
+          { find: "@", replacement: path.resolve(__dirname, "../src") },
+        ],
       },
     });
   },

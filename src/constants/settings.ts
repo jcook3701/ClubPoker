@@ -18,7 +18,32 @@
  * along with this program.  If not, see <www.gnu.org>.
  */
 
-import { AppSettings, Club, ClubTypeValues, ThemeMode } from "@types";
+import { AppSettings, Club } from "@types";
+
+/*
+ * Light and Dark mode theme options
+ */
+export enum ThemeMode {
+  lightMode,
+  darkMode,
+}
+
+/*
+ * Map of available poker clubs that this application serves
+ */
+export const ClubTypes = {
+  clubWpt: "Club_WPT",
+} as const;
+
+/*
+ * Convert to a list of values
+ */
+export const ClubTypeValues: Club[] = Object.values(ClubTypes).map((club) => {
+  return {
+    value: club,
+    label: club.replace("_", " "),
+  };
+});
 
 const DEFAULT_THEME = ThemeMode.lightMode;
 const DEFAULT_CLUB: Club = ClubTypeValues[0];
@@ -30,3 +55,15 @@ export const DEFAULT_SETTINGS: AppSettings = {
   theme: DEFAULT_THEME,
   club: DEFAULT_CLUB,
 };
+
+/*
+ * Converts Theme enumeration to boolean
+ */
+export const themeToBool = (theme: ThemeMode | undefined): boolean =>
+  theme === ThemeMode.darkMode;
+
+/*
+ * Converts boolean to Theme enumeration
+ */
+export const boolToTheme = (checked: boolean | undefined): ThemeMode =>
+  checked ? ThemeMode.darkMode : ThemeMode.lightMode;

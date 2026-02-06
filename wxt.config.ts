@@ -21,16 +21,12 @@
 import { defineConfig } from "wxt";
 import react from "@vitejs/plugin-react";
 import tsconfigPaths from "vite-tsconfig-paths";
-import path from "node:path";
 
 export default defineConfig({
   modules: ["@wxt-dev/module-react"],
   srcDir: "src",
   vite: () => ({
     plugins: [react(), tsconfigPaths()],
-    alias: {
-      "@": path.resolve(__dirname, "./src"),
-    },
     build: {
       chunkSizeWarningLimit: 1000,
     },
