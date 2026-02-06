@@ -19,7 +19,7 @@
  */
 
 import { WarningCode } from "@types";
-import { MessageTypes } from "./messages";
+import { MessageTypes } from "@/constants/messages";
 
 /*
  * map message warnings to keys in a chrome config object

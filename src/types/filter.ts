@@ -18,7 +18,7 @@
  * along with this program.  If not, see <www.gnu.org>.
  */
 
-import { Tournament } from "@types";
+import { Tournament } from "./tournament";
 
 /*
  * Filter state of all filters

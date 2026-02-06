@@ -18,21 +18,21 @@
  * along with this program.  If not, see <www.gnu.org>.
  */
 
-import { MessageTypes } from "../../../constants/messages";
+import { MessageTypes } from "@/constants/messages";
 import {
   DomColItem,
   DomRowItem,
   DomTournamentGrid,
-} from "../../../constants/tournaments";
-import { sendMessage } from "../../../services/messageService";
+} from "@/constants/tournaments";
+import { sendMessage } from "@/services/messageService";
 import { Timezone, Tournament, Tournaments } from "@types";
-import { getSelectorModeFromDom } from "../../../utils/scrapers/getTournamentData";
-import getViewMode from "../../../utils/scrapers/getViewMode";
+import { getSelectorModeFromDom } from "@/utils/scrapers/getTournamentData";
+import getViewMode from "@/utils/scrapers/getViewMode";
 import {
   convertFromTzAbbrToUser,
   convertTournamentTimes,
   formatTournamentTime,
-} from "../../../utils/time/timeHelpers";
+} from "@/utils/time/timeHelpers";
 
 /*
  * Updates rows/cols when lobby.clubwpt.com is in row mode

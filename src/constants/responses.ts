@@ -26,7 +26,7 @@ import {
   Timezone,
   Tournaments,
 } from "@types";
-import { MessageTypes } from "./messages";
+import { MessageTypes } from "@/constants/messages";
 
 /* Map each request type → response payload shape */
 export type ResponseMap = {

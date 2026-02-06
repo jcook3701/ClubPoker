@@ -18,11 +18,11 @@
  * along with this program.  If not, see <www.gnu.org>.
  */
 
-import { LOCAL_STORAGE_KEYS } from "../config/chrome";
-import { MessageTypes } from "../constants/messages";
-import { ResponseMap } from "../constants/responses";
-import { onMessage } from "../services/messageService";
-import { removeLocalStorageItem } from "../services/storageService";
+import { LOCAL_STORAGE_KEYS } from "@/config/chrome";
+import { MessageTypes } from "@/constants/messages";
+import { ResponseMap } from "@/constants/responses";
+import { onMessage } from "@/services/messageService";
+import { removeLocalStorageItem } from "@/services/storageService";
 
 /*
  * On page reload clear tournaments from Local Storage.

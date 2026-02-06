@@ -20,10 +20,10 @@
 
 import React, { useState } from "react";
 import { Box } from "@mui/material";
-import Header from "../header/Header";
+import Header from "@/components/header/Header";
 
-import WindowSelector from "../window-selector/WindowSelector";
-import Settings from "../settings/Settings";
+import WindowSelector from "@/components/window-selector/WindowSelector";
+import Settings from "@/components/settings/Settings";
 import type { AppSettings } from "@types";
 
 type PopupProps = {

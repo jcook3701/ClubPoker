@@ -22,9 +22,9 @@ import type { Meta, StoryObj } from "@storybook/react";
 import AppIcon from "./AppIcon";
 
 const meta = {
-  title: "Components/AppIcon",
+  title: "Components/Data Display/AppIcon",
   component: AppIcon,
-  // This automatically generates controls for your props
+  tags: ["autodocs", "vitest"],
   argTypes: {
     src: {
       control: "select",

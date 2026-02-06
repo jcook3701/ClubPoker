@@ -20,14 +20,14 @@
 
 import React, { useState, useEffect } from "react";
 import { Box, Typography } from "@mui/material";
-import Filter from "./Filter/Filter";
-import { WptFilterMap } from "../../constants/filters";
+import Filter from "@/components/filters/Filter/Filter";
+import { WptFilterMap } from "@/constants/filters";
 import { FiltersState } from "@types";
 import styles from "./Filters.module.scss";
-import { sendMessage } from "../../services/messageService";
-import { MessageTypes } from "../../constants/messages";
-import SaveButton from "../buttons/SaveButton";
-import { useGoogleCalendar } from "../../context/GoogleCalendarContext";
+import { sendMessage } from "@/services/messageService";
+import { MessageTypes } from "@/constants/messages";
+import SaveButton from "@/components/buttons/SaveButton";
+import { useGoogleCalendar } from "@/context/GoogleCalendarContext";
 
 const Filters: React.FC = () => {
   const { setEventsRefresh } = useGoogleCalendar();

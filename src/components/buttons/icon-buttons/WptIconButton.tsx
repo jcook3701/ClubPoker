@@ -20,7 +20,7 @@
 
 import React from "react";
 import { Box, IconButton, SxProps, Theme, Tooltip } from "@mui/material";
-import AppIcon from "../../icon/AppIcon";
+import AppIcon from "@/components/icon/AppIcon";
 
 type WptIconButtonProps = {
   title: string;

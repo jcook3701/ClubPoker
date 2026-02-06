@@ -19,11 +19,13 @@
  */
 
 import type { Meta, StoryObj } from "@storybook/react";
+import { fn } from "@storybook/test";
 import WindowSelector from "./WindowSelector";
 
 const meta = {
   title: "Components/WindowSelector",
   component: WindowSelector,
+  tags: ["autodocs", "vitest"],
   argTypes: {
     selectedWindow: {
       control: "inline-radio",
@@ -34,6 +36,7 @@ const meta = {
   },
   args: {
     selectedWindow: "timezone",
+    onChange: fn(),
   },
 } satisfies Meta<typeof WindowSelector>;
 

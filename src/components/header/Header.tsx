@@ -20,11 +20,11 @@
 
 import React from "react";
 import { AppBar, Box, Toolbar, Typography } from "@mui/material";
-import LiveHelpIconButton from "../buttons/icon-buttons/LiveHelpIconButton";
-import MoreIconButton from "../buttons/icon-buttons/MoreIconButton";
-import SettingsIconButton from "../buttons/icon-buttons/SettingsIconButton";
-import WptIconButton from "../buttons/icon-buttons/WptIconButton";
-import { CLUB_WPT_URL, HELP_PAGE_URI } from "../../config/chrome";
+import LiveHelpIconButton from "@/components/buttons/icon-buttons/LiveHelpIconButton";
+import MoreIconButton from "@/components/buttons/icon-buttons/MoreIconButton";
+import SettingsIconButton from "@/components/buttons/icon-buttons/SettingsIconButton";
+import WptIconButton from "@/components/buttons/icon-buttons/WptIconButton";
+import { CLUB_WPT_URL, HELP_PAGE_URI } from "@/config/chrome";
 
 type HeaderProps = {
   settingsSelected: boolean;

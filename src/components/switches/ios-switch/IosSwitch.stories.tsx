@@ -1,5 +1,5 @@
 /*!
- * commitlint.config.js for ClubPoker Chrome Extension
+ * IosSwitch.stories.tsx for ClubPoker Chrome Extension
  *
  * SPDX-FileCopyrightText: Copyright (c) 2025-2026, Jared Cook
  * SPDX-License-Identifier: GPL-3.0-or-later
@@ -18,4 +18,29 @@
  * along with this program.  If not, see <www.gnu.org>.
  */
 
-module.exports = { extends: ["@commitlint/config-conventional"] };
+import type { Meta, StoryObj } from "@storybook/react";
+import IosSwitch from "./IosSwitch";
+
+const meta = {
+  title: "Components/Switches/IosSwitch",
+  component: IosSwitch,
+  tags: ["autodocs", "vitest"],
+  args: {
+    checked: false,
+  },
+} satisfies Meta<typeof IosSwitch>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Off: Story = {
+  args: {
+    checked: false,
+  },
+};
+
+export const On: Story = {
+  args: {
+    checked: true,
+  },
+};

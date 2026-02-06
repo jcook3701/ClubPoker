@@ -19,9 +19,9 @@
  */
 
 import React from "react";
-import icon16 from "../../icons/icon16.png";
-import icon48 from "../../icons/icon48.png";
-import icon128 from "../../icons/icon128.png";
+import icon16 from "@/assets/icons/icon16.png";
+import icon48 from "@/assets/icons/icon48.png";
+import icon128 from "@/assets/icons/icon128.png";
 import { Avatar } from "@mui/material";
 
 interface AppIconProps {

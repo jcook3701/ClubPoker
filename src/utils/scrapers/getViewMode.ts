@@ -23,7 +23,7 @@ import {
   DomToggleListIcon,
   DomToggleSwitch,
   DomToggleView,
-} from "../../constants/tournaments";
+} from "@/constants/tournaments";
 import { ViewMode } from "@types";
 
 /*

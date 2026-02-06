@@ -18,9 +18,9 @@
  * along with this program.  If not, see <www.gnu.org>.
  */
 
-import { MessageTypes } from "../constants/messages";
-import { ResponseMap } from "../constants/responses";
-import { onMessage } from "../services/messageService";
+import { MessageTypes } from "@/constants/messages";
+import { ResponseMap } from "@/constants/responses";
+import { onMessage } from "@/services/messageService";
 import { formatWarningMessage } from "@types";
 
 /*

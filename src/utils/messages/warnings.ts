@@ -18,7 +18,7 @@
  * along with this program.  If not, see <www.gnu.org>.
  */
 
-import { MessageTypes } from "../../constants/messages";
+import { MessageTypes } from "@/constants/messages";
 import { WarningCode, WarningMessage } from "@types";
 
 /**

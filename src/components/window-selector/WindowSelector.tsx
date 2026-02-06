@@ -21,13 +21,13 @@
 import React from "react";
 import { Box, ToggleButton, ToggleButtonGroup } from "@mui/material";
 import FilterIcon from "@mui/icons-material/Filter"; // Filters page
-import CalendarMonthIcon from "@mui/icons-material/CalendarMonth"; // update Google Calander
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth"; // update Google Calendar
 import AccessTimeIcon from "@mui/icons-material/AccessTime"; // update time page
 
 import styles from "./WindowSelector.module.scss";
-import TimezoneSelect from "../timezone-select/TimezoneSelect";
-import Filters from "../filters/Filters";
-import GoogleCalendarUpdater from "../google-calendar-updater/GoogleCalendarUpdater";
+import TimezoneSelect from "@/components/timezone-select/TimezoneSelect";
+import Filters from "@/components/filters/Filters";
+import GoogleCalendarUpdater from "@/components/google-calendar-updater/GoogleCalendarUpdater";
 
 type WindowSelectorProps = {
   selectedWindow: string;

@@ -18,15 +18,32 @@
  * along with this program.  If not, see <www.gnu.org>.
  */
 
-import { Meta, StoryFn } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
+import { fn } from "@storybook/test";
 import LightDarkModeSwitch from "./LightDarkModeSwitch";
 
-export default {
-  title: "Components/LightDarkModeSwitch",
+const meta = {
+  title: "Components/Switches/LightDarkModeSwitch",
   component: LightDarkModeSwitch,
-} as Meta;
+  tags: ["autodocs", "vitest"],
+  args: {
+    onChange: fn(),
+    checked: false,
+  },
+} satisfies Meta<typeof LightDarkModeSwitch>;
 
-const Template: StoryFn = (args) => <LightDarkModeSwitch {...args} />;
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-export const Default = Template.bind({});
-Default.args = {};
+export const LightMode: Story = {
+  args: {
+    checked: false,
+  },
+};
+
+// 2. Dark Mode
+export const DarkMode: Story = {
+  args: {
+    checked: true,
+  },
+};

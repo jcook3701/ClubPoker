@@ -18,15 +18,15 @@
  * along with this program.  If not, see <www.gnu.org>.
  */
 
-import { StorageMap } from "../constants/chromeStorage";
-import { MessageTypes } from "../constants/messages";
-import { ResponseMap } from "../constants/responses";
-import { DEFAULT_TIMEZONE } from "../constants/timezone";
-import { WarningCodeMap } from "../constants/warnings";
-import { onMessage, sendMessage } from "../services/messageService";
-import { getSyncStorageItem } from "../services/storageService";
+import { StorageMap } from "@/constants/chromeStorage";
+import { MessageTypes } from "@/constants/messages";
+import { ResponseMap } from "@/constants/responses";
+import { DEFAULT_TIMEZONE } from "@/constants/timezone";
+import { WarningCodeMap } from "@/constants/warnings";
+import { onMessage, sendMessage } from "@/services/messageService";
+import { getSyncStorageItem } from "@/services/storageService";
 import { Timezone } from "@types";
-import { createWarning } from "../utils/messages/warnings";
+import { createWarning } from "@/utils/messages/warnings";
 
 /*
  * Returns Timezone object from chrome.sync storage or

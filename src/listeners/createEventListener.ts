@@ -18,13 +18,13 @@
  * along with this program.  If not, see <www.gnu.org>.
  */
 
-import { createEvent } from "../api/googleCalendarApi";
-import { MessageTypes } from "../constants/messages";
-import { ResponseMap } from "../constants/responses";
-import { WarningCodeMap } from "../constants/warnings";
-import { onMessage, sendMessage } from "../services/messageService";
+import { createEvent } from "@/api/googleCalendarApi";
+import { MessageTypes } from "@/constants/messages";
+import { ResponseMap } from "@/constants/responses";
+import { WarningCodeMap } from "@/constants/warnings";
+import { onMessage, sendMessage } from "@/services/messageService";
 import { CalendarEvent, CalendarEvents } from "@types";
-import { createWarning } from "../utils/messages/warnings";
+import { createWarning } from "@/utils/messages/warnings";
 
 /*
  * Creates Google Calendar Event using the Google Calendar API

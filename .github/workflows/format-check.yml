@@ -44,7 +44,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          npm install
+          npm install --legacy-peer-deps
 
       - name: Run Prettier Check
         run: |

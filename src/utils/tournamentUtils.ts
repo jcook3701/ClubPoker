@@ -18,7 +18,7 @@
  * along with this program.  If not, see <www.gnu.org>.
  */
 
-import { Tournament } from "../types/tournament";
+import { Tournament } from "@types";
 
 export const extractTournamentData = (row: Element): Tournament => {
   console.log("ExtractTournamentData");

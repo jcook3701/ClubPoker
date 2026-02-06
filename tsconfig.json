@@ -1,35 +1,36 @@
 {
+  "extends": "./.wxt/tsconfig.json",
   "compilerOptions": {
-    "baseUrl": "src",
-    "paths": {
-      "@types": ["types"],
-      "@types/*": ["types/*"],
-      "@services": ["services"],
-      "@services/*": ["services/*"],
-      "@api": ["api"],
-      "@api/*": ["api/*"]
-    },
     "target": "ES2022",
-    "module": "esnext",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "moduleResolution": "bundler",
-    "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "allowJs": true,
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@types": ["src/types/index.ts"],
+      "@services": ["src/services/index.ts"],
+      "@api": ["src/api/index.ts"]
+    },
     "jsx": "react-jsx",
+    "strict": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
     "resolveJsonModule": true,
     "forceConsistentCasingInFileNames": true,
+    "allowJs": true,
+    "noEmit": true,
     "noImplicitAny": false,
-    "typeRoots": ["./node_modules/@types", "./src/types"],
-    "outDir": "./dist"
+    "typeRoots": ["./node_modules/@types", "./src/types"]
   },
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/types/*.d.ts",
+    "entrypoints/**/*.ts",
+    "entrypoints/**/*.tsx",
     ".storybook/**/*.ts",
-    ".storybook/**/*.tsx"
+    ".storybook/**/*.tsx",
+    ".wxt/types/*.d.ts"
   ],
   "exclude": ["node_modules", "dist", "storybook-static"]
 }

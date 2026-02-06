@@ -19,7 +19,7 @@
  */
 
 import React from "react";
-import { useGoogleCalendar } from "../../context/GoogleCalendarContext";
+import { useGoogleCalendar } from "@/context/GoogleCalendarContext";
 import {
   Autocomplete,
   Box,
@@ -33,9 +33,9 @@ import {
 } from "@mui/material";
 
 import styles from "./GoogleCalendarUpdater.module.scss";
-import UpdateCalendarButton from "../buttons/UpdateCalendarButton";
-import { formatCalendarTime } from "../../utils/time/timeHelpers";
-import CalendarBadge from "../badges/CalendarBadge";
+import UpdateCalendarButton from "@/components/buttons/UpdateCalendarButton";
+import { formatCalendarTime } from "@/utils/time/timeHelpers";
+import CalendarBadge from "@/components/badges/CalendarBadge";
 
 const GoogleCalendarUpdater: React.FC = () => {
   const {

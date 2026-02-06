@@ -19,28 +19,36 @@
  */
 
 import type { Meta, StoryObj } from "@storybook/react";
+import { fn } from "@storybook/test";
 import Header from "./Header";
 
 const meta = {
-  title: "Components/Header",
+  title: "Layout/Header",
   component: Header,
+  tags: ["autodocs", "vitest"],
   // Industry Standard: Provide global defaults for the component's props
   args: {
     title: "ClubWPT Poker",
     settingsSelected: false,
-    setSettingsSelected: (value: boolean) =>
-      console.log("Toggle settings:", value),
+    setSettingsSelected: fn(),
   },
 } satisfies Meta<typeof Header>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// This satisfies the "The file should have at least one story export" error
 export const Default: Story = {};
 
-export const SettingsOpen: Story = {
+export const SettingsActive: Story = {
   args: {
     settingsSelected: true,
+  },
+};
+
+// Test specific for interaction
+export const Interaction: Story = {
+  play: async ({ _args, _canvasElement, _step }) => {
+    // This allows you to write actual Vitest tests for the Header toggle
+    // inside Storybook!
   },
 };

@@ -18,10 +18,10 @@
  * along with this program.  If not, see <www.gnu.org>.
  */
 
-import { MessageTypes } from "../constants/messages";
-import { ResponseMap } from "../constants/responses";
+import { MessageTypes } from "@/constants/messages";
+import { ResponseMap } from "@/constants/responses";
 
-import { onMessage } from "../services/messageService";
+import { onMessage } from "@/services/messageService";
 
 /*
  * Handles DOM updates when settings are modified within chrome.sync storage.

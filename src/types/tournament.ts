@@ -18,7 +18,8 @@
  * along with this program.  If not, see <www.gnu.org>.
  */
 
-import { Timezone, ViewMode } from "@types";
+import { Timezone } from "./Timezone";
+import { ViewMode } from "./ViewMode";
 
 export interface Tournaments {
   timeZone: Timezone;

@@ -18,11 +18,11 @@
  * along with this program.  If not, see <www.gnu.org>.
  */
 
-import { StorageMap } from "../constants/chromeStorage";
-import { MessageTypes } from "../constants/messages";
-import { ResponseMap } from "../constants/responses";
-import { onMessage } from "../services/messageService";
-import { getSyncStorageItem } from "../services/storageService";
+import { StorageMap } from "@/constants/chromeStorage";
+import { MessageTypes } from "@/constants/messages";
+import { ResponseMap } from "@/constants/responses";
+import { onMessage } from "@/services/messageService";
+import { getSyncStorageItem } from "@/services/storageService";
 import { Calendar } from "@types";
 
 /*
